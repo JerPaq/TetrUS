@@ -13,21 +13,96 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{15bfba5b-ea1d-4db2-85e5-5ca683ad99b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\nlohman">
+      <UniqueIdentifier>{01a03108-45bf-41d9-84c9-8bfb051bff0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\nlohman\detail">
+      <UniqueIdentifier>{6b742d53-41d2-4864-95fd-b3010be0f26b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stdafx.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="targetver.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="TetrUS_console.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="lib\nlohmann\adl_serializer.hpp">
+      <Filter>lib\nlohman</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\nlohmann\json.hpp">
+      <Filter>lib\nlohman</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\nlohmann\json_fwd.hpp">
+      <Filter>lib\nlohman</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\nlohmann\detail\input\binary_reader.hpp">
+      <Filter>lib\nlohman\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\nlohmann\detail\output\binary_writer.hpp">
+      <Filter>lib\nlohman\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\nlohmann\detail\exceptions.hpp">
+      <Filter>lib\nlohman\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\nlohmann\detail\conversions\from_json.hpp">
+      <Filter>lib\nlohman\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\nlohmann\detail\input\input_adapters.hpp">
+      <Filter>lib\nlohman\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\nlohmann\detail\iterators\internal_iterator.hpp">
+      <Filter>lib\nlohman\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\nlohmann\detail\iterators\iter_impl.hpp">
+      <Filter>lib\nlohman\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\nlohmann\detail\iterators\iteration_proxy.hpp">
+      <Filter>lib\nlohman\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\nlohmann\detail\json_pointer.hpp">
+      <Filter>lib\nlohman\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\nlohmann\detail\json_ref.hpp">
+      <Filter>lib\nlohman\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\nlohmann\detail\iterators\json_reverse_iterator.hpp">
+      <Filter>lib\nlohman\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\nlohmann\detail\input\lexer.hpp">
+      <Filter>lib\nlohman\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\nlohmann\detail\macro_scope.hpp">
+      <Filter>lib\nlohman\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\nlohmann\detail\macro_unscope.hpp">
+      <Filter>lib\nlohman\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\nlohmann\detail\meta.hpp">
+      <Filter>lib\nlohman\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\nlohmann\detail\output\output_adapters.hpp">
+      <Filter>lib\nlohman\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\nlohmann\detail\input\parser.hpp">
+      <Filter>lib\nlohman\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\nlohmann\detail\iterators\primitive_iterator.hpp">
+      <Filter>lib\nlohman\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\nlohmann\detail\output\serializer.hpp">
+      <Filter>lib\nlohman\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\nlohmann\detail\conversions\to_chars.hpp">
+      <Filter>lib\nlohman\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\nlohmann\detail\conversions\to_json.hpp">
+      <Filter>lib\nlohman\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\nlohmann\detail\value_t.hpp">
+      <Filter>lib\nlohman\detail</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

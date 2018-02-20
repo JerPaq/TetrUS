@@ -84,12 +84,13 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>.\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -98,12 +99,13 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>.\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -147,17 +149,34 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="stdafx.h" />
-    <ClInclude Include="targetver.h" />
+    <ClCompile Include="TetrUS_console.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="stdafx.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="TetrUS_console.cpp" />
+    <ClInclude Include="lib\nlohmann\adl_serializer.hpp" />
+    <ClInclude Include="lib\nlohmann\detail\conversions\from_json.hpp" />
+    <ClInclude Include="lib\nlohmann\detail\conversions\to_chars.hpp" />
+    <ClInclude Include="lib\nlohmann\detail\conversions\to_json.hpp" />
+    <ClInclude Include="lib\nlohmann\detail\exceptions.hpp" />
+    <ClInclude Include="lib\nlohmann\detail\input\binary_reader.hpp" />
+    <ClInclude Include="lib\nlohmann\detail\input\input_adapters.hpp" />
+    <ClInclude Include="lib\nlohmann\detail\input\lexer.hpp" />
+    <ClInclude Include="lib\nlohmann\detail\input\parser.hpp" />
+    <ClInclude Include="lib\nlohmann\detail\iterators\internal_iterator.hpp" />
+    <ClInclude Include="lib\nlohmann\detail\iterators\iteration_proxy.hpp" />
+    <ClInclude Include="lib\nlohmann\detail\iterators\iter_impl.hpp" />
+    <ClInclude Include="lib\nlohmann\detail\iterators\json_reverse_iterator.hpp" />
+    <ClInclude Include="lib\nlohmann\detail\iterators\primitive_iterator.hpp" />
+    <ClInclude Include="lib\nlohmann\detail\json_pointer.hpp" />
+    <ClInclude Include="lib\nlohmann\detail\json_ref.hpp" />
+    <ClInclude Include="lib\nlohmann\detail\macro_scope.hpp" />
+    <ClInclude Include="lib\nlohmann\detail\macro_unscope.hpp" />
+    <ClInclude Include="lib\nlohmann\detail\meta.hpp" />
+    <ClInclude Include="lib\nlohmann\detail\output\binary_writer.hpp" />
+    <ClInclude Include="lib\nlohmann\detail\output\output_adapters.hpp" />
+    <ClInclude Include="lib\nlohmann\detail\output\serializer.hpp" />
+    <ClInclude Include="lib\nlohmann\detail\value_t.hpp" />
+    <ClInclude Include="lib\nlohmann\json.hpp" />
+    <ClInclude Include="lib\nlohmann\json_fwd.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
