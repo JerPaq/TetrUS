@@ -149,6 +149,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ObjTest.cpp" />
     <ClCompile Include="TetrUS_console.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -177,6 +178,7 @@
     <ClInclude Include="lib\nlohmann\detail\value_t.hpp" />
     <ClInclude Include="lib\nlohmann\json.hpp" />
     <ClInclude Include="lib\nlohmann\json_fwd.hpp" />
+    <ClInclude Include="ObjTest.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

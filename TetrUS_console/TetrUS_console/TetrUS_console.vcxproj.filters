@@ -27,6 +27,9 @@
     <ClCompile Include="TetrUS_console.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="ObjTest.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lib\nlohmann\adl_serializer.hpp">
@@ -103,6 +106,9 @@
     </ClInclude>
     <ClInclude Include="lib\nlohmann\detail\value_t.hpp">
       <Filter>lib\nlohman\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjTest.h">
+      <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
