@@ -149,10 +149,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="GestionJoueur.cpp" />
+    <ClCompile Include="Joueur.cpp" />
     <ClCompile Include="ObjTest.cpp" />
     <ClCompile Include="TetrUS_console.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GestionJoueur.h" />
+    <ClInclude Include="Joueur.h" />
     <ClInclude Include="lib\nlohmann\adl_serializer.hpp" />
     <ClInclude Include="lib\nlohmann\detail\conversions\from_json.hpp" />
     <ClInclude Include="lib\nlohmann\detail\conversions\to_chars.hpp" />
@@ -179,6 +183,7 @@
     <ClInclude Include="lib\nlohmann\json.hpp" />
     <ClInclude Include="lib\nlohmann\json_fwd.hpp" />
     <ClInclude Include="ObjTest.h" />
+    <ClInclude Include="vecteur.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
