@@ -24,7 +24,7 @@ public:
 	void viderVecteur();
 	bool estVide();
 	bool ajouter(Type* pForme);
-	Type* retirer(int pIndex);
+	void retirer(int pIndex);
 	Type* get(int pIndex);
 	void afficherVecteur(ostream & s);
 
@@ -112,15 +112,15 @@ void Vecteur<typename Type>::afficherVecteur(ostream & s)
 }
 
 template <typename Type>
-Type* Vecteur<typename Type>::retirer(int pIndex)
+void Vecteur<typename Type>::retirer(int pIndex)
 {
 
-	if (pIndex > taille_)
+	/*if (pIndex > taille_)
 	{
 		return NULL;
-	}
+	}*/
 
-	Type* ptrTemp = debut_[pIndex];
+	delete debut_[pIndex];
 
 	for (int i = pIndex; i < taille_; i++)
 	{
@@ -128,7 +128,7 @@ Type* Vecteur<typename Type>::retirer(int pIndex)
 	}
 
 	taille_--;
-	return ptrTemp;
+	//return ptrTemp;
 }
 
 template <typename Type>

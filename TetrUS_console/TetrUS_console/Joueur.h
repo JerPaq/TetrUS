@@ -22,5 +22,8 @@ public:
 	json getAttributs();
 
 	string getName();
+	void modifierNom(string pNom);
 
+	bool setHighScore(int pHighscore);
+	void augmenterPartie(bool pVictoire);
 };

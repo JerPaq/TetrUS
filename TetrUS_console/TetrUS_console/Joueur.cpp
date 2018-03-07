@@ -44,3 +44,28 @@ string Joueur::getName()
 {
 	return name_;
 }
+
+void Joueur::modifierNom(string pNom)
+{
+	name_ = pNom;
+}
+
+bool Joueur::setHighScore(int pHighscore)
+{
+	if (pHighscore > highScore_)
+	{
+		highScore_ = pHighscore;
+		return true;
+	}
+	return false;
+}
+
+void Joueur::augmenterPartie(bool pVictoire)
+{
+	nbPartie_++;
+	if (pVictoire)
+	{
+		nbVictoire_++;
+	}
+	pourcentage_ = nbVictoire_ / nbPartie_ * 100;
+}
