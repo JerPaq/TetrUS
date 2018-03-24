@@ -7,13 +7,22 @@
 
 Tetris_table::Tetris_table()
 {
-
+	largeur = largeur_tableau;
+	hauteur = hauteur_tableau;
+	formeActuelle = &buffer;
+	prochaineForme = new Carre();
+	srand(time(NULL));
+	randomProchaineForme = rand() % 7;
 }
 
 
 Tetris_table::~Tetris_table()
 {
+	if(formeActuelle != NULL)
+		delete[] formeActuelle;
 
+	if(prochaineForme != NULL)
+		delete[] prochaineForme;
 }
 
 bool Tetris_table::delete_line()
@@ -96,39 +105,67 @@ bool Tetris_table::afficher_tableau()
 }
 
 
-//Objets dans le tableau, il faut le transformer en classe eventuellement. 
-void Tetris_table::square()
+void Tetris_table::nouvelleFormeApparait()
 {
-	table1[0][0] = 1;
-	table1[0][1] = 1;
-	table1[1][1] = 1; 
-	table1[1][0] = 1; 
-}
+	buffer = *prochaineForme;
+	delete[] prochaineForme;
 
-void Tetris_table::L_shape()
-{
-	table1[0][2] = 1;
-	table1[1][2] = 1;
-	table1[2][2] = 1;
-	table1[2][3] = 1;
+	prochaineForme = choixForme(randomProchaineForme);
+	randomProchaineForme = rand() % 7;
 }
 
 
-void Tetris_table::L_shape2()
+Forme* Tetris_table::choixForme(int chiffreRandom)
 {
-	table1[0][3] = 1;
-	table1[1][3] = 1;
-	table1[2][3] = 1;
-	table1[0][2] = 1;
+	switch(chiffreRandom)
+	{
+		case PYRAMIDE : 
+			return new Pyramide();
+
+		case CARRE:
+			return new Carre();
+
+		case L_VALUE:
+			return new L();
+
+		case LGAUCHE:
+			return new LGauche();
+
+		case S_VALUE:
+			return new S();
+
+		case Z_VALUE:
+			return new Z();
+
+		case LIGNE:
+			return new Ligne();
+
+	}
+	return NULL;
+
+
 }
 
-
-void Tetris_table::line()
+Forme* Tetris_table::getFormeActuelle()
 {
-	table1[0][4] = 1;
-	table1[1][4] = 1;
-	table1[2][4] = 1;
-	table1[3][4] = 1;
+	std::cout << "Prochaine Vague : " << endl;
+	std::cout << "Forme actuelle: " << endl;
+	if (formeActuelle == NULL)
+	{
+		std::cout << "NULL" << endl;
+		return NULL;
+	}
+
+	return formeActuelle;
 }
 
-
+Forme* Tetris_table::getProchaineForme()
+{
+	std::cout << "Prochaine Forme: " << endl;
+	if (prochaineForme == NULL)
+	{
+		std::cout << "NULL" << endl;
+		return NULL;
+	}
+	return prochaineForme;
+}

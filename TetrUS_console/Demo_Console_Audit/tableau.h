@@ -1,11 +1,29 @@
 //Classe tableau pour tetris
 
 #include <iostream>
+#include <ctime>
 #include <windows.h>
+#include <math.h>
+#include "Forme.h"
+#include "Forme.h"
+#include "Carre.h"
+#include "Pyramide.h"
+#include "L.h"
+#include "Ligne.h"
+#include "S.h"
+#include "Z.h"
+#include "LGauche.h"
 
 //Defines
-#define hauteur_tableau 5
-#define largeur_tableau 5
+#define hauteur_tableau 25
+#define largeur_tableau 20
+#define PYRAMIDE 0
+#define CARRE 1
+#define L_VALUE 2
+#define LGAUCHE 3
+#define S_VALUE 4
+#define Z_VALUE 5
+#define LIGNE 6
 
 using namespace std;
 
@@ -22,13 +40,17 @@ class Tetris_table {
 		bool initialise_table(); //Initialise le tableau au depart pour ne pas avoir des valeurs aleatoires
 		bool iteration(); //Itere dans le temps. Deplace les blocs 
 
-		void square(); //Insere un carre
-		void L_shape(); //Insere un L
-		void L_shape2(); //Insere un L a une autre position
-		void line(); //Insere une ligne
+		Forme* getFormeActuelle();
+		Forme* getProchaineForme();
+		void nouvelleFormeApparait();
+		Forme* choixForme(int randomNumber);
 		
 	private : 
-		int hauteur = hauteur_tableau;
-		int largeur = largeur_tableau;
+		int hauteur;
+		int largeur;
+		Forme buffer;
+		Forme* formeActuelle;
+		Forme* prochaineForme;
+		int randomProchaineForme;
 };
 

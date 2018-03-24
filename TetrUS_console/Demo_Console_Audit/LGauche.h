@@ -1,13 +1,13 @@
 #pragma once
 #include "Forme.h"
 
-#define DIMENSION_L 3
+#define DIMENSIONLGAUCHE 3
 
-class L : public Forme 
+class LGauche : public Forme
 {
 	public:
-		L();
-		~L();
+		LGauche();
+		~LGauche();
 
 	private:
 		vector<int> lignes12;

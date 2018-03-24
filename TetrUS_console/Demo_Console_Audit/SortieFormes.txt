@@ -56,6 +56,27 @@ TESTS L
 0  1  0  
 0  1  1  
 
+TESTS LGauche
+0  1  0  
+0  1  0  
+1  1  0  
+
+1  0  0  
+1  1  1  
+0  0  0  
+
+0  1  1  
+0  1  0  
+0  1  0  
+
+0  0  0  
+1  1  1  
+0  0  1  
+
+0  1  0  
+0  1  0  
+1  1  0  
+
 TESTS LIGNE
 0  0  1  0  
 0  0  1  0  
@@ -123,4 +144,61 @@ TESTS Z
 0  0  1  
 0  1  1  
 0  1  0  
+
+TESTS GENERATION ALEATOIRE DE FORMES
+Premiere vague
+Forme actuelle
+1  1  
+1  1  
+
+Prochaine Forme
+0  1  0  
+1  1  1  
+0  0  0  
+
+Prochaine vague
+Forme actuelle
+0  1  0  
+1  1  1  
+0  0  0  
+
+Prochaine Forme
+0  0  1  0  
+0  0  1  0  
+0  0  1  0  
+0  0  1  0  
+
+Prochaine vague
+Forme actuelle
+0  0  1  0  
+0  0  1  0  
+0  0  1  0  
+0  0  1  0  
+
+Prochaine Forme
+0  1  0  
+0  1  0  
+1  1  0  
+
+Prochaine vague
+Forme actuelle
+0  1  0  
+0  1  0  
+1  1  0  
+
+Prochaine Forme
+0  1  0  
+0  1  1  
+0  0  1  
+
+Prochaine vague
+Forme actuelle
+0  1  0  
+0  1  1  
+0  0  1  
+
+Prochaine Forme
+0  1  0  
+1  1  1  
+0  0  0  
 
