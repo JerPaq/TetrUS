@@ -88,19 +88,148 @@ bool Tetris_table::iteration()
 	return 0;
 }
 
+bool Tetris_table::translation(char direction)
+{
+	int grandeur = formeActuelle->getLength();
+	int i;
+	int j;
+	
+	if (direction == 'G')
+	{
+		for (i = 0; i < grandeur; i++)
+		{
+			for (j = 0; j < grandeur; j++)
+			{
+				if (formeActuelle->getElement(i, j) == 0)
+					continue;
 
-bool Tetris_table::afficher_tableau()
+				else if (!isFree(direction, i, j))
+				{
+					return false;
+				}
+				break;
+			}
+
+		}
+
+	}
+	else if (direction == 'D')
+	{
+		for (i = 0; i < grandeur; i++)
+		{
+			for (j = (grandeur - 1); j >= 0; j--)
+			{
+				if (formeActuelle->getElement(i, j) == 0)
+					continue;
+				else if (!isFree(direction, i, j))
+				{
+					cout << j;
+					return false;
+				}
+				break;
+			}
+		}
+	}
+	else
+		return false;
+
+
+	move(direction);
+	return true;
+	
+}
+
+void Tetris_table::move(char direc)
+{
+	int grandeur = formeActuelle->getLength();
+	int i;
+	int j;
+	if (direc == 'G')
+	{
+		for (i = 0; i < grandeur; i++)
+		{
+			for (j = 0; j < grandeur; j++)
+			{
+				if (formeActuelle->getElement(i, j) != 0)
+				{
+					table1[positionVerticale + i][positionHorizontale + j - 1] = formeActuelle->getElement(i, j);
+				}
+			}
+			table1[positionVerticale + i][positionHorizontale + grandeur -1] = 0;
+		}
+		positionHorizontale--;
+	}
+
+	else if (direc == 'D')
+	{
+		for (i = 0; i < grandeur; i++)
+		{
+			for (j = (grandeur -1); j >= 0; j--)
+			{
+				if (formeActuelle->getElement(i, j) != 0)
+				{
+					table1[positionVerticale + i][positionHorizontale + j + 1] = formeActuelle->getElement(i, j);
+				}
+			}
+			table1[positionVerticale + i][positionHorizontale] = 0;
+		}
+		positionHorizontale++;
+	}
+}
+
+bool Tetris_table::isFree(char direction, int vertical, int horizontal)
+{
+	if (direction == 'G')
+	{
+		if(table1[positionVerticale + vertical][positionHorizontale + horizontal - 1] == 1)
+		{
+			return false;
+		}
+	}
+	else
+	{
+		if (table1[positionVerticale + vertical][positionHorizontale + horizontal + 1] == 1)
+		{
+			return false;
+		}
+	}
+	
+	return true;
+}
+
+bool Tetris_table::ajouterForme(Forme forme) 
+{
+	int grandeur = forme.getLength();
+	positionHorizontale = (largeur_tableau / 2) - 1;
+	positionVerticale = 1;
+	int i;
+	int j;
+
+	for (i = 0; i < grandeur; i++)
+	{
+		for (j = 0; j < grandeur; j++)
+		{
+			if (table1[positionVerticale + i][j + positionHorizontale] == 0) {
+				table1[positionVerticale + i][j + positionHorizontale] = forme.getElement(i, j);
+			}
+		}
+	}
+	return true;
+}
+
+
+bool Tetris_table::afficher_tableau(ostream& os)
 {
 	for (int i = 0; i < hauteur_tableau; i++)
 	{
-		cout << "| ";
+		os << "| ";
 		for (int j = 0; j < largeur_tableau; j++)
 		{
-			cout << table1[i][j] << " | ";
+			os << table1[i][j] << " | ";
 		}
-		cout << endl;
+		os << endl;
 	}
-	cout << endl; 
+	os << endl; 
 	return 0; 
 }
 
@@ -109,9 +238,10 @@ void Tetris_table::nouvelleFormeApparait()
 {
 	buffer = *prochaineForme;
 	delete[] prochaineForme;
+	ajouterForme(buffer);
 
 	prochaineForme = choixForme(randomProchaineForme);
-	randomProchaineForme = rand() % 7;
+	randomProchaineForme = rand() % 8;
 }
 
 
@@ -137,12 +267,11 @@ Forme* Tetris_table::choixForme(int chiffreRandom)
 		case Z_VALUE:
 			return new Z();
 
-		case LIGNE:
+		default:
 			return new Ligne();
 
 	}
 	return NULL;
-
 
 }
 
