@@ -21,6 +21,7 @@ bool SelectJoueur::isOk()
 
 void SelectJoueur::init()
 {
+	setWindowTitle("Selectionner Joueur");
 	btnChoisir_ = new QPushButton("Choisir");
 	btnAnnuler_ = new QPushButton("Annuler");
 	btnModifier_ = new QPushButton("Modifier");

@@ -23,6 +23,7 @@ bool NouveauJoueur::isOk()
 
 void NouveauJoueur::init()
 {
+	setWindowTitle("Nouveau Joueur");
 	btnAnnuler_ = new QPushButton("Annuler");
 	btnCreer_ = new QPushButton("Creer");
 	btnCreer_->setEnabled(false);

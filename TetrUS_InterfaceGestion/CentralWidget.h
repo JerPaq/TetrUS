@@ -2,6 +2,7 @@
 
 #include "gestionjoueur.h"
 
+#include <QEvent>
 #include <QWidget>
 #include <qpushbutton>
 #include <qmenubar>
@@ -27,14 +28,15 @@ private slots:
 	void btnStart_Clicked();
 	void btnPause_Clicked();
 	void btnStop_Clicked();
+
 private:
 	void init();
 
 	GestionJoueur* gestion_;
 
-	QGridLayout* initNextBloc();
-	QGridLayout* initHighscore();
-	QGridLayout* initStats();
+	QVBoxLayout* initNextBloc();
+	QVBoxLayout* initHighscore();
+	QVBoxLayout* initStats();
 	QGridLayout* initJeu();
 
 	QPushButton *btnStart_;

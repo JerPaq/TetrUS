@@ -16,6 +16,7 @@ ModifierJoueur::~ModifierJoueur()
 
 void ModifierJoueur::init()
 {
+	setWindowTitle("Modifier Joueur");
 	btnAnnuler_ = new QPushButton("Annuler");
 	btnModifier_ = new QPushButton("Modifier");
 	txtLabel_ = new QLabel("Nom: ");
