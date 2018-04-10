@@ -70,16 +70,16 @@ QGridLayout* CentralWidget::initJeu()
 {
 	QGridLayout *Layout = new QGridLayout();
 
-	QTableWidget* Tetris = new QTableWidget(this);
-	Tetris->setRowCount(20);
-	Tetris->setColumnCount(10);
-	Tetris->setItem(0, 1, new QTableWidgetItem("Hello"));
+	Tetris_ = new QTableWidget(this);
+	Tetris_->setRowCount(20);
+	Tetris_->setColumnCount(10);
+	Tetris_->setItem(0, 1, new QTableWidgetItem("Hello"));
 
 	//QTableWidgetItem *cubesHeaderItem = new QTableWidgetItem();
 	//cubesHeaderItem->setIcon(QIcon(QPixmap("smily.png")));
 	//Tetris->setItem(0, 2, cubesHeaderItem);
 
-	Layout->addWidget(Tetris);
+	Layout->addWidget(Tetris_);
 
 	return Layout;
 }
@@ -220,6 +220,6 @@ void CentralWidget::refreshUI()
 void CentralWidget::refreshGame()
 {
 	//Inserer la communication entre table widget table jeu et le jeu ici
-
+	
 
 }

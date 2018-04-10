@@ -60,4 +60,5 @@ private:
 	QLabel *lblPourcentage_;
 	QLabel *lblHighscoreJoueur_;
 
+	QTableWidget *Tetris_;
 };
