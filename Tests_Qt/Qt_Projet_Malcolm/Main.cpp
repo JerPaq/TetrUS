@@ -4,6 +4,7 @@
 #include <QProgressBar>
 #include <QSlider>
 #include <QApplication>
+#include <qgraphicsscene.h>
 #include <qpushbutton.h>
 #include "MonInterface.h"
 
@@ -11,12 +12,22 @@
 
 int main( int argc, char ** argv )
 {
-	QApplication app(argc, argv);
+	QApplication ui(argc, argv);
 	
-	QPushButton button1("test");
-	QPushButton button2("other", &button1);
 
-	button1.show();
+	QGraphicsScene* scene = new QGraphicsScene;
+	ui->view->setScene(scene);
+
+	// Add the vertical lines first, paint them red
+	for (int x = 0; x <= 500; x += 50)
+		scene->addLine(x, 0, x, 500, QPen(Qt::red));
+
+	// Now add the horizontal lines, paint them green
+	for (int y = 0; y <= 500; y += 50)
+		scene->addLine(0, y, 500, y, QPen(Qt::green));
+
+	// Fit the view in the scene's bounding rect
+	ui->view->fitInView(scene->itemsVBoundingRect());
 
 	/*
 	QWidget window;

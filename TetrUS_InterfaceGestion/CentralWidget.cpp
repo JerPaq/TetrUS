@@ -50,6 +50,7 @@ void CentralWidget::init()
 	widgetNextBloc_->setLayout(initNextBloc());
 	widgetHighscore_->setLayout(initHighscore());
 	widgetStats_->setLayout(initStats());
+	widgetJeu_->setLayout(initJeu());
 
 	QGridLayout *centralGridLayout = new QGridLayout();
 	centralGridLayout->addWidget(widgetNextBloc_, 0, 0, 1, 1);
@@ -63,6 +64,19 @@ void CentralWidget::init()
 	centralGridLayout->addWidget(btnPause_, 4, 2, 1, 1);
 	centralGridLayout->addWidget(btnStop_, 4, 3, 1, 1);
 	setLayout(centralGridLayout);
+}
+
+QGridLayout* CentralWidget::initJeu()
+{
+	QGridLayout *Layout = new QGridLayout();
+
+
+	QTableWidget* Jeuwidget = new QTableWidget(this);
+	Jeuwidget->setRowCount(20);
+	Jeuwidget->setColumnCount(10);
+	Layout->addWidget(Jeuwidget);
+
+	return Layout;
 }
 
 QGridLayout* CentralWidget::initNextBloc()

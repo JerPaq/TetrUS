@@ -9,6 +9,7 @@
 #include <QLabel>
 #include <QGridLayout>
 #include <QMessageBox>
+#include <QTableWidget>
 
 class CentralWidget : public QWidget
 {
@@ -32,6 +33,7 @@ private:
 	QGridLayout* initNextBloc();
 	QGridLayout* initHighscore();
 	QGridLayout* initStats();
+	QGridLayout* initJeu();
 
 	QPushButton *btnStart_;
 	QPushButton *btnPause_;
