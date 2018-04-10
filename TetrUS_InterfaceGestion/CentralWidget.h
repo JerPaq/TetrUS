@@ -10,6 +10,7 @@
 #include <QGridLayout>
 #include <QMessageBox>
 #include <QTableWidget>
+#include <QTableWidgetItem>
 
 class CentralWidget : public QWidget
 {
@@ -20,6 +21,7 @@ public:
 	~CentralWidget();
 
 	void refreshUI();
+	void refreshGame();
 
 private slots:
 	void btnStart_Clicked();

@@ -70,11 +70,16 @@ QGridLayout* CentralWidget::initJeu()
 {
 	QGridLayout *Layout = new QGridLayout();
 
+	QTableWidget* Tetris = new QTableWidget(this);
+	Tetris->setRowCount(20);
+	Tetris->setColumnCount(10);
+	Tetris->setItem(0, 1, new QTableWidgetItem("Hello"));
 
-	QTableWidget* Jeuwidget = new QTableWidget(this);
-	Jeuwidget->setRowCount(20);
-	Jeuwidget->setColumnCount(10);
-	Layout->addWidget(Jeuwidget);
+	//QTableWidgetItem *cubesHeaderItem = new QTableWidgetItem();
+	//cubesHeaderItem->setIcon(QIcon(QPixmap("smily.png")));
+	//Tetris->setItem(0, 2, cubesHeaderItem);
+
+	Layout->addWidget(Tetris);
 
 	return Layout;
 }
@@ -183,6 +188,7 @@ void CentralWidget::btnStop_Clicked()
 		break;
 	}
 }
+
 void CentralWidget::refreshUI()
 {
 	if (gestion_->joueurSelect() == nullptr)
@@ -209,4 +215,11 @@ void CentralWidget::refreshUI()
 	}
 	lblHighscore_->setText(QString::fromStdString(to_string(gestion_->getHighscore())));
 	
+}
+
+void CentralWidget::refreshGame()
+{
+	//Inserer la communication entre table widget table jeu et le jeu ici
+
+
 }
