@@ -2,6 +2,8 @@
 #include "gestionjoueur.h"
 #include <QMenu>
 #include <QMenuBar>
+#include <QHeaderView>
+#include <QSize>
 
 CentralWidget::CentralWidget(GestionJoueur *pGestion, QWidget *parent) : QWidget(parent)
 {
@@ -73,11 +75,26 @@ QGridLayout* CentralWidget::initJeu()
 	Tetris_ = new QTableWidget(this);
 	Tetris_->setRowCount(20);
 	Tetris_->setColumnCount(10);
-	Tetris_->setItem(0, 1, new QTableWidgetItem("Hello"));
+	Tetris_->setMaximumWidth(251);
+	Tetris_->setMinimumWidth(251);
+	Tetris_->setMaximumHeight(501);
+	Tetris_->setMinimumHeight(501);
+	Tetris_->setEditTriggers(QAbstractItemView::NoEditTriggers);
+	Tetris_->setSelectionMode(QAbstractItemView::NoSelection);
+	Tetris_->horizontalHeader()->hide();
+	Tetris_->verticalHeader()->hide();
 
-	//QTableWidgetItem *cubesHeaderItem = new QTableWidgetItem();
-	//cubesHeaderItem->setIcon(QIcon(QPixmap("smily.png")));
-	//Tetris->setItem(0, 2, cubesHeaderItem);
+	Tetris_->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
+	Tetris_->verticalHeader()->setDefaultSectionSize(25);
+	Tetris_->horizontalHeader()->setSectionResizeMode(QHeaderView::Fixed);
+	Tetris_->horizontalHeader()->setDefaultSectionSize(25);
+
+	Tetris_->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+	Tetris_->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+	QTableWidgetItem *cubesHeaderItem = new QTableWidgetItem();
+	cubesHeaderItem->setIcon(QIcon(QPixmap("smily.png")));
+	Tetris_->setItem(0, 2, cubesHeaderItem);
 
 	Layout->addWidget(Tetris_);
 

@@ -1,16 +1,22 @@
-﻿  MOC CentralWidget.h
+﻿  Generate moc_predefs.h
+  MOC CentralWidget.h
+  MOC MainWindow.h
+  MOC ModifierJoueur.h
+  MOC NouveauJoueur.h
+  MOC SelectJoueur.h
   CentralWidget.cpp
-c:\users\stjm2505\documents\github\tetrus\tetrus_interfacegestion\gestionjoueur.h(10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
-CentralWidget.cpp(157): warning C4189: 'ret' : variable locale initialisée mais non référencée
-CentralWidget.cpp(166): warning C4189: 'ret' : variable locale initialisée mais non référencée
-  MainWindow.cpp
-c:\users\stjm2505\documents\github\tetrus\tetrus_interfacegestion\gestionjoueur.h(10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
-MainWindow.cpp(9): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
+c:\users\paqj2905\documents\github\tetrus\tetrus_interfacegestion\gestionjoueur.h(10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+CentralWidget.cpp(174): warning C4189: 'ret' : variable locale initialisée mais non référencée
+CentralWidget.cpp(183): warning C4189: 'ret' : variable locale initialisée mais non référencée
   moc_CentralWidget.cpp
-c:\users\stjm2505\documents\github\tetrus\tetrus_interfacegestion\gestionjoueur.h(10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+c:\users\paqj2905\documents\github\tetrus\tetrus_interfacegestion\gestionjoueur.h(10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
   moc_MainWindow.cpp
-c:\users\stjm2505\documents\github\tetrus\tetrus_interfacegestion\gestionjoueur.h(10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
-  main.cpp
-c:\users\stjm2505\documents\github\tetrus\tetrus_interfacegestion\gestionjoueur.h(10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+c:\users\paqj2905\documents\github\tetrus\tetrus_interfacegestion\gestionjoueur.h(10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+  moc_ModifierJoueur.cpp
+c:\users\paqj2905\documents\github\tetrus\tetrus_interfacegestion\gestionjoueur.h(10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+  moc_NouveauJoueur.cpp
+c:\users\paqj2905\documents\github\tetrus\tetrus_interfacegestion\gestionjoueur.h(10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+  moc_SelectJoueur.cpp
+c:\users\paqj2905\documents\github\tetrus\tetrus_interfacegestion\gestionjoueur.h(10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
   Génération de code en cours...
-  TetrUS.vcxproj -> C:\Users\stjm2505\Documents\GitHub\TetrUS\TetrUS_InterfaceGestion\debug\TetrUS.exe
+  TetrUS.vcxproj -> C:\Users\paqj2905\Documents\GitHub\TetrUS\TetrUS_InterfaceGestion\debug\TetrUS.exe
