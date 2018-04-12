@@ -17,6 +17,7 @@
 #define hauteur_tableau 20
 #define largeur_tableau 10
 
+//Define pour les formes
 #define PYRAMIDE 0
 #define CARRE 1
 #define L_VALUE 2
@@ -24,6 +25,11 @@
 #define S_VALUE 4
 #define Z_VALUE 5
 #define LIGNE 6
+
+
+//Define pour lecture du clavier
+#define KEY_LEFT 75
+#define KEY_RIGHT 77
 
 #include "gestionjoueur.h"
 
@@ -52,7 +58,7 @@ public:
 	bool delete_line(); //Supprimer la derniere ligne du tableau	
 	bool full_line(); //Verifier que la derniere ligne est complete
 
-	bool table1[hauteur_tableau][largeur_tableau] = { 0 }; //Tableau pour tetris, grandeur definie par des define 
+	bool table1[hauteur_tableau][largeur_tableau]; //Tableau pour tetris, grandeur definie par des define 
 
 	bool afficher_tableau(ostream& o); //Affiche le tableau
 	bool initialise_table(); //Initialise le tableau au depart pour ne pas avoir des valeurs aleatoires
@@ -61,11 +67,14 @@ public:
 	bool ajouterForme(Forme formeActuelle);	//Ajoute la forme voulue au tableau
 	bool isFree(char direction, int horizontal, int vertical);	//regarde si l'espace adjacent est libre
 	void move(char direction);	//Gere le mouvement d'une forme
+	int run_game(); //Run time du jeu
 
 	Forme* getFormeActuelle();
 	Forme* getProchaineForme();
 	void nouvelleFormeApparait();
 	Forme* choixForme(int randomNumber);
+
+	bool activeGame = false;
 
 private slots:
 	void btnStart_Clicked();

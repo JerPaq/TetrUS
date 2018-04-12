@@ -4,6 +4,10 @@
 #include <QMenuBar>
 #include <QFont>
 #include <QHeaderView>
+//Lecture du clavier
+#include <conio.h>
+//Timer
+#include <Windows.h>
 
 CentralWidget::CentralWidget(GestionJoueur *pGestion, QWidget *parent) : QWidget(parent)
 {
@@ -254,6 +258,10 @@ void CentralWidget::btnStart_Clicked()
 	msgBox_->setButtonText(QMessageBox::Save, "Ok");
 	msgBox_->setDefaultButton(QMessageBox::Save);
 	int ret = msgBox_->exec();
+	
+	//activeGame = true;
+	//initialise_table();
+	//run_game();
 }
 void CentralWidget::btnPause_Clicked()
 {
@@ -314,9 +322,27 @@ void CentralWidget::refreshUI()
 	lblHighscore_->setText(QString::fromStdString(to_string(gestion_->getHighscore())));
 	
 }
+
 void CentralWidget::refreshGame()
 {
-
+	for (int i = 0; i < largeur_tableau; i++)
+	{
+		for (int j = 0; j < hauteur_tableau; j++)
+		{
+			if (table1[i][j] == 1)
+			{
+				QTableWidgetItem *cubesHeaderItem = new QTableWidgetItem();
+				cubesHeaderItem->setBackgroundColor(QColor(255, 0, 0));
+				Tetris_->setItem(i, j, cubesHeaderItem);
+			}
+			else
+			{
+				QTableWidgetItem *cubesHeaderItem = new QTableWidgetItem();
+				cubesHeaderItem->setBackgroundColor(QColor(255, 255, 255));
+				Tetris_->setItem(i, j, cubesHeaderItem);
+			}
+		}
+	}
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -577,11 +603,41 @@ Forme* CentralWidget::getFormeActuelle()
 }
 Forme* CentralWidget::getProchaineForme()
 {
-	std::cout << "Prochaine Forme: " << endl;
 	if (prochaineForme == NULL)
 	{
 		std::cout << "NULL" << endl;
 		return NULL;
 	}
 	return prochaineForme;
+}
+int CentralWidget::run_game()
+{
+	while (activeGame)
+	{
+		table1[5][5] = 1; //Tester l'affichage
+		refreshGame();
+		int c = 0; //Pour lire des fleches du clavier
+		//nouvelleFormeApparait();
+		//ajouterForme(*getProchaineForme());
+	
+		//iteration();
+		//switch (c = getch())
+		//{
+		//	case KEY_LEFT:
+		//		if (isFree('G', 
+		//		translation('G');
+		//		break;
+		//	case KEY_RIGHT:
+		//		translation('D');
+		//		break;
+		//}
+		if (full_line())
+		{
+			delete_line();
+		}
+		refreshGame();
+		Sleep(1000);
+	}
+
+	return 1;
 }
