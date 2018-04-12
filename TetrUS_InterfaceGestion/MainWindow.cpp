@@ -20,6 +20,14 @@ void MainWindow::init()
 	widgetCentral_ = new CentralWidget(gestion_, this);
 	setCentralWidget(widgetCentral_);
 
+	menuFichier_ = new QMenu();
+	menuJoueur_ = new QMenu();
+
+	QPalette palette;
+	palette.setColor(QPalette::Background, Qt::white);
+	widgetCentral_->setAutoFillBackground(true);
+	widgetCentral_->setPalette(palette);
+
 	menuFichier_ = menuBar()->addMenu(tr("&Fichier"));
 	menuJoueur_ = menuBar()->addMenu(tr("&Joueur"));
 
@@ -30,7 +38,6 @@ void MainWindow::init()
 	menuFichier_->addAction(actQuitter_);
 	menuJoueur_->addAction(actNouveauJoueur_);
 	menuJoueur_->addAction(actGestionJoueur_);
-
 
 	connect(actQuitter_, SIGNAL(triggered()), this, SLOT(menuQuitter_Clicked()));
 	connect(actNouveauJoueur_, SIGNAL(triggered()), this, SLOT(menuNouveauJoueur_Clicked()));

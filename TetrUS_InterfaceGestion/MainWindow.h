@@ -7,6 +7,7 @@
 #include "SelectJoueur.h"
 #include "gestionjoueur.h"
 #include "CentralWidget.h"
+#include <QPalette>
 
 
 class MainWindow : public QMainWindow
@@ -21,6 +22,7 @@ private slots:
 	void menuQuitter_Clicked();
 	void menuNouveauJoueur_Clicked();
 	void menuGestionJoueur_Clicked();
+	/*void hovered();*/
 private:
 	void init();
 	CentralWidget * widgetCentral_;

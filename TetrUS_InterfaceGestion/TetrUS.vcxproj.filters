@@ -51,6 +51,30 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Carre.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Forme.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="L.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LGauche.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Ligne.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Pyramide.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="S.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Z.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="CentralWidget.h">
@@ -115,5 +139,31 @@
     <CustomBuild Include="release\moc_predefs.h.cbt">
       <Filter>Generated Files</Filter>
     </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Carre.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Forme.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="L.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LGauche.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Ligne.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Pyramide.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="S.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Z.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

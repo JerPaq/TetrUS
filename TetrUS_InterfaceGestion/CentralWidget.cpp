@@ -10,20 +10,52 @@ CentralWidget::CentralWidget(GestionJoueur *pGestion, QWidget *parent) : QWidget
 	gestion_ = pGestion;
 	init();
 	
+	largeur = largeur_tableau;
+	hauteur = hauteur_tableau;
+	formeActuelle = &buffer;
+	prochaineForme = new Carre();
+	srand(time(NULL));
+	randomProchaineForme = rand() % 7;
 }
 
 CentralWidget::~CentralWidget()
 {
+	/*int grandeur = formeActuelle->getLength();
+	if (formeActuelle != NULL)
+	{		
+		for (int i = 0; i < grandeur; i++)
+		{
+			delete formeActuelle->at(i);
+		}
+		delete[] formeActuelle;
+	}
 
+	if (prochaineForme != NULL)
+		delete prochaineForme;*/
 }
 void CentralWidget::init()
 {
-
+	
 	QFont newFont("Courier", 8, QFont::Decorative, true);
 
-	btnStart_ = new QPushButton("Commencer partie");
-	btnPause_ = new QPushButton("Pause");
-	btnStop_ = new QPushButton("Terminer partie");
+	//btnStart_ = new QPushButton("Commencer partie");
+	//btnPause_ = new QPushButton("Pause");
+	//btnStop_ = new QPushButton("Terminer partie");
+	btnStart_ = new QPushButton();
+	btnPause_ = new QPushButton();
+	btnStop_ = new QPushButton();
+	QPixmap pixStart("start.png");
+	btnStart_->setStyleSheet("background-color:white");
+	btnStart_->setIcon(pixStart);
+	btnStart_->setIconSize(pixStart.rect().size());
+	QPixmap pixPause("pause.png");
+	btnPause_->setStyleSheet("background-color:white");
+	btnPause_->setIcon(pixPause);
+	btnPause_->setIconSize(pixPause.rect().size());
+	QPixmap pixStop("stop.png");
+	btnStop_->setStyleSheet("background-color:white");
+	btnStop_->setIcon(pixStop);
+	btnStop_->setIconSize(pixStop.rect().size());
 
 	btnStart_->setMinimumHeight(40);
 	btnPause_->setMinimumHeight(40);
@@ -44,10 +76,10 @@ void CentralWidget::init()
 	widgetHighscore_ = new QWidget(this);
 	widgetStats_ = new QWidget(this);
 
-	widgetJeu_->setMaximumWidth(271);
-	widgetJeu_->setMinimumWidth(271);
-	widgetJeu_->setMaximumHeight(521);
-	widgetJeu_->setMinimumHeight(521);
+	widgetJeu_->setMaximumWidth(322);
+	widgetJeu_->setMinimumWidth(322);
+	widgetJeu_->setMaximumHeight(620);
+	widgetJeu_->setMinimumHeight(620);
 
 	widgetJeu_->setObjectName("container");
 	widgetNextBloc_->setObjectName("container");
@@ -85,25 +117,26 @@ QGridLayout* CentralWidget::initJeu()
 	Tetris_ = new QTableWidget(this);
 	Tetris_->setRowCount(20);
 	Tetris_->setColumnCount(10);
-	Tetris_->setMaximumWidth(251);
-	Tetris_->setMinimumWidth(251);
-	Tetris_->setMaximumHeight(501);
-	Tetris_->setMinimumHeight(501);
+	Tetris_->setMaximumWidth(302);
+	Tetris_->setMinimumWidth(302);
+	Tetris_->setMaximumHeight(602);
+	Tetris_->setMinimumHeight(602);
 	Tetris_->setEditTriggers(QAbstractItemView::NoEditTriggers);
 	Tetris_->setSelectionMode(QAbstractItemView::NoSelection);
 	Tetris_->horizontalHeader()->hide();
 	Tetris_->verticalHeader()->hide();
 
 	Tetris_->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
-	Tetris_->verticalHeader()->setDefaultSectionSize(25);
+	Tetris_->verticalHeader()->setDefaultSectionSize(30);
 	Tetris_->horizontalHeader()->setSectionResizeMode(QHeaderView::Fixed);
-	Tetris_->horizontalHeader()->setDefaultSectionSize(25);
+	Tetris_->horizontalHeader()->setDefaultSectionSize(30);
 
 	Tetris_->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	Tetris_->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
 	QTableWidgetItem *cubesHeaderItem = new QTableWidgetItem();
-	cubesHeaderItem->setIcon(QIcon(QPixmap("smily.png")));
+	cubesHeaderItem->setBackgroundColor(QColor(255, 0, 0));
+	//cubesHeaderItem->setIcon(QIcon(QPixmap("smily.png")));
 	Tetris_->setItem(0, 2, cubesHeaderItem);
 
 	Layout->addWidget(Tetris_);
@@ -112,35 +145,43 @@ QGridLayout* CentralWidget::initJeu()
 }
 QVBoxLayout* CentralWidget::initNextBloc()
 {
-	QFont newFont("Courier", 8, QFont::Decorative, true);
-
 	widgetNextBloc_->setMaximumWidth(225);
 
 	QVBoxLayout *VLayoutNextBloc = new QVBoxLayout();
-	VLayoutNextBloc->addWidget(widgetNextBloc_);
+
+	QLabel *lblNextBloc = new QLabel();
+	QPixmap NextBlocpix("carre.png");
+	lblNextBloc->setPixmap(NextBlocpix);
+	lblNextBloc->setAlignment(Qt::AlignCenter);
+	QHBoxLayout *Layout = new QHBoxLayout();
+	Layout->addWidget(lblNextBloc);
+	widgetNextBloc_->setLayout(Layout);
+	
+
+	/*VLayoutNextBloc->addWidget(widgetNextBloc_);*/
 	QLabel *lblTitreNextBloc = new QLabel("Prochain Bloc");
-	lblTitreNextBloc->setFont(newFont);
+	QPixmap mypix("prochainbloc.png");
+	lblTitreNextBloc->setPixmap(mypix);
 	lblTitreNextBloc->setAlignment(Qt::AlignCenter);
-	lblTitreNextBloc->setMaximumWidth(225);
-	VLayoutNextBloc->addWidget(lblTitreNextBloc);
 	VLayoutNextBloc->setContentsMargins(0, 0, 0, 5);
 	VLayoutNextBloc->setSpacing(0);
+
+	VLayoutNextBloc->addWidget(lblTitreNextBloc);
+	VLayoutNextBloc->addWidget(widgetNextBloc_);
 
 	VLayoutNextBloc->addStretch(0);
 	return VLayoutNextBloc;
 }
 QVBoxLayout* CentralWidget::initHighscore()
 {
-	QFont newFont("Courier", 8, QFont::Decorative, true);
-
 	widgetHighscore_->setMaximumWidth(225);
 
 	QVBoxLayout *VLayoutHighscore = new QVBoxLayout();
 	QGridLayout *Layout = new QGridLayout();
 	QLabel *lblTitreHighScore = new QLabel("Score");
-	lblTitreHighScore->setFont(newFont);
+	QPixmap mypix("score.png");
+	lblTitreHighScore->setPixmap(mypix);
 	lblTitreHighScore->setAlignment(Qt::AlignCenter);
-	lblTitreHighScore->setMaximumWidth(225);
 	QLabel *lblScore = new QLabel("Score : ");
 	lblScore_ = new QLabel("0");
 	QLabel *lblHighscore = new QLabel("Highscore : ");
@@ -152,29 +193,28 @@ QVBoxLayout* CentralWidget::initHighscore()
 	Layout->addWidget(lblHighscore, 2, 0, 1, 1);
 	Layout->addWidget(lblHighscore_, 2, 1, 1, 1);
 	widgetHighscore_->setLayout(Layout);
-	VLayoutHighscore->addWidget(widgetHighscore_);
-	VLayoutHighscore->addWidget(lblTitreHighScore);
 	VLayoutHighscore->setContentsMargins(0, 0, 0, 5);
 	VLayoutHighscore->setSpacing(0);
+
+	VLayoutHighscore->addWidget(lblTitreHighScore);
+	VLayoutHighscore->addWidget(widgetHighscore_);
 
 	VLayoutHighscore->addStretch(0);
 	return VLayoutHighscore;
 }
 QVBoxLayout* CentralWidget::initStats()
 {
-	QFont newFont("Courier", 8, QFont::Decorative, true);
-
 	widgetStats_->setMaximumWidth(225);
 
 	QVBoxLayout *VLayoutStats = new QVBoxLayout();
 	QGridLayout *Layout = new QGridLayout();
 	QLabel *lblTitreStat = new QLabel("Statistiques");
-	lblTitreStat->setFont(newFont);
+	QPixmap mypix("statistiques.png");
+	lblTitreStat->setPixmap(mypix);
 	lblTitreStat->setAlignment(Qt::AlignCenter);
-	lblTitreStat->setMaximumWidth(225);
 	QLabel *lblNom = new QLabel("Nom du joueur : ");
 	QLabel *lblNbPartie = new QLabel("Nombre de parties : ");
-	QLabel *lblNbVictoire = new QLabel("Nom de victoires : ");
+	QLabel *lblNbVictoire = new QLabel("Nombre de victoires : ");
 	QLabel *lblPourcentage = new QLabel("Pourcentage de victoire : ");
 	QLabel *lblHighscore = new QLabel("Highscore du joueur : ");
 
@@ -196,10 +236,12 @@ QVBoxLayout* CentralWidget::initStats()
 	Layout->addWidget(lblHighscoreJoueur_, 5, 1, 1, 1);
 
 	widgetStats_->setLayout(Layout);
-	VLayoutStats->addWidget(widgetStats_);
-	VLayoutStats->addWidget(lblTitreStat);
 	VLayoutStats->setContentsMargins(0, 0, 0, 0);
 	VLayoutStats->setSpacing(0);
+
+	VLayoutStats->addWidget(lblTitreStat);
+	VLayoutStats->addWidget(widgetStats_);
+
 	VLayoutStats->addStretch(0);
 
 	return VLayoutStats;
@@ -275,4 +317,271 @@ void CentralWidget::refreshUI()
 void CentralWidget::refreshGame()
 {
 
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////         SECTION JEU               /////////////////////////////  
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+bool CentralWidget::delete_line()
+{
+	for (int i = hauteur_tableau - 1; i >= 0; i--)
+	{
+		for (int j = 0; j < largeur_tableau; j++)
+		{
+			table1[i][j] = table1[i - 1][j];
+		}
+	}
+
+	for (int j = 0; j < largeur_tableau; j++)
+		table1[0][j] = 0;
+
+	return 0;
+}
+bool CentralWidget::full_line()
+{
+	for (int j = 0; j < largeur_tableau; j++)
+	{
+		if (table1[hauteur_tableau - 1][j] == 0)
+			return 0;
+	}
+	return 1;
+}
+bool CentralWidget::initialise_table()
+{
+	for (int i = 0; i < hauteur_tableau; i++)
+	{
+		for (int j = 0; j < largeur_tableau; j++)
+		{
+			table1[i][j] = 0;
+		}
+	}
+	return 0;
+}
+bool CentralWidget::iteration()
+{
+	for (int j = 0; j < largeur_tableau; j++)
+	{
+		if (table1[hauteur_tableau - 1][j] != 1)
+		{
+			for (int i = hauteur_tableau - 1; i > 0; i--)
+			{
+				table1[i][j] = table1[i - 1][j];
+			}
+			table1[0][j] = 0;
+		}
+		/*else if (table1[hauteur_tableau - 1][j] == 1)
+		{
+		int hauteur_total = 1;
+		for (int h = hauteur_tableau - 1; h > 0; h--)
+		{
+
+		}
+		}*/
+
+	}
+	return 0;
+}
+bool CentralWidget::translation(char direction)
+{
+	int grandeur = formeActuelle->getLength();
+	int i;
+	int j;
+
+	if (direction == 'G')
+	{
+		for (i = 0; i < grandeur; i++)
+		{
+			for (j = 0; j < grandeur; j++)
+			{
+				if (formeActuelle->getElement(i, j) == 0)
+					continue;
+
+				else if (!isFree(direction, i, j))
+				{
+					return false;
+				}
+				break;
+			}
+
+		}
+
+	}
+	else if (direction == 'D')
+	{
+		for (i = 0; i < grandeur; i++)
+		{
+			for (j = (grandeur - 1); j >= 0; j--)
+			{
+				if (formeActuelle->getElement(i, j) == 0)
+					continue;
+				else if (!isFree(direction, i, j))
+				{
+					cout << j;
+					return false;
+				}
+				break;
+			}
+		}
+	}
+	else
+		return false;
+
+
+	move(direction);
+	return true;
+
+}
+void CentralWidget::move(char direc)
+{
+	int grandeur = formeActuelle->getLength();
+	int i;
+	int j;
+	int lastOfLine;
+	int firstOfLine = 0;
+	if (direc == 'G')
+	{
+		for (i = 0; i < grandeur; i++)
+		{
+			for (j = 0; j < grandeur; j++)
+			{
+				if (formeActuelle->getElement(i, j) != 0)
+				{
+					table1[positionVerticale + i][positionHorizontale + j - 1] = formeActuelle->getElement(i, j);
+					lastOfLine = j;
+				}
+			}
+			table1[positionVerticale + i][positionHorizontale + lastOfLine] = 0;
+		}
+		positionHorizontale--;
+	}
+
+	else if (direc == 'D')
+	{
+		for (i = 0; i < grandeur; i++)
+		{
+			for (j = (grandeur - 1); j >= 0; j--)
+			{
+				if (formeActuelle->getElement(i, j) != 0)
+				{
+					table1[positionVerticale + i][positionHorizontale + j + 1] = formeActuelle->getElement(i, j);
+					firstOfLine = j;
+				}
+			}
+			table1[positionVerticale + i][positionHorizontale + firstOfLine] = 0;
+		}
+		positionHorizontale++;
+	}
+}
+bool CentralWidget::isFree(char direction, int vertical, int horizontal)
+{
+	if (direction == 'G')
+	{
+		if (table1[positionVerticale + vertical][positionHorizontale + horizontal - 1] == 1)
+		{
+			return false;
+		}
+	}
+	else
+	{
+		if (table1[positionVerticale + vertical][positionHorizontale + horizontal + 1] == 1)
+		{
+			return false;
+		}
+	}
+
+	return true;
+}
+bool CentralWidget::ajouterForme(Forme forme)
+{
+	int grandeur = forme.getLength();
+	positionHorizontale = (largeur_tableau / 2) - 1;
+	positionVerticale = 1;
+	int i;
+	int j;
+
+	for (i = 0; i < grandeur; i++)
+	{
+		for (j = 0; j < grandeur; j++)
+		{
+			if (table1[positionVerticale + i][j + positionHorizontale] == 0) {
+				table1[positionVerticale + i][j + positionHorizontale] = forme.getElement(i, j);
+			}
+		}
+	}
+	return true;
+}
+bool CentralWidget::afficher_tableau(ostream& os)
+{
+	for (int i = 0; i < hauteur_tableau; i++)
+	{
+		os << "| ";
+		for (int j = 0; j < largeur_tableau; j++)
+		{
+			os << table1[i][j] << " | ";
+		}
+		os << endl;
+	}
+	os << endl;
+	return 0;
+}
+void CentralWidget::nouvelleFormeApparait()
+{
+	buffer = *prochaineForme;
+	delete[] prochaineForme;
+	ajouterForme(buffer);
+
+	prochaineForme = choixForme(randomProchaineForme);
+	randomProchaineForme = rand() % 8;
+}
+Forme* CentralWidget::choixForme(int chiffreRandom)
+{
+	switch (chiffreRandom)
+	{
+	case PYRAMIDE:
+		return new Pyramide();
+
+	case CARRE:
+		return new Carre();
+
+	case L_VALUE:
+		return new L();
+
+	case LGAUCHE:
+		return new LGauche();
+
+	case S_VALUE:
+		return new S();
+
+	case Z_VALUE:
+		return new Z();
+
+	default:
+		return new Ligne();
+
+	}
+	return NULL;
+
+}
+Forme* CentralWidget::getFormeActuelle()
+{
+	std::cout << "Prochaine Vague : " << endl;
+	std::cout << "Forme actuelle: " << endl;
+	if (formeActuelle == NULL)
+	{
+		std::cout << "NULL" << endl;
+		return NULL;
+	}
+
+	return formeActuelle;
+}
+Forme* CentralWidget::getProchaineForme()
+{
+	std::cout << "Prochaine Forme: " << endl;
+	if (prochaineForme == NULL)
+	{
+		std::cout << "NULL" << endl;
+		return NULL;
+	}
+	return prochaineForme;
 }
