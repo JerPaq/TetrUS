@@ -67,13 +67,14 @@ public:
 	bool ajouterForme(Forme formeActuelle);	//Ajoute la forme voulue au tableau
 	bool isFree(char direction, int horizontal, int vertical);	//regarde si l'espace adjacent est libre
 	void move(char direction);	//Gere le mouvement d'une forme
-	int run_game(); //Run time du jeu
+	void run_game(); //Run time du jeu
 
 	Forme* getFormeActuelle();
 	Forme* getProchaineForme();
 	void nouvelleFormeApparait();
 	Forme* choixForme(int randomNumber);
 
+	void freeze_initial();
 	bool activeGame = false;
 	bool alive = true; 
 
@@ -88,6 +89,7 @@ private:
 	int largeur;
 	int positionLargeur; //position horizontale des elements a l'extreme gauche de la matrice de forme	} coin superieur gauche
 	int positionHauteur;	//position verticale des elements du haut de la matrice							} coin superieur gauche
+	int freeze_table[largeur_tableau];
 	Forme buffer;
 	Forme* formeActuelle;
 	Forme* prochaineForme;

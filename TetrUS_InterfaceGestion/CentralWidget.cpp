@@ -394,25 +394,17 @@ bool CentralWidget::initialise_table()
 
 bool CentralWidget::iteration()
 {
+	//j est la position horizontale, i est la position verticale
 	for (int j = 0; j < largeur_tableau; j++)
 	{
 		if (table1[hauteur_tableau - 1][j] != 1)
 		{
-			for (int i = hauteur_tableau - 1; i > 0; i--)
+			for (int i = hauteur_tableau - 1; i >= 0; i--)
 			{
 				table1[i][j] = table1[i - 1][j];
 			}
 			table1[0][j] = 0;
 		}
-		/*else if (table1[hauteur_tableau - 1][j] == 1)
-		{
-		int hauteur_total = 1;
-		for (int h = hauteur_tableau - 1; h > 0; h--)
-		{
-
-		}
-		}*/
-
 	}
 	refreshGame();
 	return 0;
@@ -424,7 +416,7 @@ bool CentralWidget::translation(char direction)
 	int i;
 	int j;
 
-	if (direction == 'G')
+	if (direction == 'L')
 	{
 		for (i = 0; i < grandeur; i++)
 		{
@@ -443,7 +435,7 @@ bool CentralWidget::translation(char direction)
 		}
 
 	}
-	else if (direction == 'D')
+	else if (direction == 'R')
 	{
 		for (i = 0; i < grandeur; i++)
 		{
@@ -513,19 +505,24 @@ void CentralWidget::move(char direc)
 
 bool CentralWidget::isFree(char direction, int vertical, int horizontal)
 {
-	if (direction == 'G')
+	if (direction == 'L')
 	{
-		if (table1[positionHauteur + vertical][positionLargeur + horizontal - 1] == 1)
+		if ((table1[positionHauteur + vertical][positionLargeur + horizontal - 1] == 1)||(positionLargeur + horizontal - 1 < 0))
 		{
 			return false;
 		}
 	}
-	else
+	else if (direction == 'R')
 	{
-		if (table1[positionHauteur + vertical][positionLargeur + horizontal + 1] == 1)
+		if ((table1[positionHauteur + vertical][positionLargeur + horizontal + 1] == 1) || (positionLargeur + horizontal + 1 > largeur_tableau - 1))
 		{
 			return false;
 		}
+	}
+
+	if (direction == 'D')
+	{
+
 	}
 
 	return true;
@@ -629,24 +626,18 @@ Forme* CentralWidget::getProchaineForme()
 	return prochaineForme;
 }
 
-int CentralWidget::run_game()
+void CentralWidget::run_game()
 {
 	prochaineForme = choixForme(rand()%7);
 	nouvelleFormeApparait();
 
-	refreshGame();
-	Sleep(1500);
-	/*for (int i = 0; i < 10; i++)
-	{
-		iteration();
-		Sleep(1000);
-	}*/
 
-	iteration();
-	//nouvelleFormeApparait();
-	iteration();
-	int c = 0; //Pour lire des fleches du clavier
-	
-	return 1;
+	refreshGame();
+
+
 }
 
+void CentralWidget::freeze_initial()
+{
+	
+}
