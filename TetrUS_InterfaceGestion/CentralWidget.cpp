@@ -138,10 +138,11 @@ QGridLayout* CentralWidget::initJeu()
 	Tetris_->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	Tetris_->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-	QTableWidgetItem *cubesHeaderItem = new QTableWidgetItem();
-	cubesHeaderItem->setBackgroundColor(QColor(255, 0, 0));
+	//Test pour afficher un cube//
+	//QTableWidgetItem *cubesHeaderItem = new QTableWidgetItem();
+	//cubesHeaderItem->setBackgroundColor(QColor(255, 0, 0));
 	//cubesHeaderItem->setIcon(QIcon(QPixmap("smily.png")));
-	Tetris_->setItem(0, 2, cubesHeaderItem);
+	//Tetris_->setItem(0, 2, cubesHeaderItem);
 
 	Layout->addWidget(Tetris_);
 
@@ -252,16 +253,19 @@ QVBoxLayout* CentralWidget::initStats()
 }
 void CentralWidget::btnStart_Clicked()
 {
+	//Message box pour Jeu non implementee
+	/*
 	msgBox_ = new QMessageBox();
 	msgBox_->setText("Fonction 'Start' n'est pas encore implementee");
 	msgBox_->setStandardButtons(QMessageBox::Save);
 	msgBox_->setButtonText(QMessageBox::Save, "Ok");
 	msgBox_->setDefaultButton(QMessageBox::Save);
 	int ret = msgBox_->exec();
-	
+	*/
 	//activeGame = true;
-	//initialise_table();
-	//run_game();
+	initialise_table();
+	refreshGame();
+	run_game();
 }
 void CentralWidget::btnPause_Clicked()
 {
@@ -364,6 +368,7 @@ bool CentralWidget::delete_line()
 
 	return 0;
 }
+
 bool CentralWidget::full_line()
 {
 	for (int j = 0; j < largeur_tableau; j++)
@@ -373,6 +378,7 @@ bool CentralWidget::full_line()
 	}
 	return 1;
 }
+
 bool CentralWidget::initialise_table()
 {
 	for (int i = 0; i < hauteur_tableau; i++)
@@ -384,6 +390,7 @@ bool CentralWidget::initialise_table()
 	}
 	return 0;
 }
+
 bool CentralWidget::iteration()
 {
 	for (int j = 0; j < largeur_tableau; j++)
@@ -406,8 +413,10 @@ bool CentralWidget::iteration()
 		}*/
 
 	}
+	refreshGame();
 	return 0;
 }
+
 bool CentralWidget::translation(char direction)
 {
 	int grandeur = formeActuelle->getLength();
@@ -458,6 +467,7 @@ bool CentralWidget::translation(char direction)
 	return true;
 
 }
+
 void CentralWidget::move(char direc)
 {
 	int grandeur = formeActuelle->getLength();
@@ -499,6 +509,7 @@ void CentralWidget::move(char direc)
 		positionHorizontale++;
 	}
 }
+
 bool CentralWidget::isFree(char direction, int vertical, int horizontal)
 {
 	if (direction == 'G')
@@ -518,6 +529,7 @@ bool CentralWidget::isFree(char direction, int vertical, int horizontal)
 
 	return true;
 }
+
 bool CentralWidget::ajouterForme(Forme forme)
 {
 	int grandeur = forme.getLength();
@@ -537,6 +549,8 @@ bool CentralWidget::ajouterForme(Forme forme)
 	}
 	return true;
 }
+
+//Seulement tests dans la console
 bool CentralWidget::afficher_tableau(ostream& os)
 {
 	for (int i = 0; i < hauteur_tableau; i++)
@@ -551,15 +565,17 @@ bool CentralWidget::afficher_tableau(ostream& os)
 	os << endl;
 	return 0;
 }
+
 void CentralWidget::nouvelleFormeApparait()
 {
 	buffer = *prochaineForme;
 	delete[] prochaineForme;
 	ajouterForme(buffer);
-
+	
 	prochaineForme = choixForme(randomProchaineForme);
 	randomProchaineForme = rand() % 8;
 }
+
 Forme* CentralWidget::choixForme(int chiffreRandom)
 {
 	switch (chiffreRandom)
@@ -589,6 +605,7 @@ Forme* CentralWidget::choixForme(int chiffreRandom)
 	return NULL;
 
 }
+
 Forme* CentralWidget::getFormeActuelle()
 {
 	std::cout << "Prochaine Vague : " << endl;
@@ -601,6 +618,7 @@ Forme* CentralWidget::getFormeActuelle()
 
 	return formeActuelle;
 }
+
 Forme* CentralWidget::getProchaineForme()
 {
 	if (prochaineForme == NULL)
@@ -610,34 +628,25 @@ Forme* CentralWidget::getProchaineForme()
 	}
 	return prochaineForme;
 }
+
 int CentralWidget::run_game()
 {
-	while (activeGame)
-	{
-		table1[5][5] = 1; //Tester l'affichage
-		refreshGame();
-		int c = 0; //Pour lire des fleches du clavier
-		//nouvelleFormeApparait();
-		//ajouterForme(*getProchaineForme());
-	
-		//iteration();
-		//switch (c = getch())
-		//{
-		//	case KEY_LEFT:
-		//		if (isFree('G', 
-		//		translation('G');
-		//		break;
-		//	case KEY_RIGHT:
-		//		translation('D');
-		//		break;
-		//}
-		if (full_line())
-		{
-			delete_line();
-		}
-		refreshGame();
-		Sleep(1000);
-	}
+	prochaineForme = choixForme(rand()%7);
+	nouvelleFormeApparait();
 
+	refreshGame();
+	Sleep(1500);
+	/*for (int i = 0; i < 10; i++)
+	{
+		iteration();
+		Sleep(1000);
+	}*/
+
+	iteration();
+	nouvelleFormeApparait();
+	iteration();
+	int c = 0; //Pour lire des fleches du clavier
+	
 	return 1;
 }
+

@@ -80,7 +80,6 @@ private slots:
 	void btnStart_Clicked();
 	void btnPause_Clicked();
 	void btnStop_Clicked();
-
 private:
 	void init();
 
