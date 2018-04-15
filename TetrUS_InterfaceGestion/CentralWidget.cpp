@@ -263,6 +263,7 @@ void CentralWidget::btnStart_Clicked()
 	int ret = msgBox_->exec();
 	*/
 	//activeGame = true;
+	alive = true; 
 	initialise_table();
 	refreshGame();
 	run_game();
@@ -483,13 +484,13 @@ void CentralWidget::move(char direc)
 			{
 				if (formeActuelle->getElement(i, j) != 0)
 				{
-					table1[positionVerticale + i][positionHorizontale + j - 1] = formeActuelle->getElement(i, j);
+					table1[positionHauteur + i][positionLargeur + j - 1] = formeActuelle->getElement(i, j);
 					lastOfLine = j;
 				}
 			}
-			table1[positionVerticale + i][positionHorizontale + lastOfLine] = 0;
+			table1[positionHauteur + i][positionLargeur + lastOfLine] = 0;
 		}
-		positionHorizontale--;
+		positionLargeur--;
 	}
 
 	else if (direc == 'D')
@@ -500,13 +501,13 @@ void CentralWidget::move(char direc)
 			{
 				if (formeActuelle->getElement(i, j) != 0)
 				{
-					table1[positionVerticale + i][positionHorizontale + j + 1] = formeActuelle->getElement(i, j);
+					table1[positionHauteur + i][positionLargeur + j + 1] = formeActuelle->getElement(i, j);
 					firstOfLine = j;
 				}
 			}
-			table1[positionVerticale + i][positionHorizontale + firstOfLine] = 0;
+			table1[positionHauteur + i][positionLargeur + firstOfLine] = 0;
 		}
-		positionHorizontale++;
+		positionLargeur++;
 	}
 }
 
@@ -514,14 +515,14 @@ bool CentralWidget::isFree(char direction, int vertical, int horizontal)
 {
 	if (direction == 'G')
 	{
-		if (table1[positionVerticale + vertical][positionHorizontale + horizontal - 1] == 1)
+		if (table1[positionHauteur + vertical][positionLargeur + horizontal - 1] == 1)
 		{
 			return false;
 		}
 	}
 	else
 	{
-		if (table1[positionVerticale + vertical][positionHorizontale + horizontal + 1] == 1)
+		if (table1[positionHauteur + vertical][positionLargeur + horizontal + 1] == 1)
 		{
 			return false;
 		}
@@ -532,19 +533,18 @@ bool CentralWidget::isFree(char direction, int vertical, int horizontal)
 
 bool CentralWidget::ajouterForme(Forme forme)
 {
-	int grandeur = forme.getLength();
-	positionHorizontale = (largeur_tableau / 2) - 1;
-	positionVerticale = 1;
-	int i;
-	int j;
+	int grandeurForme = forme.getLength(); //Obtenir la taille de la forme
+	positionLargeur = (largeur_tableau / 2) - 1;
+	positionHauteur = 0;
 
-	for (i = 0; i < grandeur; i++)
+	for (int i = 0; i < grandeurForme; i++)
 	{
-		for (j = 0; j < grandeur; j++)
+		for (int j = 0; j < grandeurForme; j++)
 		{
-			if (table1[positionVerticale + i][j + positionHorizontale] == 0) {
-				table1[positionVerticale + i][j + positionHorizontale] = forme.getElement(i, j);
-			}
+			//if (table1[i + positionHauteur][j + positionLargeur] == 0) 
+			//{
+				table1[i + positionHauteur][j + positionLargeur] = forme.getElement(i, j);
+			//}
 		}
 	}
 	return true;
@@ -643,7 +643,7 @@ int CentralWidget::run_game()
 	}*/
 
 	iteration();
-	nouvelleFormeApparait();
+	//nouvelleFormeApparait();
 	iteration();
 	int c = 0; //Pour lire des fleches du clavier
 	

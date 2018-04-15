@@ -75,6 +75,7 @@ public:
 	Forme* choixForme(int randomNumber);
 
 	bool activeGame = false;
+	bool alive = true; 
 
 private slots:
 	void btnStart_Clicked();
@@ -85,8 +86,8 @@ private:
 
 	int hauteur;
 	int largeur;
-	int positionHorizontale; //position horizontale des elements a l'extreme gauche de la matrice de forme	} coin superieur gauche
-	int positionVerticale;	//position verticale des elements du haut de la matrice							} coin superieur gauche
+	int positionLargeur; //position horizontale des elements a l'extreme gauche de la matrice de forme	} coin superieur gauche
+	int positionHauteur;	//position verticale des elements du haut de la matrice							} coin superieur gauche
 	Forme buffer;
 	Forme* formeActuelle;
 	Forme* prochaineForme;
