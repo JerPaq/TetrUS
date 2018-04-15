@@ -330,9 +330,9 @@ void CentralWidget::refreshUI()
 
 void CentralWidget::refreshGame()
 {
-	for (int i = 0; i < largeur_tableau; i++)
+	for (int i = 0; i < hauteur_tableau; i++)
 	{
-		for (int j = 0; j < hauteur_tableau; j++)
+		for (int j = 0; j < largeur_tableau; j++)
 		{
 			if (table1[i][j] == 1)
 			{
@@ -348,56 +348,21 @@ void CentralWidget::refreshGame()
 			}
 		}
 	}
+	Tetris_->repaint();
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////         SECTION JEU               /////////////////////////////  
 /////////////////////////////////////////////////////////////////////////////////////////////
 
-bool CentralWidget::delete_line()
-{
-	for (int i = hauteur_tableau - 1; i >= 0; i--)
-	{
-		for (int j = 0; j < largeur_tableau; j++)
-		{
-			table1[i][j] = table1[i - 1][j];
-		}
-	}
 
-	for (int j = 0; j < largeur_tableau; j++)
-		table1[0][j] = 0;
-
-	return 0;
-}
-
-bool CentralWidget::full_line()
-{
-	for (int j = 0; j < largeur_tableau; j++)
-	{
-		if (table1[hauteur_tableau - 1][j] == 0)
-			return 0;
-	}
-	return 1;
-}
-
-bool CentralWidget::initialise_table()
-{
-	for (int i = 0; i < hauteur_tableau; i++)
-	{
-		for (int j = 0; j < largeur_tableau; j++)
-		{
-			table1[i][j] = 0;
-		}
-	}
-	return 0;
-}
 
 bool CentralWidget::iteration()
 {
 	//j est la position horizontale, i est la position verticale
 	for (int j = 0; j < largeur_tableau; j++)
 	{
-		if (table1[hauteur_tableau - 1][j] != 1)
+		if (table1[freeze_table[j]][j] == 0)
 		{
 			for (int i = hauteur_tableau - 1; i >= 0; i--)
 			{
@@ -528,6 +493,35 @@ bool CentralWidget::isFree(char direction, int vertical, int horizontal)
 	return true;
 }
 
+
+void CentralWidget::run_game()
+{
+	prochaineForme = choixForme(rand() % 7);
+	activeGame = true;
+	alive = true;
+	nouvelleFormeApparait();
+	refreshGame();
+	int i = 0;
+	while (activeGame && alive && (i < 22))
+	{
+		Sleep(500);
+		iteration();
+		i++;
+	}
+	nouvelleFormeApparait();
+	refreshGame();
+	Sleep(1000);
+	i = 0;
+	while (activeGame && alive && (i < 22))
+	{
+		Sleep(500);
+		iteration();
+		i++;
+	}
+}
+
+
+//Elements fonctionnnels
 bool CentralWidget::ajouterForme(Forme forme)
 {
 	int grandeurForme = forme.getLength(); //Obtenir la taille de la forme
@@ -540,27 +534,11 @@ bool CentralWidget::ajouterForme(Forme forme)
 		{
 			//if (table1[i + positionHauteur][j + positionLargeur] == 0) 
 			//{
-				table1[i + positionHauteur][j + positionLargeur] = forme.getElement(i, j);
+			table1[i + positionHauteur][j + positionLargeur] = forme.getElement(i, j);
 			//}
 		}
 	}
 	return true;
-}
-
-//Seulement tests dans la console
-bool CentralWidget::afficher_tableau(ostream& os)
-{
-	for (int i = 0; i < hauteur_tableau; i++)
-	{
-		os << "| ";
-		for (int j = 0; j < largeur_tableau; j++)
-		{
-			os << table1[i][j] << " | ";
-		}
-		os << endl;
-	}
-	os << endl;
-	return 0;
 }
 
 void CentralWidget::nouvelleFormeApparait()
@@ -626,18 +604,44 @@ Forme* CentralWidget::getProchaineForme()
 	return prochaineForme;
 }
 
-void CentralWidget::run_game()
+bool CentralWidget::delete_line()
 {
-	prochaineForme = choixForme(rand()%7);
-	nouvelleFormeApparait();
+	for (int i = hauteur_tableau - 1; i >= 0; i--)
+	{
+		for (int j = 0; j < largeur_tableau; j++)
+		{
+			table1[i][j] = table1[i - 1][j];
+		}
+	}
 
+	for (int j = 0; j < largeur_tableau; j++)
+		table1[0][j] = 0;
 
-	refreshGame();
-
-
+	return 0;
 }
 
-void CentralWidget::freeze_initial()
+bool CentralWidget::full_line()
 {
-	
+	for (int j = 0; j < largeur_tableau; j++)
+	{
+		if (table1[hauteur_tableau - 1][j] == 0)
+			return 0;
+	}
+	return 1;
 }
+
+bool CentralWidget::initialise_table()
+{
+	for (int i = 0; i < hauteur_tableau; i++)
+	{
+		for (int j = 0; j < largeur_tableau; j++)
+		{
+			table1[i][j] = 0;
+		}
+	}
+	for (int k = 0; k < largeur_tableau; k++)
+	{
+		freeze_table[k] = hauteur_tableau - 1;
+	}
+	return 0;
+} 

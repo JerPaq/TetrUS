@@ -18,13 +18,14 @@
 #define largeur_tableau 10
 
 //Define pour les formes
-#define PYRAMIDE 0
+#define PYRAMIDE 7
 #define CARRE 1
 #define L_VALUE 2
 #define LGAUCHE 3
 #define S_VALUE 4
 #define Z_VALUE 5
 #define LIGNE 6
+
 
 
 //Define pour lecture du clavier
@@ -60,7 +61,6 @@ public:
 
 	bool table1[hauteur_tableau][largeur_tableau]; //Tableau pour tetris, grandeur definie par des define 
 
-	bool afficher_tableau(ostream& o); //Affiche le tableau
 	bool initialise_table(); //Initialise le tableau au depart pour ne pas avoir des valeurs aleatoires
 	bool iteration(); //Itere dans le temps. Deplace les blocs 
 	bool translation(char direction); //translation vers la gauche('G') ou vers la droite('D')
@@ -74,9 +74,8 @@ public:
 	void nouvelleFormeApparait();
 	Forme* choixForme(int randomNumber);
 
-	void freeze_initial();
 	bool activeGame = false;
-	bool alive = true; 
+	bool alive = false; 
 
 private slots:
 	void btnStart_Clicked();
