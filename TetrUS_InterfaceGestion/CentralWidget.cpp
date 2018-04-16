@@ -7,7 +7,6 @@
 //Lecture du clavier
 #include <conio.h>
 //Timer
-#include <Windows.h>
 
 CentralWidget::CentralWidget(GestionJoueur *pGestion, QWidget *parent) : QWidget(parent)
 {
@@ -20,6 +19,14 @@ CentralWidget::CentralWidget(GestionJoueur *pGestion, QWidget *parent) : QWidget
 	prochaineForme = new Carre();
 	srand(time(NULL));
 	randomProchaineForme = rand() % 7;
+
+	QShortcut * LeftKey = new QShortcut(QKeySequence(Qt::Key_Left), this, SLOT(left_press()));
+	QShortcut * RightKey = new QShortcut(QKeySequence(Qt::Key_Right), this, SLOT(right_press()));
+	QShortcut * UpKey = new QShortcut(QKeySequence(Qt::Key_Up), this, SLOT(up_press()));
+
+	timerJeu_ = new QTimer(this);
+	connect(timerJeu_, SIGNAL(timeout()), this, SLOT(processusJeu()));
+	timerJeu_->setInterval(200);
 }
 
 CentralWidget::~CentralWidget()
@@ -264,12 +271,13 @@ void CentralWidget::btnStart_Clicked()
 	//msgBox_->setDefaultButton(QMessageBox::Save);
 	//int ret = msgBox_->exec();
 	
-	if (!activeGame)
-	{
+	/*if (!activeGame)
+	{*/
+		current_score = 0;
 		initialise_table();
 		refreshGame();
 		run_game();
-	}
+	//}
 }
 void CentralWidget::btnPause_Clicked()
 {
@@ -301,6 +309,35 @@ void CentralWidget::btnStop_Clicked()
 		break;
 	default:
 		break;
+	}
+}
+void CentralWidget::left_press()
+{
+	if (activeGame)
+	{
+		translation('L');
+	}
+}
+void CentralWidget::right_press()
+{
+	if (activeGame)
+	{
+		translation('R');
+	}	
+}
+void CentralWidget::up_press()
+{
+	if (activeGame)
+	{
+		formeActuelle->rotation();
+		refreshGame();
+	}
+}
+void CentralWidget::down_press()
+{
+	if (activeGame)
+	{
+		//translation('R');
 	}
 }
 void CentralWidget::refreshUI()
@@ -392,10 +429,9 @@ bool CentralWidget::iteration()
 		int index = findLastDown(formeActuelle, 0, j, false);
 		if (index == -1)
 			continue;
-		else
-		{
-			if (!isFree('D', index, j))
-				return false;
+		else if (!isFree('D', index, j))
+		{			
+			return false;
 		}
 			
 	}
@@ -446,17 +482,15 @@ bool CentralWidget::translation(char direction)
 	{
 		for (i = 0; i < grandeur; i++)
 		{
-			for (j = 0; j < grandeur; j++)
-			{
-				if (formeActuelle->getElement(i, j).id == 0)
-					continue;
+			
+			int index = findLastLeft(formeActuelle, i, grandeur - 1, false);
+			if (index == -1)
+				continue;
 
-				else if (!isFree(direction, i, j))
-				{
-					return false;
-				}
-				break;
-			}
+			else if (!isFree(direction, i, index))
+			{
+				return false;
+			}	
 
 		}
 
@@ -465,26 +499,89 @@ bool CentralWidget::translation(char direction)
 	{
 		for (i = 0; i < grandeur; i++)
 		{
-			for (j = (grandeur - 1); j >= 0; j--)
+
+			int index = findLastRight(formeActuelle, i, 0, false);
+			if (index == -1)
+				continue;
+
+			else if (!isFree(direction, i, index))
 			{
-				if (formeActuelle->getElement(i, j).id == 0)
-					continue;
-				else if (!isFree(direction, i, j))
-				{
-					cout << j;
-					return false;
-				}
-				break;
+				return false;
 			}
+
 		}
 	}
-	else
-		return false;
 
 
 	move(direction);
 	return true;
 
+}
+
+int CentralWidget::findLastLeft(Forme* pForme, int i, int j, bool pNonVide)
+{
+	int formeId = pForme->getId();
+	if ((j == 0) && (pForme->getElement(i, j).id != formeId) && (pNonVide))
+	{
+		return j + 1;
+	}
+	else if ((j == 0) && (pForme->getElement(i, j).id != formeId))
+	{
+		return -1;
+	}
+	else if ((j == 0) && (pForme->getElement(i, j).id == formeId))
+	{
+		return j;
+	}
+	else if ((pForme->getElement(i, j).id != formeId) && !pNonVide)
+	{
+		return findLastLeft(pForme, i, j - 1, false);
+	}
+	else if ((pForme->getElement(i, j).id != formeId) && pNonVide)
+	{
+		return j + 1;
+	}
+	else if ((pForme->getElement(i, j).id == formeId) && !pNonVide)
+	{
+		return findLastLeft(pForme, i, j - 1, true);
+	}
+	else if ((pForme->getElement(i, j).id == formeId) && pNonVide)
+	{
+		return findLastLeft(pForme, i, j - 1, true);
+	}
+}
+
+int CentralWidget::findLastRight(Forme* pForme, int i, int j, bool pNonVide)
+{
+	int formeId = pForme->getId();
+	if ((pForme->getLength() == j + 1) && (pForme->getElement(i, j).id != formeId) && (pNonVide))
+	{
+		return j - 1;
+	}
+	else if ((pForme->getLength() == j + 1) && (pForme->getElement(i, j).id != formeId))
+	{
+		return -1;
+	}
+	else if ((pForme->getLength() == j + 1) && (pForme->getElement(i, j).id == formeId))
+	{
+		return j;
+	}
+	else if ((pForme->getElement(i, j).id != formeId) && !pNonVide)
+	{
+		return findLastRight(pForme, i, j + 1, false);
+	}
+	else if ((pForme->getElement(i, j).id != formeId) && pNonVide)
+	{
+		return j - 1;
+	}
+	else if ((pForme->getElement(i, j).id == formeId) && !pNonVide)
+	{
+		return findLastRight(pForme, i, j + 1, true);
+	}
+	else if ((pForme->getElement(i, j).id == formeId) && pNonVide)
+	{
+		return findLastRight(pForme, i, j + 1, true);
+	}
 }
 
 void CentralWidget::move(char direc)
@@ -578,31 +675,32 @@ bool CentralWidget::isFree(char direction, int vertical, int horizontal)
 
 void CentralWidget::run_game()
 {
-	current_score = 0;
 	prochaineForme = choixForme(rand() % 7);
 	activeGame = true;
 	alive = true;
 	nouvelleFormeApparait();
 	refreshGame();
 	int i = 0;
-	while (activeGame && alive)
-	{
-		Sleep(125);
+	timerJeu_->start();
+}
+
+void CentralWidget::processusJeu()
+{
+	//if (compteurIteration_ >= 500)
+	//{
 		if (iteration())
 		{
 			move('D');
 		}
 		else
 		{
-			delete_line(hauteur_tableau);
+			check_lines();
 			nouvelleFormeApparait();
 			refreshGame();
 		}
-	}
-	if (alive == false)
-	{
-		loss_warning();
-	}
+		//compteurIteration_ = 0;
+	//}
+	//compteurIteration_ += 10;
 }
 
 //Elements fonctionnnels
@@ -617,9 +715,12 @@ bool CentralWidget::ajouterForme(Forme forme)
 		for (int j = 0; j < grandeurForme; j++)
 		{
 			if (forme.getElement(i, j).id != 0 && table1[i + positionHauteur][j + positionLargeur].id != 0)
-				alive = false; 
+			{
+				alive = false;
+				timerJeu_->stop();
+				loss_warning();
+			}
 			table1[i + positionHauteur][j + positionLargeur] = forme.getElement(i, j);
-	
 		}
 	}
 	return true;
@@ -726,7 +827,7 @@ Forme* CentralWidget::getProchaineForme()
 
 void CentralWidget::delete_line(int deleted_line)
 {
-	for (int i = deleted_line - 1; i > 0; i--)
+	for (int i = deleted_line; i > 0; i--)
 	{
 		for (int j = 0; j < largeur_tableau; j++)
 		{
@@ -734,8 +835,8 @@ void CentralWidget::delete_line(int deleted_line)
 		}
 	}
 
-	for (int j = 0; j < largeur_tableau; j++)
-		table1[0][j] = CASE({ 0,0 });
+	for (int k = 0; k < largeur_tableau; k++)
+		table1[0][k] = CASE({ 0,0 });
 
 	current_score++;
 }
@@ -777,19 +878,13 @@ bool CentralWidget::initialise_table()
 	{
 		for (int j = 0; j < largeur_tableau; j++)
 		{
-			table1[i][j] = CASE({ 0,0 });
+			table1[i][j] = CASE({0,0});
 		}
 	}
 	/*for (int k = 0; k < largeur_tableau; k++)
 	{
-	freeze_table[k] = hauteur_tableau - 1;
+		freeze_table[k] = hauteur_tableau - 1;
 	}*/
 	return 0;
-}
-
-
-void CentralWidget::processusJeu()
-{
-
 }
 

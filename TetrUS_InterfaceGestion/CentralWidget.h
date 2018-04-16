@@ -3,6 +3,7 @@
 #include <iostream>
 #include <ctime>
 #include <cmath>
+#include <math.h>
 #include <cstdlib>
 #include "Forme.h"
 #include "Carre.h"
@@ -12,6 +13,7 @@
 #include "S.h"
 #include "Z.h"
 #include "LGauche.h"
+#include "Windows.h"
 
 //Defines
 #define hauteur_tableau 20
@@ -27,7 +29,7 @@
 #define PYRAMIDE 7
 
 
-//Define pour lecture du clavier.... encore besoin?
+//Define pour lecture du clavier
 #define KEY_LEFT 75
 #define KEY_RIGHT 77
 
@@ -44,6 +46,8 @@
 #include <QTableWidget>
 #include <QTableWidgetItem>
 #include <QTimer>
+#include <Windows.h>
+#include <qshortcut>
 
 class CentralWidget : public QWidget
 {
@@ -86,11 +90,20 @@ private slots:
 	void btnStart_Clicked();
 	void btnPause_Clicked();
 	void btnStop_Clicked();
+	void left_press();
+	void right_press();
+	void up_press();
+	void down_press();
+	void processusJeu();
 
 private:
 	void init();
 
+
+	//// compteur
 	int compteurBloc_ = 0;
+	int compteurIteration_ = 0;
+	////
 
 	int hauteur;
 	int largeur;
@@ -103,13 +116,13 @@ private:
 	Forme* prochaineForme;
 	int randomProchaineForme;
 
-	int current_score; //Compteur pour les points. Nombres de lignes supprimmes au total
+	int current_score; //Pointage du match
 
 
-	// Test pour tout régler de Jérôme
+	// Trouver dernier indice
 	int findLastDown(Forme* pForme, int i, int j, bool pNonVide);
-
-	void processusJeu();
+	int findLastLeft(Forme* pForme, int i, int j, bool pNonVide);
+	int findLastRight(Forme* pForme, int i, int j, bool pNonVide);
 
 	GestionJoueur* gestion_;
 
