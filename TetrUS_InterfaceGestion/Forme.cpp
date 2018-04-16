@@ -18,16 +18,15 @@ int Forme::getLength()
 	return dimension;
 }
 
-int Forme::getElement(int i, int j)
+CASE Forme::getElement(int i, int j)
 {
 	return matriceForme.at(i).at(j);
 }
 
-
-//vector<int> Forme::at(int i)
-//{
-//	return matriceForme.at(i);
-//}
+int Forme::getId()
+{
+	return id_;
+}
 
 void Forme::rotation()
 {
@@ -47,7 +46,7 @@ void Forme::rotation()
 		}
 	}
 	//Changement des lignes aux extremites (necessaire pour que la rotation fonctionne)
-	int temporary;
+	CASE temporary;
 	
 		for (j = 0; j < dimension; j++) 
 		{
@@ -59,16 +58,3 @@ void Forme::rotation()
 		matriceForme = matriceTransposee;	//On applique la rotation a la matrice de forme	
 }
 
-void Forme::afficher(ostream& o)
-{
-	for (int i = 0; i < dimension; i++)
-	{
-
-		for (int j = 0; j < dimension; j++)
-		{
-			o << matriceForme[i][j] << "  ";
-		}
-		o << endl;
-	}
-	o << endl;
-}

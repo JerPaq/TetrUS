@@ -6,10 +6,11 @@ class Pyramide : public Forme
 {
 	public:
 		Pyramide();
+		Pyramide(int pId);
 		~Pyramide();
 
 	private:
-		vector<int> ligne1;
-		vector<int> ligne2;
-		vector<int> ligne3;
+		vector<CASE> ligne1;
+		vector<CASE> ligne2;
+		vector<CASE> ligne3;
 };

@@ -7,10 +7,11 @@ class LGauche : public Forme
 {
 	public:
 		LGauche();
+		LGauche(int pId);
 		~LGauche();
 
 	private:
-		vector<int> lignes12;
-		vector<int> ligne3;
+		vector<CASE> lignes12;
+		vector<CASE> ligne3;
 
 };

@@ -7,10 +7,11 @@ class S : public Forme
 {
 	public:
 		S();
+		S(int pId);
 		~S();
 
 	private:
-		vector<int> ligne1;
-		vector<int> ligne2;
-		vector<int> ligne3;
+		vector<CASE> ligne1;
+		vector<CASE> ligne2;
+		vector<CASE> ligne3;
 };

@@ -7,8 +7,9 @@ class Ligne : public Forme
 {
 	public:
 		Ligne();
+		Ligne(int pId);
 		~Ligne();
 
 	private:
-		vector<int> lignes;
+		vector<CASE> lignes;
 };

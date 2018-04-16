@@ -59,7 +59,7 @@ public:
 	bool delete_line(); //Supprimer la derniere ligne du tableau	
 	bool full_line(); //Verifier que la derniere ligne est complete
 
-	int table1[hauteur_tableau][largeur_tableau]; //Tableau pour tetris, grandeur definie par des define 
+	CASE table1[hauteur_tableau][largeur_tableau]; //Tableau pour tetris, grandeur definie par des define 
 
 	bool initialise_table(); //Initialise le tableau au depart pour ne pas avoir des valeurs aleatoires
 	bool iteration(); //Itere dans le temps. Deplace les blocs 
@@ -85,13 +85,14 @@ private slots:
 private:
 	void init();
 
+	int compteurBloc_ = 0;
+
 	int hauteur;
 	int largeur;
 	//int positionHorizontale; //position horizontale des elements a l'extreme gauche de la matrice de forme	} coin superieur gauche
 	//int positionVerticale;	//position verticale des elements du haut de la matrice							} coin superieur gauche
 	int positionLargeur; //position horizontale des elements a l'extreme gauche de la matrice de forme	} coin superieur gauche
 	int positionHauteur;	//position verticale des elements du haut de la matrice							} coin superieur gauche
-	int freeze_table[largeur_tableau];
 	Forme buffer;
 	Forme* formeActuelle;
 	Forme* prochaineForme;
@@ -132,6 +133,8 @@ private:
 	QLabel *lblNbVictoire_;
 	QLabel *lblPourcentage_;
 	QLabel *lblHighscoreJoueur_;
+
+	QLabel *lblNextBloc_;
 
 	QTableWidget *Tetris_;
 

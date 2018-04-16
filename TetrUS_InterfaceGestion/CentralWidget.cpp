@@ -158,12 +158,12 @@ QVBoxLayout* CentralWidget::initNextBloc()
 
 	QVBoxLayout *VLayoutNextBloc = new QVBoxLayout();
 
-	QLabel *lblNextBloc = new QLabel();
-	QPixmap NextBlocpix("./photos/carre.png");
-	lblNextBloc->setPixmap(NextBlocpix);
-	lblNextBloc->setAlignment(Qt::AlignCenter);
+	lblNextBloc_ = new QLabel();
+	QPixmap NextBlocpix("./photos/mystere.png");
+	lblNextBloc_->setPixmap(NextBlocpix);
+	lblNextBloc_->setAlignment(Qt::AlignCenter);
 	QHBoxLayout *Layout = new QHBoxLayout();
-	Layout->addWidget(lblNextBloc);
+	Layout->addWidget(lblNextBloc_);
 	widgetNextBloc_->setLayout(Layout);
 	
 
@@ -337,10 +337,10 @@ void CentralWidget::refreshGame()
 	{
 		for (int j = 0; j < largeur_tableau; j++)
 		{
-			if (table1[i][j] != 0)
+			if (table1[i][j].id != 0)
 			{
 				QTableWidgetItem *cubesHeaderItem = new QTableWidgetItem();
-				switch (table1[i][j])
+				switch (table1[i][j].couleur)
 				{
 				case PYRAMIDE:
 					cubesHeaderItem->setBackgroundColor(QColor(141, 0, 255));
@@ -405,27 +405,28 @@ bool CentralWidget::iteration()
 
 int CentralWidget::findLastDown(Forme* pForme, int i, int j, bool pNonVide)
 {
-	if ((pForme->getLength() == i + 1) && (pForme->getElement(i, j) == 0))
+	int formeId = pForme->getId();
+	if ((pForme->getLength() == i + 1) && (pForme->getElement(i, j).id == formeId))
 	{
 		return -1;
 	}
-	else if ((pForme->getLength() == i + 1) && (pForme->getElement(i, j) != 0))
+	else if ((pForme->getLength() == i + 1) && (pForme->getElement(i, j).id != formeId))
 	{
 		return i;
 	}
-	else if ((pForme->getElement(i, j) == 0) && !pNonVide)
+	else if ((pForme->getElement(i, j).id == formeId) && !pNonVide)
 	{
 		return findLastDown(pForme, i + 1, j, false);
 	}
-	else if ((pForme->getElement(i, j) == 0) && pNonVide)
+	else if ((pForme->getElement(i, j).id == formeId) && pNonVide)
 	{
 		return i - 1;
 	}
-	else if ((pForme->getElement(i, j) != 0) && !pNonVide)
+	else if ((pForme->getElement(i, j).id != formeId) && !pNonVide)
 	{
 		return findLastDown(pForme, i + 1, j, true);
 	}
-	else if ((pForme->getElement(i, j) != 0) && pNonVide)
+	else if ((pForme->getElement(i, j).id != formeId) && pNonVide)
 	{
 		return findLastDown(pForme, i + 1, j, true);
 	}
@@ -443,7 +444,7 @@ bool CentralWidget::translation(char direction)
 		{
 			for (j = 0; j < grandeur; j++)
 			{
-				if (formeActuelle->getElement(i, j) == 0)
+				if (formeActuelle->getElement(i, j).id == 0)
 					continue;
 
 				else if (!isFree(direction, i, j))
@@ -462,7 +463,7 @@ bool CentralWidget::translation(char direction)
 		{
 			for (j = (grandeur - 1); j >= 0; j--)
 			{
-				if (formeActuelle->getElement(i, j) == 0)
+				if (formeActuelle->getElement(i, j).id == 0)
 					continue;
 				else if (!isFree(direction, i, j))
 				{
@@ -495,13 +496,13 @@ void CentralWidget::move(char direc)
 		{
 			for (j = 0; j < grandeur; j++)
 			{
-				if (formeActuelle->getElement(i, j) != 0)
+				if (formeActuelle->getElement(i, j).id != 0)
 				{
 					table1[positionHauteur + i][positionLargeur + j - 1] = formeActuelle->getElement(i, j);
 					lastOfLine = j;
 				}
 			}
-			table1[positionHauteur + i][positionLargeur + lastOfLine] = 0;
+			table1[positionHauteur + i][positionLargeur + lastOfLine].id = 0;
 		}
 		positionLargeur--;
 	}
@@ -512,13 +513,13 @@ void CentralWidget::move(char direc)
 		{
 			for (j = (grandeur - 1); j >= 0; j--)
 			{
-				if (formeActuelle->getElement(i, j) != 0)
+				if (formeActuelle->getElement(i, j).id != 0)
 				{
 					table1[positionHauteur + i][positionLargeur + j + 1] = formeActuelle->getElement(i, j);
 					firstOfLine = j;
 				}
 			}
-			table1[positionHauteur + i][positionLargeur + firstOfLine] = 0;
+			table1[positionHauteur + i][positionLargeur + firstOfLine].id = 0;
 		}
 		positionLargeur++;
 	}
@@ -529,11 +530,11 @@ void CentralWidget::move(char direc)
 		{
 			for (j = 0; j < grandeur; j++)
 			{
-				if (formeActuelle->getElement(i, j) != 0)
+				if (formeActuelle->getElement(i, j).id != 0)
 				{
 					table1[positionHauteur + i + 1][positionLargeur + j] = formeActuelle->getElement(i, j);
 					firstOfLine = i;
-					table1[positionHauteur + i][positionLargeur + j] = 0;
+					table1[positionHauteur + i][positionLargeur + j].id = 0;
 				}				
 			}			
 		}
@@ -547,14 +548,14 @@ bool CentralWidget::isFree(char direction, int vertical, int horizontal)
 {
 	if (direction == 'L')
 	{
-		if ((table1[positionHauteur + vertical][positionLargeur + horizontal - 1] != 0) || (positionLargeur + horizontal - 1 < 0))
+		if ((table1[positionHauteur + vertical][positionLargeur + horizontal - 1].id != 0) || (positionLargeur + horizontal - 1 < 0))
 		{
 			return false;
 		}
 	}
 	else if (direction == 'R')
 	{
-		if ((table1[positionHauteur + vertical][positionLargeur + horizontal + 1] != 0) || (positionLargeur + horizontal + 1 > largeur_tableau - 1))
+		if ((table1[positionHauteur + vertical][positionLargeur + horizontal + 1].id != 0) || (positionLargeur + horizontal + 1 > largeur_tableau - 1))
 		{
 			return false;
 		}
@@ -562,7 +563,7 @@ bool CentralWidget::isFree(char direction, int vertical, int horizontal)
 
 	if (direction == 'D')
 	{
-		if ((table1[positionHauteur + vertical + 1][positionLargeur + horizontal] != 0) || (positionHauteur + vertical + 1 > hauteur_tableau + 1))
+		if ((table1[positionHauteur + vertical + 1][positionLargeur + horizontal].id != 0) || (positionHauteur + vertical + 1 > hauteur_tableau + 1))
 		{
 			return false;
 		}
@@ -623,49 +624,61 @@ void CentralWidget::nouvelleFormeApparait()
 	prochaineForme = choixForme(randomProchaineForme);
 	randomProchaineForme = rand() % 8;
 
-	switch (prochaineForme)
+	QPixmap Pyramide("./photos/Pyramide.png");
+	QPixmap Carre("./photos/carre.png");
+	QPixmap L("./photos/L.png");
+	QPixmap LGauche("./photos/LGauche.png");
+	QPixmap S("./photos/S.png");
+	QPixmap Z("./photos/Z.png");
+	QPixmap Ligne("./photos/Ligne.png");
+
+	lblNextBloc_->clear();
+
+	switch (randomProchaineForme)
 	{
 	case PYRAMIDE:
-		QPixmap NextBlocpix("./photos/Pyramide.png");
+		lblNextBloc_->setPixmap(Pyramide);
 	case CARRE:
-
+		lblNextBloc_->setPixmap(Carre);
 	case L_VALUE:
-
+		lblNextBloc_->setPixmap(L);
 	case LGAUCHE:
-
+		lblNextBloc_->setPixmap(LGauche);
 	case S_VALUE:
-
+		lblNextBloc_->setPixmap(S);
 	case Z_VALUE:
-
+		lblNextBloc_->setPixmap(Z);
 	default:
-
+		lblNextBloc_->setPixmap(Ligne);
 	}
+	
 }
 
 Forme* CentralWidget::choixForme(int chiffreRandom)
 {
+	compteurBloc_++;
 	switch (chiffreRandom)
 	{
 	case PYRAMIDE:
-		return new Pyramide();
+		return new Pyramide(compteurBloc_);
 
 	case CARRE:
-		return new Carre();
+		return new Carre(compteurBloc_);
 
 	case L_VALUE:
-		return new L();
+		return new L(compteurBloc_);
 
 	case LGAUCHE:
-		return new LGauche();
+		return new LGauche(compteurBloc_);
 
 	case S_VALUE:
-		return new S();
+		return new S(compteurBloc_);
 
 	case Z_VALUE:
-		return new Z();
+		return new Z(compteurBloc_);
 
 	default:
-		return new Ligne();
+		return new Ligne(compteurBloc_);
 
 	}
 	return NULL;
@@ -706,7 +719,7 @@ bool CentralWidget::delete_line()
 	}
 
 	for (int j = 0; j < largeur_tableau; j++)
-		table1[0][j] = 0;
+		table1[0][j] = CASE({0,0});
 
 	return 0;
 }
@@ -715,7 +728,7 @@ bool CentralWidget::full_line()
 {
 	for (int j = 0; j < largeur_tableau; j++)
 	{
-		if (table1[hauteur_tableau - 1][j] == 0)
+		if (table1[hauteur_tableau - 1][j].id == 0)
 			return 0;
 	}
 	return 1;
@@ -727,13 +740,13 @@ bool CentralWidget::initialise_table()
 	{
 		for (int j = 0; j < largeur_tableau; j++)
 		{
-			table1[i][j] = 0;
+			table1[i][j] = CASE({0,0});
 		}
 	}
-	for (int k = 0; k < largeur_tableau; k++)
+	/*for (int k = 0; k < largeur_tableau; k++)
 	{
 		freeze_table[k] = hauteur_tableau - 1;
-	}
+	}*/
 	return 0;
 }
 

@@ -11,9 +11,10 @@ class Carre : public Forme
 {
 	public:
 		Carre();
+		Carre(int pId);
 		~Carre();
 		
 	private:
-		vector<int> lignes;
+		vector<CASE> lignes;
 
 };

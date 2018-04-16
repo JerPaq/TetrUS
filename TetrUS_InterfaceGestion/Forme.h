@@ -2,24 +2,28 @@
 #include <vector>
 using namespace std;
 
+struct CASE {    
+	int id;
+	int couleur;
+};
+
 class Forme
 {
 	public:
 		Forme();
 		virtual ~Forme();
 		void rotation();		//Rotation d'une matrice de forme
-		void afficher(ostream& o);	//Afficher une matrice de forme
 		int getLength();
-		int getElement(int i, int j);
-		int getCouleur();
+		CASE getElement(int i, int j);
+		int getId();
 		/*vector<int> at(int i);*/
 
 	protected:
 		int dimension;	//dimension de la forme en question
-		int couleur_;
-		vector<vector<int> > matriceForme;	//matrice dans laquelle on transfere la forme
+		int id_;
+		vector<vector<CASE> > matriceForme;	//matrice dans laquelle on transfere la forme
 
 	private:
-		vector<vector<int> > matriceTransposee;	//matrice qui sera transposee pour effectuer la rotation
+		vector<vector<CASE> > matriceTransposee;	//matrice qui sera transposee pour effectuer la rotation
 		
 };
