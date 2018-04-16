@@ -73,7 +73,7 @@ void NouveauJoueur::btnCreer_Clicked()
 		msgBox_->setStandardButtons(QMessageBox::Save);
 		msgBox_->setButtonText(QMessageBox::Save, "Ok");
 		msgBox_->setDefaultButton(QMessageBox::Save);
-		int ret = msgBox_->exec();
+		/*int ret = */msgBox_->exec();
 	}
 	
 }

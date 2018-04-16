@@ -5,9 +5,9 @@
 #include <fstream>
 #include <list>
 #include <QStringList>
-
 #include "vecteur.h"
-#include "Joueur.h";
+#include "Joueur.h"
+
 
 using namespace std;
 
