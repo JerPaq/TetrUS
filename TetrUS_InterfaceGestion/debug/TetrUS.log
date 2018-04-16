@@ -5,7 +5,6 @@
   MOC NouveauJoueur.h
   MOC Reglements.h
   MOC SelectJoueur.h
-  NouveauJoueur.cpp
   moc_CentralWidget.cpp
   moc_MainWindow.cpp
   moc_ModifierJoueur.cpp

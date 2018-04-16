@@ -67,6 +67,7 @@ public:
 
 	//Warning for game loss
 	void loss_warning();
+	void increase_score(int bonus);
 
 	CASE table1[hauteur_tableau][largeur_tableau]; //Tableau pour tetris, grandeur definie par des define 
 
@@ -81,6 +82,7 @@ public:
 	Forme* getFormeActuelle();
 	Forme* getProchaineForme();
 	void nouvelleFormeApparait();
+	void summumShape();
 	Forme* choixForme(int randomNumber);
 
 private slots:
@@ -138,6 +140,7 @@ private:
 
 	QMessageBox *msgBox_;
 	QMessageBox *losswarning_;
+	QMessageBox *highscore_;
 
 	QWidget * widgetCentral_;
 	QWidget *widgetJeu_;

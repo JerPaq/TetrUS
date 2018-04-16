@@ -26,7 +26,7 @@ CentralWidget::CentralWidget(GestionJoueur *pGestion, QWidget *parent) : QWidget
 
 	timerJeu_ = new QTimer(this);
 	connect(timerJeu_, SIGNAL(timeout()), this, SLOT(processusJeu()));
-	timerJeu_->setInterval(150);
+	timerJeu_->setInterval(451);
 }
 
 CentralWidget::~CentralWidget()
@@ -342,9 +342,25 @@ void CentralWidget::up_press()
 {
 	if (activeGame)
 	{
-		formeActuelle->rotation(table1, positionLargeur, positionHauteur);
+		if (formeActuelle->rotation(table1, positionLargeur, positionHauteur));
+		{
+			for (int i = 0; i < formeActuelle->getLength(); i++)
+			{
+				for (int j = 0; j < formeActuelle->getLength(); j++)
+				{
+					if (table1[i + positionHauteur][j + positionLargeur].id == formeActuelle->getId())
+					{
+						table1[i + positionHauteur][j + positionLargeur].id = 0;
+						table1[i + positionHauteur][j + positionLargeur].couleur = 0;
+					}
+				}
+			}
+		}
+		summumShape();
 	}
+
 	refreshGame();
+
 }
 
 void CentralWidget::down_press()
@@ -708,7 +724,7 @@ void CentralWidget::processusJeu()
 		else
 		{
 			check_lines();
-			current_score++;
+			increase_score(1);
 			nouvelleFormeApparait();
 			refreshGame();
 		}
@@ -852,7 +868,7 @@ void CentralWidget::delete_line(int deleted_line)
 	for (int k = 0; k < largeur_tableau; k++)
 		table1[0][k] = CASE({ 0,0 });
 
-	current_score += 10;
+	increase_score(10);
 }
 
 bool CentralWidget::full_line(int line_check)
@@ -884,7 +900,13 @@ void CentralWidget::loss_warning()
 	losswarning_->setStandardButtons(QMessageBox::Save);
 	losswarning_->setButtonText(QMessageBox::Save, "Ok");
 	losswarning_->setDefaultButton(QMessageBox::Save);
-	int ret = losswarning_->exec();
+	losswarning_->exec();
+
+	if (gestion_->joueurSelect()->setHighScore(current_score))
+	{
+		highscore_ = new QMessageBox();
+	}
+	gestion_->sauvegarder();
 }
 
 bool CentralWidget::initialise_table()
@@ -903,3 +925,28 @@ bool CentralWidget::initialise_table()
 	return 0;
 }
 
+void CentralWidget::increase_score(int bonus)
+{
+	current_score += bonus;
+	lblScore_->setNum(current_score);
+	refreshUI();
+}
+
+void CentralWidget::summumShape()
+{
+	int i;
+	int j;
+	int grandeur = formeActuelle->getLength();
+
+	for (i = 0; i < grandeur; i++)
+	{
+		for (j = 0; j < grandeur; j++)
+		{
+			if (formeActuelle->getElement(i, j).id != 0)
+			{
+				table1[positionHauteur + i][positionLargeur + j] = formeActuelle->getElement(i, j);
+			}
+		}
+	}
+
+}

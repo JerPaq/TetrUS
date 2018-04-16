@@ -14,7 +14,7 @@ public:
 	virtual ~Forme();
 	//void rotation(vector<vector<CASE>> table1);		//Rotation d'une matrice de forme
 	//void rotation(vector<vector<CASE>> table1, int posH, int posV);
-	void rotation(CASE table[][10], int posH, int posV);
+	bool rotation(CASE table[][10], int posH, int posV);
 	int getLength();
 	CASE getElement(int i, int j);
 	int getId();
