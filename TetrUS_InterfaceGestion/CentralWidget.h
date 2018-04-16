@@ -62,12 +62,15 @@ public:
 	void refreshUI();
 	void refreshGame();
 
-	CASE table1[hauteur_tableau][largeur_tableau]; //Tableau pour tetris, grandeur definie par des define 
 
+<<<<<<< HEAD
+	CASE table1[hauteur_tableau][largeur_tableau]; //Tableau pour tetris, grandeur definie par des define 
+=======
 	//Full lines and deletes. Gere le pointage aussi
 	void delete_line(int deleted_line); //Supprimer la derniere ligne du tableau	
 	bool full_line(int line_check); //Verifier que la derniere ligne est complete
 	void check_lines();
+>>>>>>> 32c5e7c7c847fa8bbc56298a0ecab54d2b922d12
 
 	//Les fonctions du jeu
 	bool iteration(); //Itere dans le temps. Deplace les blocs 
@@ -94,11 +97,14 @@ private slots:
 	void btnStop_Clicked();
 
 private:
+<<<<<<< HEAD
 	void init();
 
 	int compteurBloc_ = 0;
 
+=======
 	//Variables du jeu
+>>>>>>> 32c5e7c7c847fa8bbc56298a0ecab54d2b922d12
 	int hauteur;
 	int largeur;
 	//int positionHorizontale; //position horizontale des elements a l'extreme gauche de la matrice de forme	} coin superieur gauche

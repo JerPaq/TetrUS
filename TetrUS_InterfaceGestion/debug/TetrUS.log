@@ -1,48 +1,21 @@
-﻿  Generate moc_predefs.h
-  MOC CentralWidget.h
-  MOC MainWindow.h
-  MOC ModifierJoueur.h
-  MOC NouveauJoueur.h
-  MOC Reglements.h
-  MOC SelectJoueur.h
-  Carre.cpp
-  CentralWidget.cpp
-c:\users\stjm2505\documents\github\tetrus\tetrus_interfacegestion\gestionjoueur.h(3): fatal error C1083: Impossible d'ouvrir le fichier include : 'nlohmann\json.hpp' : No such file or directory
-  Forme.cpp
-  L.cpp
-  LGauche.cpp
-  Ligne.cpp
-  MainWindow.cpp
-c:\users\stjm2505\documents\github\tetrus\tetrus_interfacegestion\gestionjoueur.h(3): fatal error C1083: Impossible d'ouvrir le fichier include : 'nlohmann\json.hpp' : No such file or directory
-  ModifierJoueur.cpp
-c:\users\stjm2505\documents\github\tetrus\tetrus_interfacegestion\gestionjoueur.h(3): fatal error C1083: Impossible d'ouvrir le fichier include : 'nlohmann\json.hpp' : No such file or directory
-  NouveauJoueur.cpp
-c:\users\stjm2505\documents\github\tetrus\tetrus_interfacegestion\gestionjoueur.h(3): fatal error C1083: Impossible d'ouvrir le fichier include : 'nlohmann\json.hpp' : No such file or directory
-  Pyramide.cpp
-  Reglements.cpp
-c:\users\stjm2505\documents\github\tetrus\tetrus_interfacegestion\gestionjoueur.h(3): fatal error C1083: Impossible d'ouvrir le fichier include : 'nlohmann\json.hpp' : No such file or directory
-  S.cpp
-  SelectJoueur.cpp
-c:\users\stjm2505\documents\github\tetrus\tetrus_interfacegestion\gestionjoueur.h(3): fatal error C1083: Impossible d'ouvrir le fichier include : 'nlohmann\json.hpp' : No such file or directory
-  gestionjoueur.cpp
-c:\users\stjm2505\documents\github\tetrus\tetrus_interfacegestion\GestionJoueur.h(3): fatal error C1083: Impossible d'ouvrir le fichier include : 'nlohmann\json.hpp' : No such file or directory
-  joueur.cpp
-c:\users\stjm2505\documents\github\tetrus\tetrus_interfacegestion\Joueur.h(5): fatal error C1083: Impossible d'ouvrir le fichier include : 'nlohmann\json.hpp' : No such file or directory
-  main.cpp
-c:\users\stjm2505\documents\github\tetrus\tetrus_interfacegestion\gestionjoueur.h(3): fatal error C1083: Impossible d'ouvrir le fichier include : 'nlohmann\json.hpp' : No such file or directory
-  Z.cpp
-  moc_CentralWidget.cpp
-c:\users\stjm2505\documents\github\tetrus\tetrus_interfacegestion\gestionjoueur.h(3): fatal error C1083: Impossible d'ouvrir le fichier include : 'nlohmann\json.hpp' : No such file or directory
-  moc_MainWindow.cpp
-c:\users\stjm2505\documents\github\tetrus\tetrus_interfacegestion\gestionjoueur.h(3): fatal error C1083: Impossible d'ouvrir le fichier include : 'nlohmann\json.hpp' : No such file or directory
-  moc_ModifierJoueur.cpp
-c:\users\stjm2505\documents\github\tetrus\tetrus_interfacegestion\gestionjoueur.h(3): fatal error C1083: Impossible d'ouvrir le fichier include : 'nlohmann\json.hpp' : No such file or directory
-  Génération de code en cours...
-  Compilation en cours...
-  moc_NouveauJoueur.cpp
-c:\users\stjm2505\documents\github\tetrus\tetrus_interfacegestion\gestionjoueur.h(3): fatal error C1083: Impossible d'ouvrir le fichier include : 'nlohmann\json.hpp' : No such file or directory
-  moc_Reglements.cpp
-c:\users\stjm2505\documents\github\tetrus\tetrus_interfacegestion\gestionjoueur.h(3): fatal error C1083: Impossible d'ouvrir le fichier include : 'nlohmann\json.hpp' : No such file or directory
-  moc_SelectJoueur.cpp
-c:\users\stjm2505\documents\github\tetrus\tetrus_interfacegestion\gestionjoueur.h(3): fatal error C1083: Impossible d'ouvrir le fichier include : 'nlohmann\json.hpp' : No such file or directory
-  Génération de code en cours...
+﻿  CentralWidget.cpp
+c:\users\stjm2505\documents\github\tetrus\tetrus_interfacegestion\gestionjoueur.h(10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+CentralWidget.cpp(288): warning C4189: 'ret' : variable locale initialisée mais non référencée
+CentralWidget.cpp(361): warning C4808: '2' case n'est pas une valeur valide dans une condition switch de type 'bool'
+CentralWidget.cpp(364): warning C4808: '3' case n'est pas une valeur valide dans une condition switch de type 'bool'
+CentralWidget.cpp(367): warning C4808: '4' case n'est pas une valeur valide dans une condition switch de type 'bool'
+CentralWidget.cpp(370): warning C4808: '5' case n'est pas une valeur valide dans une condition switch de type 'bool'
+CentralWidget.cpp(355): warning C4808: '7' case n'est pas une valeur valide dans une condition switch de type 'bool'
+CentralWidget.cpp(599): warning C4189: 'i' : variable locale initialisée mais non référencée
+CentralWidget.cpp(649): error C2360: l'initialisation de 'NextBlocpix' est ignorée par l'étiquette 'case'
+  CentralWidget.cpp(647): note: voir la déclaration de 'NextBlocpix'
+CentralWidget.cpp(651): error C2360: l'initialisation de 'NextBlocpix' est ignorée par l'étiquette 'case'
+  CentralWidget.cpp(647): note: voir la déclaration de 'NextBlocpix'
+CentralWidget.cpp(653): error C2360: l'initialisation de 'NextBlocpix' est ignorée par l'étiquette 'case'
+  CentralWidget.cpp(647): note: voir la déclaration de 'NextBlocpix'
+CentralWidget.cpp(655): error C2360: l'initialisation de 'NextBlocpix' est ignorée par l'étiquette 'case'
+  CentralWidget.cpp(647): note: voir la déclaration de 'NextBlocpix'
+CentralWidget.cpp(657): error C2360: l'initialisation de 'NextBlocpix' est ignorée par l'étiquette 'case'
+  CentralWidget.cpp(647): note: voir la déclaration de 'NextBlocpix'
+CentralWidget.cpp(659): error C2361: l'initialisation de 'NextBlocpix' est ignorée par l'étiquette 'default'
+  CentralWidget.cpp(647): note: voir la déclaration de 'NextBlocpix'
