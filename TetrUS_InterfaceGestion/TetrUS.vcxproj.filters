@@ -39,6 +39,9 @@
     <ClCompile Include="NouveauJoueur.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Reglements.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="SelectJoueur.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -49,6 +52,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="S.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Z.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Carre.cpp">
@@ -69,12 +78,6 @@
     <ClCompile Include="Pyramide.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="S.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Z.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="CentralWidget.h">
@@ -87,6 +90,9 @@
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="NouveauJoueur.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Reglements.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="SelectJoueur.h">
@@ -127,6 +133,12 @@
     <ClCompile Include="release\moc_NouveauJoueur.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="debug\moc_Reglements.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_Reglements.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
     <ClCompile Include="debug\moc_SelectJoueur.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
@@ -141,6 +153,12 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="S.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Z.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Carre.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -157,12 +175,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Pyramide.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="S.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Z.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

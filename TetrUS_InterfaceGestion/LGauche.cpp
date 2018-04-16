@@ -9,10 +9,10 @@ LGauche::LGauche()
 	matriceForme.resize(DIMENSIONLGAUCHE);
 
 	lignes12[0] = 0;
-	lignes12[1] = 1;
+	lignes12[1] = 3;
 	lignes12[2] = 0;
-	ligne3[0] = 1;
-	ligne3[1] = 1;
+	ligne3[0] = 3;
+	ligne3[1] = 3;
 	ligne3[2] = 0;
 
 	matriceForme[0] = lignes12;

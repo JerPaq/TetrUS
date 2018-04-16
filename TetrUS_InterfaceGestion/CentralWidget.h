@@ -18,14 +18,13 @@
 #define largeur_tableau 10
 
 //Define pour les formes
-#define PYRAMIDE 7
 #define CARRE 1
 #define L_VALUE 2
 #define LGAUCHE 3
 #define S_VALUE 4
 #define Z_VALUE 5
 #define LIGNE 6
-
+#define PYRAMIDE 7
 
 
 //Define pour lecture du clavier
@@ -45,6 +44,7 @@
 #include <QMessageBox>
 #include <QTableWidget>
 #include <QTableWidgetItem>
+#include <QTimer>
 
 class CentralWidget : public QWidget
 {
@@ -61,6 +61,7 @@ public:
 	//Refreshing game
 	void refreshUI();
 	void refreshGame();
+
 
 	//Full lines and deletes. Gere le pointage aussi
 	void delete_line(int deleted_line); //Supprimer la derniere ligne du tableau	
@@ -80,18 +81,23 @@ public:
 	void nouvelleFormeApparait();
 	Forme* choixForme(int randomNumber);
 
+
 	//Conditions pour jeu actif.
 	bool activeGame = false; //Lorsque qu'on commence ou on fait pause pour le jeu
 	bool alive = false; //Lorsqu'on echoue. You suck. 
+
 
 private slots:
 	void btnStart_Clicked();
 	void btnPause_Clicked();
 	void btnStop_Clicked();
+
 private:
 	//Variables du jeu
 	int hauteur;
 	int largeur;
+	//int positionHorizontale; //position horizontale des elements a l'extreme gauche de la matrice de forme	} coin superieur gauche
+	//int positionVerticale;	//position verticale des elements du haut de la matrice							} coin superieur gauche
 	int positionLargeur; //position horizontale des elements a l'extreme gauche de la matrice de forme	} coin superieur gauche
 	int positionHauteur;	//position verticale des elements du haut de la matrice							} coin superieur gauche
 	int freeze_table[largeur_tableau];
@@ -101,8 +107,16 @@ private:
 	int randomProchaineForme;
 	int current_score; //Nombre de lignes supprimes lors de cette partie. 
 
+
 	//Gestion du jeu et des joueurs
 	void init();
+
+
+	// Test pour tout régler de Jérôme
+	int findLastDown(Forme* pForme, int i, int j, bool pNonVide);
+
+	void processusJeu();
+
 	GestionJoueur* gestion_;
 
 	//Widgets
@@ -135,4 +149,7 @@ private:
 	QLabel *lblHighscoreJoueur_;
 
 	QTableWidget *Tetris_;
+
+	QTimer *timerJeu_;
+	QTimer *timerPhoneme_;
 };

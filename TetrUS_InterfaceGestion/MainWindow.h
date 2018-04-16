@@ -7,6 +7,7 @@
 #include "SelectJoueur.h"
 #include "gestionjoueur.h"
 #include "CentralWidget.h"
+#include "Reglements.h"
 #include <QPalette>
 
 
@@ -20,18 +21,20 @@ public:
 
 private slots:
 	void menuQuitter_Clicked();
+	void menuReglements_Clicked();
 	void menuNouveauJoueur_Clicked();
 	void menuGestionJoueur_Clicked();
-	/*void hovered();*/
 private:
 	void init();
 	CentralWidget * widgetCentral_;
 	QMenu * menuFichier_;
 	QMenu * menuJoueur_;
 	QAction *actQuitter_;
+	QAction *actReglement_;
 	QAction *actNouveauJoueur_;
 	QAction *actGestionJoueur_;
 	NouveauJoueur *dlgNouveauJoueur_;
 	SelectJoueur *dlgSelectJoueur_;
+	Reglements *dlgReglements_;
 	GestionJoueur *gestion_;
 };

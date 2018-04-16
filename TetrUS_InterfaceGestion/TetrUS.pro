@@ -1,8 +1,8 @@
 TEMPLATE     = vcapp
 TARGET       = TetrUS
 CONFIG      += warn_on qt debug_and_release windows console
-HEADERS     += MainWindow.h CentralWidget.h NouveauJoueur.h SelectJoueur.h ModifierJoueur.h joueur.h vecteur.h gestionjoueur.h
-SOURCES     += MainWindow.cpp main.cpp CentralWidget.cpp NouveauJoueur.cpp SelectJoueur.cpp ModifierJoueur.cpp joueur.cpp gestionjoueur.cpp
+HEADERS     += MainWindow.h CentralWidget.h NouveauJoueur.h SelectJoueur.h ModifierJoueur.h joueur.h vecteur.h gestionjoueur.h Reglements.h
+SOURCES     += MainWindow.cpp main.cpp CentralWidget.cpp NouveauJoueur.cpp SelectJoueur.cpp ModifierJoueur.cpp joueur.cpp gestionjoueur.cpp Reglements.cpp
 INCLUDEPATH += .\nlohmann
 LIBS	      += 
 QT += widgets

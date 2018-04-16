@@ -7,7 +7,7 @@ Ligne::Ligne()
 	lignes.resize(DIMENSIONLIGNE);
 	matriceForme.resize(DIMENSIONLIGNE);
 
-	lignes[0] = 1;
+	lignes[0] = 6;
 	lignes[1] = 0;
 	lignes[2] = 0;
 	lignes[3] = 0;
