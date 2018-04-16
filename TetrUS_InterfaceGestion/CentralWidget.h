@@ -56,6 +56,7 @@ public:
 	void refreshUI();
 	void refreshGame();
 
+	//Delete manager
 	void delete_line(int deleted_line); //Supprimer la derniere ligne du tableau	
 	bool full_line(int line_check); //Verifier que une ligne est complete
 	void check_lines(); //Combinaison des deux fonctions precedentes. 
@@ -99,7 +100,7 @@ private:
 	Forme* prochaineForme;
 	int randomProchaineForme;
 
-	int current_score; //Calcul le pointage de la partie. 
+	int current_score; //Compteur pour les points. Nombres de lignes supprimmes au total
 
 
 	// Test pour tout régler de Jérôme

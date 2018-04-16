@@ -5,27 +5,50 @@
   MOC NouveauJoueur.h
   MOC Reglements.h
   MOC SelectJoueur.h
+  Carre.cpp
   CentralWidget.cpp
 c:\users\stjm2505\documents\github\tetrus\tetrus_interfacegestion\gestionjoueur.h(10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
 CentralWidget.cpp(281): warning C4189: 'ret' : variable locale initialisée mais non référencée
 CentralWidget.cpp(587): warning C4189: 'i' : variable locale initialisée mais non référencée
+  Forme.cpp
+  L.cpp
+  LGauche.cpp
+  Ligne.cpp
   MainWindow.cpp
 c:\users\stjm2505\documents\github\tetrus\tetrus_interfacegestion\gestionjoueur.h(10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
 MainWindow.cpp(9): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
+  ModifierJoueur.cpp
+c:\users\stjm2505\documents\github\tetrus\tetrus_interfacegestion\gestionjoueur.h(10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+ModifierJoueur.cpp(59): warning C4189: 'ret' : variable locale initialisée mais non référencée
+  NouveauJoueur.cpp
+c:\users\stjm2505\documents\github\tetrus\tetrus_interfacegestion\gestionjoueur.h(10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+NouveauJoueur.cpp(76): warning C4189: 'ret' : variable locale initialisée mais non référencée
+  Pyramide.cpp
+  Reglements.cpp
+c:\users\stjm2505\documents\github\tetrus\tetrus_interfacegestion\gestionjoueur.h(10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+  S.cpp
+  SelectJoueur.cpp
+c:\users\stjm2505\documents\github\tetrus\tetrus_interfacegestion\gestionjoueur.h(10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+  gestionjoueur.cpp
+c:\users\stjm2505\documents\github\tetrus\tetrus_interfacegestion\GestionJoueur.h(10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+  joueur.cpp
+  main.cpp
+c:\users\stjm2505\documents\github\tetrus\tetrus_interfacegestion\gestionjoueur.h(10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+  Z.cpp
   moc_CentralWidget.cpp
 c:\users\stjm2505\documents\github\tetrus\tetrus_interfacegestion\gestionjoueur.h(10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
   moc_MainWindow.cpp
 c:\users\stjm2505\documents\github\tetrus\tetrus_interfacegestion\gestionjoueur.h(10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
   moc_ModifierJoueur.cpp
 c:\users\stjm2505\documents\github\tetrus\tetrus_interfacegestion\gestionjoueur.h(10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+  Génération de code en cours...
+c:\users\stjm2505\documents\github\tetrus\tetrus_interfacegestion\centralwidget.cpp(437): warning C4715: 'CentralWidget::findLastDown' : les chemins de contrôle ne retournent pas tous une valeur
+  Compilation en cours...
   moc_NouveauJoueur.cpp
 c:\users\stjm2505\documents\github\tetrus\tetrus_interfacegestion\gestionjoueur.h(10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
   moc_Reglements.cpp
 c:\users\stjm2505\documents\github\tetrus\tetrus_interfacegestion\gestionjoueur.h(10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
   moc_SelectJoueur.cpp
 c:\users\stjm2505\documents\github\tetrus\tetrus_interfacegestion\gestionjoueur.h(10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
-  main.cpp
-c:\users\stjm2505\documents\github\tetrus\tetrus_interfacegestion\gestionjoueur.h(10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
   Génération de code en cours...
-c:\users\stjm2505\documents\github\tetrus\tetrus_interfacegestion\centralwidget.cpp(437): warning C4715: 'CentralWidget::findLastDown' : les chemins de contrôle ne retournent pas tous une valeur
   TetrUS.vcxproj -> C:\Users\stjm2505\Documents\GitHub\TetrUS\TetrUS_InterfaceGestion\debug\TetrUS.exe

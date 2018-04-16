@@ -611,9 +611,10 @@ bool CentralWidget::ajouterForme(Forme forme)
 	{
 		for (int j = 0; j < grandeurForme; j++)
 		{
-			if (table1[i + positionHauteur][j + positionLargeur].id == forme.getElement(i, j).id)
+			if (forme.getElement(i, j).id != 0 && table1[i + positionHauteur][j + positionLargeur].id != 0)
 				alive = false; 
 			table1[i + positionHauteur][j + positionLargeur] = forme.getElement(i, j);
+	
 		}
 	}
 	return true;
@@ -764,6 +765,10 @@ bool CentralWidget::initialise_table()
 			table1[i][j] = CASE({0,0});
 		}
 	}
+	/*for (int k = 0; k < largeur_tableau; k++)
+	{
+		freeze_table[k] = hauteur_tableau - 1;
+	}*/
 	return 0;
 }
 
@@ -771,4 +776,3 @@ void CentralWidget::processusJeu()
 {
 
 }
-
