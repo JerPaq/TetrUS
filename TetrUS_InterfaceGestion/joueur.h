@@ -25,7 +25,8 @@ public:
     void modifierNom(string pNom);
 
 	int getHighscore();
+	int getPourcentage();
 
     bool setHighScore(int pHighscore);
-    void augmenterPartie(bool pVictoire);
+    int augmenterPartie(bool pVictoire);
 };

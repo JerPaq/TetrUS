@@ -86,6 +86,7 @@ public:
 	void summumShape();
 	Forme* choixForme(int randomNumber);
 
+
 private slots:
 	void btnStart_Clicked();
 	void btnPause_Clicked();
@@ -168,5 +169,7 @@ private:
 
 	QTimer *timerJeu_;
 	QTimer *timerPhoneme_;
+
 	Carte_FPGA carte_fpga_;
+	
 };

@@ -729,6 +729,7 @@ bool CentralWidget::isFree(char direction, int vertical, int horizontal)
 
 void CentralWidget::run_game()
 {
+	refreshUI();
 	prochaineForme = choixForme(rand() % 7);
 	activeGame = true;
 	alive = true;
@@ -923,7 +924,7 @@ void CentralWidget::loss_warning()
 {
 	losswarning_ = new QMessageBox();
 	QString converter;
-	losswarning_->setText("Match perdu! Give up on life! Score : " + converter.setNum(current_score));
+	losswarning_->setText("Match fini! Give up on life! Score : " + converter.setNum(current_score));
 	losswarning_->setStandardButtons(QMessageBox::Cancel);
 	losswarning_->setButtonText(QMessageBox::Cancel, "Ok");
 	losswarning_->exec();
@@ -934,7 +935,16 @@ void CentralWidget::loss_warning()
 		losswarning_->setText("NEW HIGH SCORE: " + converter.setNum(current_score));
 		losswarning_->setStandardButtons(QMessageBox::Cancel);
 		losswarning_->setButtonText(QMessageBox::Cancel, "Youppi!");
+		gestion_->joueurSelect()->augmenterPartie(true);
+		//lblHighscoreJoueur_->setNum(current_score);
+
 	}
+	else
+	{
+		gestion_->joueurSelect()->augmenterPartie(false);
+	}
+
+	//lblNbPartie_->setNum(nbParties);
 	gestion_->sauvegarder();
 	
 	refreshUI();

@@ -1,15 +1,29 @@
 ﻿  MOC CentralWidget.h
+  MOC MainWindow.h
   CentralWidget.cpp
 CentralWidget.cpp(23): warning C4189: 'LeftKey' : variable locale initialisée mais non référencée
 CentralWidget.cpp(26): warning C4189: 'DownKey' : variable locale initialisée mais non référencée
 CentralWidget.cpp(25): warning C4189: 'UpKey' : variable locale initialisée mais non référencée
 CentralWidget.cpp(24): warning C4189: 'RightKey' : variable locale initialisée mais non référencée
 CentralWidget.cpp(360): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
-CentralWidget.cpp(737): warning C4189: 'i' : variable locale initialisée mais non référencée
+CentralWidget.cpp(738): warning C4189: 'i' : variable locale initialisée mais non référencée
   MainWindow.cpp
 MainWindow.cpp(9): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
+  ModifierJoueur.cpp
+ModifierJoueur.cpp(59): warning C4189: 'ret' : variable locale initialisée mais non référencée
+  NouveauJoueur.cpp
+  Reglements.cpp
+  SelectJoueur.cpp
+  carte_FPGA.cpp
+carte_FPGA.cpp(49): warning C4189: 'capter' : variable locale initialisée mais non référencée
   moc_CentralWidget.cpp
   moc_MainWindow.cpp
+  moc_ModifierJoueur.cpp
+  moc_NouveauJoueur.cpp
+  moc_Reglements.cpp
+  moc_SelectJoueur.cpp
+  gestionjoueur.cpp
+  joueur.cpp
   main.cpp
   Génération de code en cours...
 c:\users\stjm2505\documents\github\tetrus\tetrus_interfacegestion\centralwidget.cpp(528): warning C4715: 'CentralWidget::findLastDown' : les chemins de contrôle ne retournent pas tous une valeur

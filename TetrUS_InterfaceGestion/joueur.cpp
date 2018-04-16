@@ -65,7 +65,7 @@ bool Joueur::setHighScore(int pHighscore)
     return false;
 }
 
-void Joueur::augmenterPartie(bool pVictoire)
+int Joueur::augmenterPartie(bool pVictoire)
 {
     nbPartie_++;
     if (pVictoire)
@@ -73,4 +73,6 @@ void Joueur::augmenterPartie(bool pVictoire)
         nbVictoire_++;
     }
     pourcentage_ = nbVictoire_ / nbPartie_ * 100;
+
+	return nbVictoire_;
 }

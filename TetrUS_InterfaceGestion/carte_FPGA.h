@@ -36,7 +36,7 @@ class Carte_FPGA
 {
 public:
 	Carte_FPGA();
-	~Carte_FPGA();
+	virtual ~Carte_FPGA();
 
 	char lireCarte();
 
