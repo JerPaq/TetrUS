@@ -29,7 +29,9 @@ CentralWidget::CentralWidget(GestionJoueur *pGestion, QWidget *parent) : QWidget
 	connect(timerJeu_, SIGNAL(timeout()), this, SLOT(processusJeu()));
 	timerJeu_->setInterval(451);
 
-
+	timerPhoneme_ = new QTimer(this);
+	connect(timerPhoneme_, SIGNAL(timeout()), this, SLOT(capterPhoneme()));
+	timerPhoneme_->setInterval(25);
 }
 
 CentralWidget::~CentralWidget()
@@ -298,11 +300,13 @@ void CentralWidget::btnPause_Clicked()
 		if (!pause_)
 		{
 			timerJeu_->stop();
+			timerPhoneme_->stop();
 			pause_ = true;
 		}
 		else
 		{
 			timerJeu_->start();
+			timerPhoneme_->start();
 			pause_ = false;
 		}
 	}
@@ -331,6 +335,7 @@ void CentralWidget::btnStop_Clicked()
 	//{
 	alive = false;
 	timerJeu_->stop();
+	timerPhoneme_->stop();
 	loss_warning();
 }
 void CentralWidget::left_press()
@@ -731,6 +736,7 @@ void CentralWidget::run_game()
 	refreshGame();
 	int i = 0;
 	timerJeu_->start();
+	timerPhoneme_->start();
 }
 
 void CentralWidget::processusJeu()
@@ -768,6 +774,7 @@ bool CentralWidget::ajouterForme(Forme forme)
 			{
 				alive = false;
 				timerJeu_->stop();
+				timerPhoneme_->stop();
 				loss_warning();
 			}
 			table1[i + positionHauteur][j + positionLargeur] = forme.getElement(i, j);
@@ -973,4 +980,21 @@ void CentralWidget::summumShape()
 		}
 	}
 
+}
+
+void CentralWidget::capterPhoneme()
+{
+	char phoneme = carte_fpga_.lireCarte();
+	if (phoneme == 'U')
+	{
+		up_press();
+	}
+	else if (phoneme == 'A')
+	{
+		left_press();
+	}
+	else if (phoneme == 'E')
+	{
+		right_press();
+	}
 }

@@ -27,40 +27,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CentralWidget.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MainWindow.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ModifierJoueur.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="NouveauJoueur.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Reglements.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SelectJoueur.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="gestionjoueur.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="joueur.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="S.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Z.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Carre.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CentralWidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Forme.cpp">
@@ -75,17 +45,65 @@
     <ClCompile Include="Ligne.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MainWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ModifierJoueur.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NouveauJoueur.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="Pyramide.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Reglements.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="S.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectJoueur.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Z.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="carte_FPGA.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="gestionjoueur.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="joueur.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Carre.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <CustomBuild Include="CentralWidget.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
+    <ClInclude Include="CommunicationFPGA.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Forme.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="L.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LGauche.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Ligne.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <CustomBuild Include="MainWindow.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
@@ -95,12 +113,24 @@
     <CustomBuild Include="NouveauJoueur.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
+    <ClInclude Include="Pyramide.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <CustomBuild Include="Reglements.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
+    <ClInclude Include="S.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <CustomBuild Include="SelectJoueur.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
+    <ClInclude Include="Z.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="carte_FPGA.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="gestionjoueur.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -154,40 +184,5 @@
     <CustomBuild Include="release\moc_predefs.h.cbt">
       <Filter>Generated Files</Filter>
     </CustomBuild>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="S.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Z.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Carre.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Forme.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="L.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="LGauche.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Ligne.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Pyramide.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CommunicationFPGA.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="carte_FPGA.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="CommunicationFPGA.lib" />
   </ItemGroup>
 </Project>

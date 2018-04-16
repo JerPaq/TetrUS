@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{D1C57B71-0925-3370-8942-9751E99079D5}</ProjectGuid>
+    <ProjectGuid>{EF9984DA-147F-3D23-A3ED-418AEDA85F30}</ProjectGuid>
     <RootNamespace>TetrUS</RootNamespace>
     <Keyword>Qt4VSv1.0</Keyword>
     <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
@@ -76,7 +76,7 @@
       <WarningLevel>Level3</WarningLevel>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>C:\Qt\Qt5.9.3\5.9.3\msvc2017_64\lib\Qt5Widgets.lib;C:\Qt\Qt5.9.3\5.9.3\msvc2017_64\lib\Qt5Gui.lib;C:\Qt\Qt5.9.3\5.9.3\msvc2017_64\lib\Qt5Core.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>CommunicationFPGA.lib;C:\Qt\Qt5.9.3\5.9.3\msvc2017_64\lib\Qt5Widgets.lib;C:\Qt\Qt5.9.3\5.9.3\msvc2017_64\lib\Qt5Gui.lib;C:\Qt\Qt5.9.3\5.9.3\msvc2017_64\lib\Qt5Core.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>C:\Qt\Qt5.9.3\5.9.3\msvc2017_64\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>"/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'" %(AdditionalOptions)</AdditionalOptions>
       <DataExecutionPrevention>true</DataExecutionPrevention>
@@ -116,7 +116,7 @@
       <WarningLevel>Level3</WarningLevel>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>C:\Qt\Qt5.9.3\5.9.3\msvc2017_64\lib\Qt5Widgetsd.lib;C:\Qt\Qt5.9.3\5.9.3\msvc2017_64\lib\Qt5Guid.lib;C:\Qt\Qt5.9.3\5.9.3\msvc2017_64\lib\Qt5Cored.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>CommunicationFPGA.lib;C:\Qt\Qt5.9.3\5.9.3\msvc2017_64\lib\Qt5Widgetsd.lib;C:\Qt\Qt5.9.3\5.9.3\msvc2017_64\lib\Qt5Guid.lib;C:\Qt\Qt5.9.3\5.9.3\msvc2017_64\lib\Qt5Cored.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>C:\Qt\Qt5.9.3\5.9.3\msvc2017_64\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>"/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'" %(AdditionalOptions)</AdditionalOptions>
       <DataExecutionPrevention>true</DataExecutionPrevention>
@@ -138,7 +138,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Carre.cpp" />
-    <ClCompile Include="carte_FPGA.cpp" />
     <ClCompile Include="CentralWidget.cpp" />
     <ClCompile Include="Forme.cpp" />
     <ClCompile Include="L.cpp" />
@@ -151,84 +150,85 @@
     <ClCompile Include="Reglements.cpp" />
     <ClCompile Include="S.cpp" />
     <ClCompile Include="SelectJoueur.cpp" />
+    <ClCompile Include="Z.cpp" />
+    <ClCompile Include="carte_FPGA.cpp" />
     <ClCompile Include="gestionjoueur.cpp" />
     <ClCompile Include="joueur.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Z.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Carre.h" />
-    <ClInclude Include="carte_FPGA.h" />
+    <CustomBuild Include="CentralWidget.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CentralWidget.h;release\moc_predefs.h;C:\Qt\Qt5.9.3\5.9.3\msvc2017_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Qt\Qt5.9.3\5.9.3\msvc2017_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -DWIN64 -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include release/moc_predefs.h -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/mkspecs/win32-msvc -IC:/Users/stjm2505/Documents/GitHub/TetrUS/TetrUS_InterfaceGestion -IC:/Users/stjm2505/Documents/GitHub/TetrUS/TetrUS_InterfaceGestion/nlohmann -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtWidgets -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtGui -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtANGLE -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtCore CentralWidget.h -o release\moc_CentralWidget.cpp</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">MOC CentralWidget.h</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">release\moc_CentralWidget.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CentralWidget.h;debug\moc_predefs.h;C:\Qt\Qt5.9.3\5.9.3\msvc2017_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Qt\Qt5.9.3\5.9.3\msvc2017_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -DWIN64 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include debug/moc_predefs.h -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/mkspecs/win32-msvc -IC:/Users/stjm2505/Documents/GitHub/TetrUS/TetrUS_InterfaceGestion -IC:/Users/stjm2505/Documents/GitHub/TetrUS/TetrUS_InterfaceGestion/nlohmann -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtWidgets -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtGui -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtANGLE -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtCore CentralWidget.h -o debug\moc_CentralWidget.cpp</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">MOC CentralWidget.h</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">debug\moc_CentralWidget.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
     <ClInclude Include="CommunicationFPGA.h" />
     <ClInclude Include="Forme.h" />
     <ClInclude Include="L.h" />
     <ClInclude Include="LGauche.h" />
     <ClInclude Include="Ligne.h" />
-    <ClInclude Include="Pyramide.h" />
-    <ClInclude Include="Z.h" />
-    <CustomBuild Include="CentralWidget.h">
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CentralWidget.h;release\moc_predefs.h;C:\Qt\Qt5.9.3\5.9.3\msvc2017_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Qt\Qt5.9.3\5.9.3\msvc2017_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -DWIN64 -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include release/moc_predefs.h -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/mkspecs/win32-msvc -IU:/TetrUS_InterfaceGestion -IU:/TetrUS_InterfaceGestion/nlohmann -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtWidgets -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtGui -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtANGLE -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtCore CentralWidget.h -o release\moc_CentralWidget.cpp</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">MOC CentralWidget.h</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">release\moc_CentralWidget.cpp;%(Outputs)</Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CentralWidget.h;debug\moc_predefs.h;C:\Qt\Qt5.9.3\5.9.3\msvc2017_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Qt\Qt5.9.3\5.9.3\msvc2017_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -DWIN64 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include debug/moc_predefs.h -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/mkspecs/win32-msvc -IU:/TetrUS_InterfaceGestion -IU:/TetrUS_InterfaceGestion/nlohmann -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtWidgets -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtGui -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtANGLE -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtCore CentralWidget.h -o debug\moc_CentralWidget.cpp</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">MOC CentralWidget.h</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">debug\moc_CentralWidget.cpp;%(Outputs)</Outputs>
-    </CustomBuild>
     <CustomBuild Include="MainWindow.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">MainWindow.h;release\moc_predefs.h;C:\Qt\Qt5.9.3\5.9.3\msvc2017_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Qt\Qt5.9.3\5.9.3\msvc2017_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -DWIN64 -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include release/moc_predefs.h -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/mkspecs/win32-msvc -IU:/TetrUS_InterfaceGestion -IU:/TetrUS_InterfaceGestion/nlohmann -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtWidgets -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtGui -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtANGLE -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtCore MainWindow.h -o release\moc_MainWindow.cpp</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Qt\Qt5.9.3\5.9.3\msvc2017_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -DWIN64 -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include release/moc_predefs.h -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/mkspecs/win32-msvc -IC:/Users/stjm2505/Documents/GitHub/TetrUS/TetrUS_InterfaceGestion -IC:/Users/stjm2505/Documents/GitHub/TetrUS/TetrUS_InterfaceGestion/nlohmann -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtWidgets -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtGui -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtANGLE -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtCore MainWindow.h -o release\moc_MainWindow.cpp</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">MOC MainWindow.h</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">release\moc_MainWindow.cpp;%(Outputs)</Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">MainWindow.h;debug\moc_predefs.h;C:\Qt\Qt5.9.3\5.9.3\msvc2017_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Qt\Qt5.9.3\5.9.3\msvc2017_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -DWIN64 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include debug/moc_predefs.h -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/mkspecs/win32-msvc -IU:/TetrUS_InterfaceGestion -IU:/TetrUS_InterfaceGestion/nlohmann -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtWidgets -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtGui -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtANGLE -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtCore MainWindow.h -o debug\moc_MainWindow.cpp</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Qt\Qt5.9.3\5.9.3\msvc2017_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -DWIN64 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include debug/moc_predefs.h -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/mkspecs/win32-msvc -IC:/Users/stjm2505/Documents/GitHub/TetrUS/TetrUS_InterfaceGestion -IC:/Users/stjm2505/Documents/GitHub/TetrUS/TetrUS_InterfaceGestion/nlohmann -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtWidgets -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtGui -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtANGLE -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtCore MainWindow.h -o debug\moc_MainWindow.cpp</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">MOC MainWindow.h</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">debug\moc_MainWindow.cpp;%(Outputs)</Outputs>
     </CustomBuild>
     <CustomBuild Include="ModifierJoueur.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">ModifierJoueur.h;release\moc_predefs.h;C:\Qt\Qt5.9.3\5.9.3\msvc2017_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Qt\Qt5.9.3\5.9.3\msvc2017_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -DWIN64 -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include release/moc_predefs.h -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/mkspecs/win32-msvc -IU:/TetrUS_InterfaceGestion -IU:/TetrUS_InterfaceGestion/nlohmann -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtWidgets -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtGui -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtANGLE -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtCore ModifierJoueur.h -o release\moc_ModifierJoueur.cpp</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Qt\Qt5.9.3\5.9.3\msvc2017_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -DWIN64 -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include release/moc_predefs.h -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/mkspecs/win32-msvc -IC:/Users/stjm2505/Documents/GitHub/TetrUS/TetrUS_InterfaceGestion -IC:/Users/stjm2505/Documents/GitHub/TetrUS/TetrUS_InterfaceGestion/nlohmann -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtWidgets -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtGui -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtANGLE -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtCore ModifierJoueur.h -o release\moc_ModifierJoueur.cpp</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">MOC ModifierJoueur.h</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">release\moc_ModifierJoueur.cpp;%(Outputs)</Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">ModifierJoueur.h;debug\moc_predefs.h;C:\Qt\Qt5.9.3\5.9.3\msvc2017_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Qt\Qt5.9.3\5.9.3\msvc2017_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -DWIN64 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include debug/moc_predefs.h -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/mkspecs/win32-msvc -IU:/TetrUS_InterfaceGestion -IU:/TetrUS_InterfaceGestion/nlohmann -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtWidgets -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtGui -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtANGLE -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtCore ModifierJoueur.h -o debug\moc_ModifierJoueur.cpp</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Qt\Qt5.9.3\5.9.3\msvc2017_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -DWIN64 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include debug/moc_predefs.h -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/mkspecs/win32-msvc -IC:/Users/stjm2505/Documents/GitHub/TetrUS/TetrUS_InterfaceGestion -IC:/Users/stjm2505/Documents/GitHub/TetrUS/TetrUS_InterfaceGestion/nlohmann -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtWidgets -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtGui -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtANGLE -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtCore ModifierJoueur.h -o debug\moc_ModifierJoueur.cpp</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">MOC ModifierJoueur.h</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">debug\moc_ModifierJoueur.cpp;%(Outputs)</Outputs>
     </CustomBuild>
     <CustomBuild Include="NouveauJoueur.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NouveauJoueur.h;release\moc_predefs.h;C:\Qt\Qt5.9.3\5.9.3\msvc2017_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Qt\Qt5.9.3\5.9.3\msvc2017_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -DWIN64 -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include release/moc_predefs.h -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/mkspecs/win32-msvc -IU:/TetrUS_InterfaceGestion -IU:/TetrUS_InterfaceGestion/nlohmann -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtWidgets -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtGui -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtANGLE -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtCore NouveauJoueur.h -o release\moc_NouveauJoueur.cpp</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Qt\Qt5.9.3\5.9.3\msvc2017_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -DWIN64 -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include release/moc_predefs.h -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/mkspecs/win32-msvc -IC:/Users/stjm2505/Documents/GitHub/TetrUS/TetrUS_InterfaceGestion -IC:/Users/stjm2505/Documents/GitHub/TetrUS/TetrUS_InterfaceGestion/nlohmann -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtWidgets -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtGui -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtANGLE -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtCore NouveauJoueur.h -o release\moc_NouveauJoueur.cpp</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">MOC NouveauJoueur.h</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">release\moc_NouveauJoueur.cpp;%(Outputs)</Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NouveauJoueur.h;debug\moc_predefs.h;C:\Qt\Qt5.9.3\5.9.3\msvc2017_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Qt\Qt5.9.3\5.9.3\msvc2017_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -DWIN64 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include debug/moc_predefs.h -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/mkspecs/win32-msvc -IU:/TetrUS_InterfaceGestion -IU:/TetrUS_InterfaceGestion/nlohmann -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtWidgets -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtGui -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtANGLE -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtCore NouveauJoueur.h -o debug\moc_NouveauJoueur.cpp</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Qt\Qt5.9.3\5.9.3\msvc2017_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -DWIN64 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include debug/moc_predefs.h -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/mkspecs/win32-msvc -IC:/Users/stjm2505/Documents/GitHub/TetrUS/TetrUS_InterfaceGestion -IC:/Users/stjm2505/Documents/GitHub/TetrUS/TetrUS_InterfaceGestion/nlohmann -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtWidgets -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtGui -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtANGLE -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtCore NouveauJoueur.h -o debug\moc_NouveauJoueur.cpp</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">MOC NouveauJoueur.h</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">debug\moc_NouveauJoueur.cpp;%(Outputs)</Outputs>
     </CustomBuild>
+    <ClInclude Include="Pyramide.h" />
     <CustomBuild Include="Reglements.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Reglements.h;release\moc_predefs.h;C:\Qt\Qt5.9.3\5.9.3\msvc2017_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Qt\Qt5.9.3\5.9.3\msvc2017_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -DWIN64 -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include release/moc_predefs.h -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/mkspecs/win32-msvc -IU:/TetrUS_InterfaceGestion -IU:/TetrUS_InterfaceGestion/nlohmann -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtWidgets -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtGui -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtANGLE -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtCore Reglements.h -o release\moc_Reglements.cpp</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Qt\Qt5.9.3\5.9.3\msvc2017_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -DWIN64 -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include release/moc_predefs.h -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/mkspecs/win32-msvc -IC:/Users/stjm2505/Documents/GitHub/TetrUS/TetrUS_InterfaceGestion -IC:/Users/stjm2505/Documents/GitHub/TetrUS/TetrUS_InterfaceGestion/nlohmann -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtWidgets -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtGui -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtANGLE -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtCore Reglements.h -o release\moc_Reglements.cpp</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">MOC Reglements.h</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">release\moc_Reglements.cpp;%(Outputs)</Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Reglements.h;debug\moc_predefs.h;C:\Qt\Qt5.9.3\5.9.3\msvc2017_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Qt\Qt5.9.3\5.9.3\msvc2017_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -DWIN64 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include debug/moc_predefs.h -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/mkspecs/win32-msvc -IU:/TetrUS_InterfaceGestion -IU:/TetrUS_InterfaceGestion/nlohmann -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtWidgets -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtGui -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtANGLE -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtCore Reglements.h -o debug\moc_Reglements.cpp</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Qt\Qt5.9.3\5.9.3\msvc2017_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -DWIN64 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include debug/moc_predefs.h -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/mkspecs/win32-msvc -IC:/Users/stjm2505/Documents/GitHub/TetrUS/TetrUS_InterfaceGestion -IC:/Users/stjm2505/Documents/GitHub/TetrUS/TetrUS_InterfaceGestion/nlohmann -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtWidgets -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtGui -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtANGLE -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtCore Reglements.h -o debug\moc_Reglements.cpp</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">MOC Reglements.h</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">debug\moc_Reglements.cpp;%(Outputs)</Outputs>
     </CustomBuild>
+    <ClInclude Include="S.h" />
     <CustomBuild Include="SelectJoueur.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">SelectJoueur.h;release\moc_predefs.h;C:\Qt\Qt5.9.3\5.9.3\msvc2017_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Qt\Qt5.9.3\5.9.3\msvc2017_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -DWIN64 -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include release/moc_predefs.h -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/mkspecs/win32-msvc -IU:/TetrUS_InterfaceGestion -IU:/TetrUS_InterfaceGestion/nlohmann -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtWidgets -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtGui -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtANGLE -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtCore SelectJoueur.h -o release\moc_SelectJoueur.cpp</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Qt\Qt5.9.3\5.9.3\msvc2017_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -DWIN64 -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include release/moc_predefs.h -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/mkspecs/win32-msvc -IC:/Users/stjm2505/Documents/GitHub/TetrUS/TetrUS_InterfaceGestion -IC:/Users/stjm2505/Documents/GitHub/TetrUS/TetrUS_InterfaceGestion/nlohmann -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtWidgets -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtGui -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtANGLE -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtCore SelectJoueur.h -o release\moc_SelectJoueur.cpp</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">MOC SelectJoueur.h</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">release\moc_SelectJoueur.cpp;%(Outputs)</Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">SelectJoueur.h;debug\moc_predefs.h;C:\Qt\Qt5.9.3\5.9.3\msvc2017_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Qt\Qt5.9.3\5.9.3\msvc2017_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -DWIN64 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include debug/moc_predefs.h -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/mkspecs/win32-msvc -IU:/TetrUS_InterfaceGestion -IU:/TetrUS_InterfaceGestion/nlohmann -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtWidgets -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtGui -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtANGLE -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtCore SelectJoueur.h -o debug\moc_SelectJoueur.cpp</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Qt\Qt5.9.3\5.9.3\msvc2017_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -DWIN64 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include debug/moc_predefs.h -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/mkspecs/win32-msvc -IC:/Users/stjm2505/Documents/GitHub/TetrUS/TetrUS_InterfaceGestion -IC:/Users/stjm2505/Documents/GitHub/TetrUS/TetrUS_InterfaceGestion/nlohmann -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtWidgets -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtGui -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtANGLE -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtCore SelectJoueur.h -o debug\moc_SelectJoueur.cpp</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">MOC SelectJoueur.h</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">debug\moc_SelectJoueur.cpp;%(Outputs)</Outputs>
     </CustomBuild>
+    <ClInclude Include="Z.h" />
+    <ClInclude Include="carte_FPGA.h" />
     <ClInclude Include="gestionjoueur.h" />
     <ClInclude Include="joueur.h" />
-    <ClInclude Include="S.h" />
     <ClInclude Include="vecteur.h" />
   </ItemGroup>
   <ItemGroup>
@@ -284,9 +284,6 @@
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">release\moc_predefs.h;%(Outputs)</Outputs>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </CustomBuild>
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="CommunicationFPGA.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

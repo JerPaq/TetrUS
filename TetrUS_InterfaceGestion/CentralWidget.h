@@ -14,6 +14,7 @@
 #include "Z.h"
 #include "LGauche.h"
 #include "Windows.h"
+#include "carte_FPGA.h"
 
 //Defines
 #define hauteur_tableau 20
@@ -94,6 +95,7 @@ private slots:
 	void up_press();
 	void down_press();
 	void processusJeu();
+	void capterPhoneme();
 
 private:
 	void init();
@@ -166,4 +168,5 @@ private:
 
 	QTimer *timerJeu_;
 	QTimer *timerPhoneme_;
+	Carte_FPGA carte_fpga_;
 };
