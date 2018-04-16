@@ -61,6 +61,9 @@ public:
 	bool full_line(int line_check); //Verifier que une ligne est complete
 	void check_lines(); //Combinaison des deux fonctions precedentes. 
 
+	//Warning for game loss
+	void loss_warning();
+
 	CASE table1[hauteur_tableau][largeur_tableau]; //Tableau pour tetris, grandeur definie par des define 
 
 	bool initialise_table(); //Initialise le tableau au depart pour ne pas avoir des valeurs aleatoires
@@ -120,6 +123,7 @@ private:
 	QPushButton *btnStop_;
 
 	QMessageBox *msgBox_;
+	QMessageBox *losswarning_;
 
 	QWidget * widgetCentral_;
 	QWidget *widgetJeu_;

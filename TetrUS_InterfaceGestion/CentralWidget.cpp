@@ -587,16 +587,21 @@ void CentralWidget::run_game()
 	int i = 0;
 	while (activeGame && alive)
 	{
-		Sleep(200);
+		Sleep(125);
 		if (iteration())
 		{
 			move('D');
 		}
 		else
 		{
+			delete_line(hauteur_tableau);
 			nouvelleFormeApparait();
 			refreshGame();
 		}
+	}
+	if (alive == false)
+	{
+		loss_warning();
 	}
 }
 
@@ -721,7 +726,7 @@ Forme* CentralWidget::getProchaineForme()
 
 void CentralWidget::delete_line(int deleted_line)
 {
-	for (int i = deleted_line; i >= 0; i--)
+	for (int i = deleted_line - 1; i > 0; i--)
 	{
 		for (int j = 0; j < largeur_tableau; j++)
 		{
@@ -775,4 +780,14 @@ bool CentralWidget::initialise_table()
 void CentralWidget::processusJeu()
 {
 
+}
+
+void CentralWidget::loss_warning()
+{
+	losswarning_ = new QMessageBox();
+	losswarning_->setText("Match perdu! Give up on life!");
+	losswarning_->setStandardButtons(QMessageBox::Save);
+	losswarning_->setButtonText(QMessageBox::Save, "Ok");
+	losswarning_->setDefaultButton(QMessageBox::Save);
+	int ret = losswarning_->exec();
 }
