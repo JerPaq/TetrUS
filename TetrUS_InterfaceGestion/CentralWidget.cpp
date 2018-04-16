@@ -37,7 +37,6 @@ CentralWidget::~CentralWidget()
 	if (prochaineForme != NULL)
 		delete prochaineForme;*/
 }
-
 void CentralWidget::init()
 {
 	
@@ -119,7 +118,6 @@ void CentralWidget::init()
 	timerPhoneme_ = new QTimer;
 
 }
-
 QGridLayout* CentralWidget::initJeu()
 {
 	QGridLayout *Layout = new QGridLayout();
@@ -154,7 +152,6 @@ QGridLayout* CentralWidget::initJeu()
 
 	return Layout;
 }
-
 QVBoxLayout* CentralWidget::initNextBloc()
 {
 	widgetNextBloc_->setMaximumWidth(225);
@@ -184,7 +181,6 @@ QVBoxLayout* CentralWidget::initNextBloc()
 	VLayoutNextBloc->addStretch(0);
 	return VLayoutNextBloc;
 }
-
 QVBoxLayout* CentralWidget::initHighscore()
 {
 	widgetHighscore_->setMaximumWidth(225);
@@ -215,7 +211,6 @@ QVBoxLayout* CentralWidget::initHighscore()
 	VLayoutHighscore->addStretch(0);
 	return VLayoutHighscore;
 }
-
 QVBoxLayout* CentralWidget::initStats()
 {
 	widgetStats_->setMaximumWidth(225);
@@ -260,7 +255,6 @@ QVBoxLayout* CentralWidget::initStats()
 
 	return VLayoutStats;
 }
-
 void CentralWidget::btnStart_Clicked()
 {
 	//msgBox_ = new QMessageBox();
@@ -277,7 +271,6 @@ void CentralWidget::btnStart_Clicked()
 		run_game();
 	}
 }
-
 void CentralWidget::btnPause_Clicked()
 {
 	msgBox_ = new QMessageBox();
@@ -287,7 +280,6 @@ void CentralWidget::btnPause_Clicked()
 	msgBox_->setDefaultButton(QMessageBox::Save);
 	int ret = msgBox_->exec();
 }
-
 void CentralWidget::btnStop_Clicked()
 {
 	msgBox_ = new QMessageBox();
@@ -311,7 +303,6 @@ void CentralWidget::btnStop_Clicked()
 		break;
 	}
 }
-
 void CentralWidget::refreshUI()
 {
 	if (gestion_->joueurSelect() == nullptr)
@@ -339,7 +330,6 @@ void CentralWidget::refreshUI()
 	lblHighscore_->setText(QString::fromStdString(to_string(gestion_->getHighscore())));
 	
 }
-
 
 void CentralWidget::refreshGame()
 {
@@ -387,7 +377,6 @@ void CentralWidget::refreshGame()
 	Tetris_->repaint();
 }
 
-
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////         SECTION JEU               /////////////////////////////  
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -401,7 +390,6 @@ bool CentralWidget::iteration()
 	for (j = 0; j < grandeur; j++)
 	{
 		int index = findLastDown(formeActuelle, 0, j, false);
-
 		if (index == -1)
 			continue;
 		else
@@ -409,7 +397,9 @@ bool CentralWidget::iteration()
 			if (!isFree('D', index, j))
 				return false;
 		}
+			
 	}
+	
 	return true;
 }
 
@@ -424,11 +414,11 @@ int CentralWidget::findLastDown(Forme* pForme, int i, int j, bool pNonVide)
 	{
 		return i;
 	}
-	else if ((pForme->getElement(i, j).id == formeId) && !pNonVide)
+	else if ((pForme->getElement(i, j).id == 0) && !pNonVide)
 	{
 		return findLastDown(pForme, i + 1, j, false);
 	}
-	else if ((pForme->getElement(i, j).id == formeId) && pNonVide)
+	else if ((pForme->getElement(i, j).id == 0) && pNonVide)
 	{
 		return i - 1;
 	}
@@ -584,19 +574,11 @@ bool CentralWidget::isFree(char direction, int vertical, int horizontal)
 
 void CentralWidget::run_game()
 {
-	current_score = 0;
 	prochaineForme = choixForme(rand() % 7);
 	activeGame = true;
 	alive = true;
 	nouvelleFormeApparait();
 	refreshGame();
-
-	for (int j = 0; j < 22; j++)
-	{
-		Sleep(500);
-		iteration();
-	}
-
 	int i = 0;
 	while (activeGame && alive)
 	{
@@ -642,7 +624,6 @@ void CentralWidget::nouvelleFormeApparait()
 	prochaineForme = choixForme(randomProchaineForme);
 	randomProchaineForme = rand() % 8;
 
-<<<<<<< HEAD
 	QPixmap Pyramide("./photos/Pyramide.png");
 	QPixmap Carre("./photos/carre.png");
 	QPixmap L("./photos/L.png");
@@ -653,41 +634,29 @@ void CentralWidget::nouvelleFormeApparait()
 
 	lblNextBloc_->clear();
 
-	switch (randomProchaineForme)
+	switch (randomProchaineForme + 1)
 	{
-	case PYRAMIDE:
-		lblNextBloc_->setPixmap(Pyramide);
 	case CARRE:
 		lblNextBloc_->setPixmap(Carre);
+		break;
 	case L_VALUE:
 		lblNextBloc_->setPixmap(L);
+		break;
 	case LGAUCHE:
 		lblNextBloc_->setPixmap(LGauche);
+		break;
 	case S_VALUE:
 		lblNextBloc_->setPixmap(S);
+		break;
 	case Z_VALUE:
 		lblNextBloc_->setPixmap(Z);
+		break;
+	case PYRAMIDE:
+		lblNextBloc_->setPixmap(Pyramide);
+		break;
 	default:
 		lblNextBloc_->setPixmap(Ligne);
-=======
-	switch (randomProchaineForme)
-	{
-		case PYRAMIDE:
-			QPixmap NextBlocpix("./photos/Pyramide.png");
-			break; 
-		case CARRE:
-			break;
-		case L_VALUE:
-			break;
-		case LGAUCHE:
-			break;
-		case S_VALUE:
-			break;
-		case Z_VALUE:
-			break; 
-		default:
-			break;
->>>>>>> 32c5e7c7c847fa8bbc56298a0ecab54d2b922d12
+		break;
 	}
 	
 }
@@ -746,9 +715,9 @@ Forme* CentralWidget::getProchaineForme()
 	return prochaineForme;
 }
 
-void CentralWidget::delete_line(int deleted_line)
+bool CentralWidget::delete_line()
 {
-	for (int i = deleted_line; i >= 0; i--)
+	for (int i = hauteur_tableau - 1; i >= 0; i--)
 	{
 		for (int j = 0; j < largeur_tableau; j++)
 		{
@@ -759,34 +728,17 @@ void CentralWidget::delete_line(int deleted_line)
 	for (int j = 0; j < largeur_tableau; j++)
 		table1[0][j] = CASE({0,0});
 
-	current_score++;
+	return 0;
 }
 
-bool CentralWidget::full_line(int line_check)
+bool CentralWidget::full_line()
 {
 	for (int j = 0; j < largeur_tableau; j++)
 	{
-<<<<<<< HEAD
 		if (table1[hauteur_tableau - 1][j].id == 0)
 			return 0;
-=======
-		if (table1[line_check - 1][j] == 0)
-			return false;
 	}
-
-	return true;
-}
-
-void CentralWidget::check_lines()
-{
-	for (int i = 0; i < hauteur_tableau; i++)
-	{
-		if (full_line(i))
-		{
-			delete_line(i);
-		}
->>>>>>> 32c5e7c7c847fa8bbc56298a0ecab54d2b922d12
-	}
+	return 1;
 }
 
 bool CentralWidget::initialise_table()
@@ -798,20 +750,14 @@ bool CentralWidget::initialise_table()
 			table1[i][j] = CASE({0,0});
 		}
 	}
-<<<<<<< HEAD
 	/*for (int k = 0; k < largeur_tableau; k++)
 	{
 		freeze_table[k] = hauteur_tableau - 1;
 	}*/
 	return 0;
 }
-=======
-	return true;
-} 
->>>>>>> 32c5e7c7c847fa8bbc56298a0ecab54d2b922d12
 
 void CentralWidget::processusJeu()
 {
 
 }
-
