@@ -845,7 +845,7 @@ bool CentralWidget::full_line(int line_check)
 {
 	for (int j = 0; j < largeur_tableau; j++)
 	{
-		if (table1[line_check - 1][j].id == 0)
+		if (table1[line_check][j].id == 0)
 			return false;
 	}
 	return true;

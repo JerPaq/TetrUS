@@ -1,13 +1,13 @@
 ﻿  CentralWidget.cpp
-d:\tetrus_interfacegestion\gestionjoueur.h(10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+c:\users\stjm2505\documents\github\tetrus\tetrus_interfacegestion\gestionjoueur.h(10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
 CentralWidget.cpp(23): warning C4189: 'LeftKey' : variable locale initialisée mais non référencée
 CentralWidget.cpp(25): warning C4189: 'UpKey' : variable locale initialisée mais non référencée
 CentralWidget.cpp(24): warning C4189: 'RightKey' : variable locale initialisée mais non référencée
 CentralWidget.cpp(289): warning C4189: 'ret' : variable locale initialisée mais non référencée
 CentralWidget.cpp(479): warning C4101: 'j' : variable locale non référencée
 CentralWidget.cpp(683): warning C4189: 'i' : variable locale initialisée mais non référencée
-CentralWidget.cpp(877): warning C4189: 'ret' : variable locale initialisée mais non référencée
-d:\tetrus_interfacegestion\centralwidget.cpp(473): warning C4715: 'CentralWidget::findLastDown' : les chemins de contrôle ne retournent pas tous une valeur
-d:\tetrus_interfacegestion\centralwidget.cpp(552): warning C4715: 'CentralWidget::findLastLeft' : les chemins de contrôle ne retournent pas tous une valeur
-d:\tetrus_interfacegestion\centralwidget.cpp(585): warning C4715: 'CentralWidget::findLastRight' : les chemins de contrôle ne retournent pas tous une valeur
-  TetrUS.vcxproj -> D:\TetrUS_InterfaceGestion\debug\TetrUS.exe
+CentralWidget.cpp(872): warning C4189: 'ret' : variable locale initialisée mais non référencée
+c:\users\stjm2505\documents\github\tetrus\tetrus_interfacegestion\centralwidget.cpp(473): warning C4715: 'CentralWidget::findLastDown' : les chemins de contrôle ne retournent pas tous une valeur
+c:\users\stjm2505\documents\github\tetrus\tetrus_interfacegestion\centralwidget.cpp(552): warning C4715: 'CentralWidget::findLastLeft' : les chemins de contrôle ne retournent pas tous une valeur
+c:\users\stjm2505\documents\github\tetrus\tetrus_interfacegestion\centralwidget.cpp(585): warning C4715: 'CentralWidget::findLastRight' : les chemins de contrôle ne retournent pas tous une valeur
+  TetrUS.vcxproj -> C:\Users\stjm2505\Documents\GitHub\TetrUS\TetrUS_InterfaceGestion\debug\TetrUS.exe
