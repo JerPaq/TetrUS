@@ -607,10 +607,9 @@ bool CentralWidget::ajouterForme(Forme forme)
 	{
 		for (int j = 0; j < grandeurForme; j++)
 		{
-			//if (table1[i + positionHauteur][j + positionLargeur] == 0) 
-			//{
+			if (table1[i + positionHauteur][j + positionLargeur].id == forme.getElement(i, j).id)
+				alive = false; 
 			table1[i + positionHauteur][j + positionLargeur] = forme.getElement(i, j);
-			//}
 		}
 	}
 	return true;
@@ -739,7 +738,6 @@ bool CentralWidget::full_line(int line_check)
 		if (table1[line_check - 1][j].id == 0)
 			return false;
 	}
-
 	return true;
 }
 
@@ -770,3 +768,4 @@ void CentralWidget::processusJeu()
 {
 
 }
+
