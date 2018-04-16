@@ -1,6 +1,30 @@
+
+﻿  Generate moc_predefs.h
+  MOC CentralWidget.h
+  MOC MainWindow.h
+  MOC ModifierJoueur.h
+  MOC NouveauJoueur.h
+  MOC Reglements.h
+  MOC SelectJoueur.h
+  moc_CentralWidget.cpp
+c:\users\stjm2505\documents\github\tetrus\tetrus_interfacegestion\gestionjoueur.h(10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+  moc_MainWindow.cpp
+c:\users\stjm2505\documents\github\tetrus\tetrus_interfacegestion\gestionjoueur.h(10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+  moc_ModifierJoueur.cpp
+c:\users\stjm2505\documents\github\tetrus\tetrus_interfacegestion\gestionjoueur.h(10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+  moc_NouveauJoueur.cpp
+c:\users\stjm2505\documents\github\tetrus\tetrus_interfacegestion\gestionjoueur.h(10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+  moc_Reglements.cpp
+c:\users\stjm2505\documents\github\tetrus\tetrus_interfacegestion\gestionjoueur.h(10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+  moc_SelectJoueur.cpp
+c:\users\stjm2505\documents\github\tetrus\tetrus_interfacegestion\gestionjoueur.h(10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+  Génération de code en cours...
+  TetrUS.vcxproj -> C:\Users\stjm2505\Documents\GitHub\TetrUS\TetrUS_InterfaceGestion\debug\TetrUS.exe
+
 ﻿  CentralWidget.cpp
 u:\tetrus_interfacegestion\gestionjoueur.h(10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
 CentralWidget.cpp(281): warning C4189: 'ret' : variable locale initialisée mais non référencée
 CentralWidget.cpp(586): warning C4189: 'i' : variable locale initialisée mais non référencée
 u:\tetrus_interfacegestion\centralwidget.cpp(437): warning C4715: 'CentralWidget::findLastDown' : les chemins de contrôle ne retournent pas tous une valeur
   TetrUS.vcxproj -> U:\TetrUS_InterfaceGestion\debug\TetrUS.exe
+
