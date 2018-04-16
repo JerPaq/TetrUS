@@ -642,7 +642,6 @@ void CentralWidget::nouvelleFormeApparait()
 	prochaineForme = choixForme(randomProchaineForme);
 	randomProchaineForme = rand() % 8;
 
-<<<<<<< HEAD
 	QPixmap Pyramide("./photos/Pyramide.png");
 	QPixmap Carre("./photos/carre.png");
 	QPixmap L("./photos/L.png");
@@ -657,37 +656,25 @@ void CentralWidget::nouvelleFormeApparait()
 	{
 	case PYRAMIDE:
 		lblNextBloc_->setPixmap(Pyramide);
+		break;
 	case CARRE:
 		lblNextBloc_->setPixmap(Carre);
+		break;
 	case L_VALUE:
 		lblNextBloc_->setPixmap(L);
+		break;
 	case LGAUCHE:
 		lblNextBloc_->setPixmap(LGauche);
+		break;
 	case S_VALUE:
 		lblNextBloc_->setPixmap(S);
+		break;
 	case Z_VALUE:
 		lblNextBloc_->setPixmap(Z);
+		break;
 	default:
 		lblNextBloc_->setPixmap(Ligne);
-=======
-	switch (randomProchaineForme)
-	{
-		case PYRAMIDE:
-			QPixmap NextBlocpix("./photos/Pyramide.png");
-			break; 
-		case CARRE:
-			break;
-		case L_VALUE:
-			break;
-		case LGAUCHE:
-			break;
-		case S_VALUE:
-			break;
-		case Z_VALUE:
-			break; 
-		default:
-			break;
->>>>>>> 32c5e7c7c847fa8bbc56298a0ecab54d2b922d12
+		break;
 	}
 	
 }
@@ -766,11 +753,11 @@ bool CentralWidget::full_line(int line_check)
 {
 	for (int j = 0; j < largeur_tableau; j++)
 	{
-<<<<<<< HEAD
+
 		if (table1[hauteur_tableau - 1][j].id == 0)
 			return 0;
-=======
-		if (table1[line_check - 1][j] == 0)
+
+		if (table1[line_check - 1][j].id == 0)
 			return false;
 	}
 
@@ -785,7 +772,6 @@ void CentralWidget::check_lines()
 		{
 			delete_line(i);
 		}
->>>>>>> 32c5e7c7c847fa8bbc56298a0ecab54d2b922d12
 	}
 }
 
@@ -798,17 +784,9 @@ bool CentralWidget::initialise_table()
 			table1[i][j] = CASE({0,0});
 		}
 	}
-<<<<<<< HEAD
-	/*for (int k = 0; k < largeur_tableau; k++)
-	{
-		freeze_table[k] = hauteur_tableau - 1;
-	}*/
-	return 0;
-}
-=======
 	return true;
 } 
->>>>>>> 32c5e7c7c847fa8bbc56298a0ecab54d2b922d12
+
 
 void CentralWidget::processusJeu()
 {
