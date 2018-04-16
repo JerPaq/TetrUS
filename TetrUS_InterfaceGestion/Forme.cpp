@@ -36,6 +36,7 @@ bool Forme::rotation(CASE table[][10], int positionLargeur, int positionHauteur)
 	int largeur = 10;
 	int hauteur = 18;
 	bool collision = false;
+	bool horsTableau = false;
 	vector<vector<CASE> > matriceTransposee;
 
 	matriceTransposee.resize(dimension);	//On donne la bonne dimension a la transposee
@@ -64,10 +65,13 @@ bool Forme::rotation(CASE table[][10], int positionLargeur, int positionHauteur)
 		{
 			if (table[i + positionHauteur][j + positionLargeur].id != 0 && table[i + positionHauteur][j + positionLargeur].id != id_)
 				collision = true;
+
+			if (matriceTransposee[i][j].id != 0 && (j + positionLargeur > 9 || j + positionLargeur < 0))
+				horsTableau = true;
 		}
 	}
 
-	if (collision == false)
+	if (!collision && !horsTableau)
 	{
 		matriceForme = matriceTransposee;
 		return true;//On applique la rotation a la matrice de forme	
