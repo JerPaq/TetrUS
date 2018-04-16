@@ -13,9 +13,9 @@ Ligne::Ligne(int pId)
 	lignes.resize(DIMENSIONLIGNE);
 	matriceForme.resize(DIMENSIONLIGNE);
 
-	lignes[0] = CASE({ pId, 6 });
+	lignes[0] = CASE({ 0,0 });
 	lignes[1] = CASE({ 0,0 });
-	lignes[2] = CASE({ 0,0 });
+	lignes[2] = CASE({ pId, 6 });
 	lignes[3] = CASE({ 0,0 });
 
 	matriceForme[0] = lignes;
