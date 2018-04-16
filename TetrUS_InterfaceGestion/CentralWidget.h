@@ -56,8 +56,9 @@ public:
 	void refreshUI();
 	void refreshGame();
 
-	bool delete_line(); //Supprimer la derniere ligne du tableau	
-	bool full_line(); //Verifier que la derniere ligne est complete
+	void delete_line(int deleted_line); //Supprimer la derniere ligne du tableau	
+	bool full_line(int line_check); //Verifier que la derniere ligne est complete
+	void check_lines(); //Combinaison des deux fonctions precedentes. 
 
 	CASE table1[hauteur_tableau][largeur_tableau]; //Tableau pour tetris, grandeur definie par des define 
 
@@ -97,6 +98,8 @@ private:
 	Forme* formeActuelle;
 	Forme* prochaineForme;
 	int randomProchaineForme;
+
+	int current_score; //Calcul le pointage de la partie. 
 
 
 	// Test pour tout régler de Jérôme
