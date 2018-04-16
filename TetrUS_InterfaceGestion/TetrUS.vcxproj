@@ -138,6 +138,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Carre.cpp" />
+    <ClCompile Include="carte_FPGA.cpp" />
     <ClCompile Include="CentralWidget.cpp" />
     <ClCompile Include="Forme.cpp" />
     <ClCompile Include="L.cpp" />
@@ -157,6 +158,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Carre.h" />
+    <ClInclude Include="carte_FPGA.h" />
+    <ClInclude Include="CommunicationFPGA.h" />
     <ClInclude Include="Forme.h" />
     <ClInclude Include="L.h" />
     <ClInclude Include="LGauche.h" />
@@ -281,6 +284,9 @@
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">release\moc_predefs.h;%(Outputs)</Outputs>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="CommunicationFPGA.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

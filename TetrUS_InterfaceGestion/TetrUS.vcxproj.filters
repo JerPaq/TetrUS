@@ -78,6 +78,9 @@
     <ClCompile Include="Pyramide.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="carte_FPGA.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="CentralWidget.h">
@@ -177,5 +180,14 @@
     <ClInclude Include="Pyramide.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CommunicationFPGA.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="carte_FPGA.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="CommunicationFPGA.lib" />
   </ItemGroup>
 </Project>
