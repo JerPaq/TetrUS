@@ -15,6 +15,7 @@ Carre::Carre()
 
 	matriceForme[0] = lignes;
 	matriceForme[1] = lignes;
+
 }
 
 Carre::~Carre()

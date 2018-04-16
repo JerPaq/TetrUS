@@ -32,14 +32,17 @@ void MainWindow::init()
 	menuJoueur_ = menuBar()->addMenu(tr("&Joueur"));
 
 	actQuitter_ = new QAction(tr("&Quitter"), this);
+	actReglement_ = new QAction(tr("&Regles du jeu"), this);
 	actNouveauJoueur_ = new QAction(tr("&Nouveau Joueur"), this);
 	actGestionJoueur_ = new QAction(tr("&Gestion Joueur"), this);
 
+	menuFichier_->addAction(actReglement_);
 	menuFichier_->addAction(actQuitter_);
 	menuJoueur_->addAction(actNouveauJoueur_);
 	menuJoueur_->addAction(actGestionJoueur_);
 
 	connect(actQuitter_, SIGNAL(triggered()), this, SLOT(menuQuitter_Clicked()));
+	connect(actReglement_, SIGNAL(triggered()), this, SLOT(menuReglements_Clicked()));
 	connect(actNouveauJoueur_, SIGNAL(triggered()), this, SLOT(menuNouveauJoueur_Clicked()));
 	connect(actGestionJoueur_, SIGNAL(triggered()), this, SLOT(menuGestionJoueur_Clicked()));
 }
@@ -65,4 +68,9 @@ void MainWindow::menuGestionJoueur_Clicked()
 	{
 		widgetCentral_->refreshUI();
 	}
+}
+void MainWindow::menuReglements_Clicked()
+{
+	dlgReglements_ = new Reglements(this);
+	dlgReglements_->exec();
 }

@@ -48,15 +48,15 @@ void CentralWidget::init()
 	btnStart_ = new QPushButton();
 	btnPause_ = new QPushButton();
 	btnStop_ = new QPushButton();
-	QPixmap pixStart("start.png");
+	QPixmap pixStart("./photos/start.png");
 	btnStart_->setStyleSheet("background-color:white");
 	btnStart_->setIcon(pixStart);
 	btnStart_->setIconSize(pixStart.rect().size());
-	QPixmap pixPause("pause.png");
+	QPixmap pixPause("./photos/pause.png");
 	btnPause_->setStyleSheet("background-color:white");
 	btnPause_->setIcon(pixPause);
 	btnPause_->setIconSize(pixPause.rect().size());
-	QPixmap pixStop("stop.png");
+	QPixmap pixStop("./photos/stop.png");
 	btnStop_->setStyleSheet("background-color:white");
 	btnStop_->setIcon(pixStop);
 	btnStop_->setIconSize(pixStop.rect().size());
@@ -71,7 +71,7 @@ void CentralWidget::init()
 
 
 	tetrusLabel_ = new QLabel("TetrUS");
-	QPixmap mypix ("tetrus_logo.png");
+	QPixmap mypix ("./photos/tetrus_logo.png");
 	tetrusLabel_->setPixmap(mypix);
 	tetrusLabel_->setAlignment(Qt::AlignCenter);
 
@@ -113,6 +113,10 @@ void CentralWidget::init()
 	centralGridLayout->addLayout(widgetBoutons, 1, 1, 1, 1);
 
 	setLayout(centralGridLayout);
+
+	timerJeu_ = new QTimer;
+	timerPhoneme_ = new QTimer;
+
 }
 QGridLayout* CentralWidget::initJeu()
 {
@@ -155,7 +159,7 @@ QVBoxLayout* CentralWidget::initNextBloc()
 	QVBoxLayout *VLayoutNextBloc = new QVBoxLayout();
 
 	QLabel *lblNextBloc = new QLabel();
-	QPixmap NextBlocpix("carre.png");
+	QPixmap NextBlocpix("./photos/carre.png");
 	lblNextBloc->setPixmap(NextBlocpix);
 	lblNextBloc->setAlignment(Qt::AlignCenter);
 	QHBoxLayout *Layout = new QHBoxLayout();
@@ -165,7 +169,7 @@ QVBoxLayout* CentralWidget::initNextBloc()
 
 	/*VLayoutNextBloc->addWidget(widgetNextBloc_);*/
 	QLabel *lblTitreNextBloc = new QLabel("Prochain Bloc");
-	QPixmap mypix("prochainbloc.png");
+	QPixmap mypix("./photos/prochainbloc.png");
 	lblTitreNextBloc->setPixmap(mypix);
 	lblTitreNextBloc->setAlignment(Qt::AlignCenter);
 	VLayoutNextBloc->setContentsMargins(0, 0, 0, 5);
@@ -184,7 +188,7 @@ QVBoxLayout* CentralWidget::initHighscore()
 	QVBoxLayout *VLayoutHighscore = new QVBoxLayout();
 	QGridLayout *Layout = new QGridLayout();
 	QLabel *lblTitreHighScore = new QLabel("Score");
-	QPixmap mypix("score.png");
+	QPixmap mypix("./photos/score.png");
 	lblTitreHighScore->setPixmap(mypix);
 	lblTitreHighScore->setAlignment(Qt::AlignCenter);
 	QLabel *lblScore = new QLabel("Score : ");
@@ -214,7 +218,7 @@ QVBoxLayout* CentralWidget::initStats()
 	QVBoxLayout *VLayoutStats = new QVBoxLayout();
 	QGridLayout *Layout = new QGridLayout();
 	QLabel *lblTitreStat = new QLabel("Statistiques");
-	QPixmap mypix("statistiques.png");
+	QPixmap mypix("./photos/statistiques.png");
 	lblTitreStat->setPixmap(mypix);
 	lblTitreStat->setAlignment(Qt::AlignCenter);
 	QLabel *lblNom = new QLabel("Nom du joueur : ");
@@ -253,20 +257,19 @@ QVBoxLayout* CentralWidget::initStats()
 }
 void CentralWidget::btnStart_Clicked()
 {
-	//Message box pour Jeu non implementee
-	/*
-	msgBox_ = new QMessageBox();
-	msgBox_->setText("Fonction 'Start' n'est pas encore implementee");
-	msgBox_->setStandardButtons(QMessageBox::Save);
-	msgBox_->setButtonText(QMessageBox::Save, "Ok");
-	msgBox_->setDefaultButton(QMessageBox::Save);
-	int ret = msgBox_->exec();
-	*/
-	//activeGame = true;
-	alive = true; 
-	initialise_table();
-	refreshGame();
-	run_game();
+	//msgBox_ = new QMessageBox();
+	//msgBox_->setText("Fonction 'Start' n'est pas encore implementee");
+	//msgBox_->setStandardButtons(QMessageBox::Save);
+	//msgBox_->setButtonText(QMessageBox::Save, "Ok");
+	//msgBox_->setDefaultButton(QMessageBox::Save);
+	//int ret = msgBox_->exec();
+	
+	if (!activeGame)
+	{
+		initialise_table();
+		refreshGame();
+		run_game();
+	}
 }
 void CentralWidget::btnPause_Clicked()
 {
@@ -334,10 +337,33 @@ void CentralWidget::refreshGame()
 	{
 		for (int j = 0; j < largeur_tableau; j++)
 		{
-			if (table1[i][j] == 1)
+			if (table1[i][j] != 0)
 			{
 				QTableWidgetItem *cubesHeaderItem = new QTableWidgetItem();
-				cubesHeaderItem->setBackgroundColor(QColor(255, 0, 0));
+				switch (table1[i][j])
+				{
+				case PYRAMIDE:
+					cubesHeaderItem->setBackgroundColor(QColor(141, 0, 255));
+					break;
+				case CARRE:
+					cubesHeaderItem->setBackgroundColor(QColor(255, 255, 0));
+					break;
+				case L_VALUE:
+					cubesHeaderItem->setBackgroundColor(QColor(255, 126, 0));
+					break;
+				case LGAUCHE:
+					cubesHeaderItem->setBackgroundColor(QColor(0, 11, 232));
+					break;
+				case S_VALUE:
+					cubesHeaderItem->setBackgroundColor(QColor(24, 255, 0));
+					break;
+				case Z_VALUE:
+					cubesHeaderItem->setBackgroundColor(QColor(255, 0, 0));
+					break;
+				default:
+					cubesHeaderItem->setBackgroundColor(QColor(0, 232, 226));
+					break;
+				}
 				Tetris_->setItem(i, j, cubesHeaderItem);
 			}
 			else
@@ -355,24 +381,54 @@ void CentralWidget::refreshGame()
 /////////////////////////////         SECTION JEU               /////////////////////////////  
 /////////////////////////////////////////////////////////////////////////////////////////////
 
-
-
 bool CentralWidget::iteration()
 {
-	//j est la position horizontale, i est la position verticale
-	for (int j = 0; j < largeur_tableau; j++)
+
+	int grandeur = formeActuelle->getLength();
+	int j;
+
+	for (j = 0; j < grandeur; j++)
 	{
-		if (table1[freeze_table[j]][j] == 0)
+		int index = findLastDown(formeActuelle, 0, j, false);
+		if (index == -1)
+			continue;
+		else
 		{
-			for (int i = hauteur_tableau - 1; i >= 0; i--)
-			{
-				table1[i][j] = table1[i - 1][j];
-			}
-			table1[0][j] = 0;
+			if (!isFree('D', index, j))
+				return false;
 		}
+			
 	}
-	refreshGame();
-	return 0;
+	
+	return true;
+}
+
+int CentralWidget::findLastDown(Forme* pForme, int i, int j, bool pNonVide)
+{
+	if ((pForme->getLength() == i + 1) && (pForme->getElement(i, j) == 0))
+	{
+		return -1;
+	}
+	else if ((pForme->getLength() == i + 1) && (pForme->getElement(i, j) != 0))
+	{
+		return i;
+	}
+	else if ((pForme->getElement(i, j) == 0) && !pNonVide)
+	{
+		return findLastDown(pForme, i + 1, j, false);
+	}
+	else if ((pForme->getElement(i, j) == 0) && pNonVide)
+	{
+		return i - 1;
+	}
+	else if ((pForme->getElement(i, j) != 0) && !pNonVide)
+	{
+		return findLastDown(pForme, i + 1, j, true);
+	}
+	else if ((pForme->getElement(i, j) != 0) && pNonVide)
+	{
+		return findLastDown(pForme, i + 1, j, true);
+	}
 }
 
 bool CentralWidget::translation(char direction)
@@ -433,7 +489,7 @@ void CentralWidget::move(char direc)
 	int j;
 	int lastOfLine;
 	int firstOfLine = 0;
-	if (direc == 'G')
+	if (direc == 'L')
 	{
 		for (i = 0; i < grandeur; i++)
 		{
@@ -450,7 +506,7 @@ void CentralWidget::move(char direc)
 		positionLargeur--;
 	}
 
-	else if (direc == 'D')
+	else if (direc == 'R')
 	{
 		for (i = 0; i < grandeur; i++)
 		{
@@ -466,20 +522,39 @@ void CentralWidget::move(char direc)
 		}
 		positionLargeur++;
 	}
+
+	else if (direc == 'D')
+	{
+		for (i = grandeur - 1; i >= 0; i--)
+		{
+			for (j = 0; j < grandeur; j++)
+			{
+				if (formeActuelle->getElement(i, j) != 0)
+				{
+					table1[positionHauteur + i + 1][positionLargeur + j] = formeActuelle->getElement(i, j);
+					firstOfLine = i;
+					table1[positionHauteur + i][positionLargeur + j] = 0;
+				}				
+			}			
+		}
+		positionHauteur++;
+	}
+
+	refreshGame();
 }
 
 bool CentralWidget::isFree(char direction, int vertical, int horizontal)
 {
 	if (direction == 'L')
 	{
-		if ((table1[positionHauteur + vertical][positionLargeur + horizontal - 1] == 1)||(positionLargeur + horizontal - 1 < 0))
+		if ((table1[positionHauteur + vertical][positionLargeur + horizontal - 1] != 0) || (positionLargeur + horizontal - 1 < 0))
 		{
 			return false;
 		}
 	}
 	else if (direction == 'R')
 	{
-		if ((table1[positionHauteur + vertical][positionLargeur + horizontal + 1] == 1) || (positionLargeur + horizontal + 1 > largeur_tableau - 1))
+		if ((table1[positionHauteur + vertical][positionLargeur + horizontal + 1] != 0) || (positionLargeur + horizontal + 1 > largeur_tableau - 1))
 		{
 			return false;
 		}
@@ -487,12 +562,14 @@ bool CentralWidget::isFree(char direction, int vertical, int horizontal)
 
 	if (direction == 'D')
 	{
-
+		if ((table1[positionHauteur + vertical + 1][positionLargeur + horizontal] != 0) || (positionHauteur + vertical + 1 > hauteur_tableau + 1))
+		{
+			return false;
+		}
 	}
 
 	return true;
 }
-
 
 void CentralWidget::run_game()
 {
@@ -502,24 +579,20 @@ void CentralWidget::run_game()
 	nouvelleFormeApparait();
 	refreshGame();
 	int i = 0;
-	while (activeGame && alive && (i < 22))
+	while (activeGame && alive)
 	{
 		Sleep(500);
-		iteration();
-		i++;
-	}
-	nouvelleFormeApparait();
-	refreshGame();
-	Sleep(1000);
-	i = 0;
-	while (activeGame && alive && (i < 22))
-	{
-		Sleep(500);
-		iteration();
-		i++;
+		if (iteration())
+		{
+			move('D');
+		}
+		else
+		{
+			nouvelleFormeApparait();
+			refreshGame();
+		}
 	}
 }
-
 
 //Elements fonctionnnels
 bool CentralWidget::ajouterForme(Forme forme)
@@ -546,9 +619,27 @@ void CentralWidget::nouvelleFormeApparait()
 	buffer = *prochaineForme;
 	delete[] prochaineForme;
 	ajouterForme(buffer);
-	
+
 	prochaineForme = choixForme(randomProchaineForme);
 	randomProchaineForme = rand() % 8;
+
+	switch (prochaineForme)
+	{
+	case PYRAMIDE:
+		QPixmap NextBlocpix("./photos/Pyramide.png");
+	case CARRE:
+
+	case L_VALUE:
+
+	case LGAUCHE:
+
+	case S_VALUE:
+
+	case Z_VALUE:
+
+	default:
+
+	}
 }
 
 Forme* CentralWidget::choixForme(int chiffreRandom)
@@ -644,4 +735,9 @@ bool CentralWidget::initialise_table()
 		freeze_table[k] = hauteur_tableau - 1;
 	}
 	return 0;
-} 
+}
+
+void CentralWidget::processusJeu()
+{
+
+}

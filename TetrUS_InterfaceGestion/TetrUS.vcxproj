@@ -147,6 +147,7 @@
     <ClCompile Include="ModifierJoueur.cpp" />
     <ClCompile Include="NouveauJoueur.cpp" />
     <ClCompile Include="Pyramide.cpp" />
+    <ClCompile Include="Reglements.cpp" />
     <ClCompile Include="S.cpp" />
     <ClCompile Include="SelectJoueur.cpp" />
     <ClCompile Include="gestionjoueur.cpp" />
@@ -155,6 +156,12 @@
     <ClCompile Include="Z.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Carre.h" />
+    <ClInclude Include="Forme.h" />
+    <ClInclude Include="L.h" />
+    <ClInclude Include="LGauche.h" />
+    <ClInclude Include="Ligne.h" />
+    <ClInclude Include="Pyramide.h" />
     <ClInclude Include="Z.h" />
     <CustomBuild Include="CentralWidget.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CentralWidget.h;release\moc_predefs.h;C:\Qt\Qt5.9.3\5.9.3\msvc2017_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
@@ -196,6 +203,16 @@
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">MOC NouveauJoueur.h</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">debug\moc_NouveauJoueur.cpp;%(Outputs)</Outputs>
     </CustomBuild>
+    <CustomBuild Include="Reglements.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Reglements.h;release\moc_predefs.h;C:\Qt\Qt5.9.3\5.9.3\msvc2017_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Qt\Qt5.9.3\5.9.3\msvc2017_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -DWIN64 -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include release/moc_predefs.h -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/mkspecs/win32-msvc -IU:/TetrUS_InterfaceGestion -IU:/TetrUS_InterfaceGestion/nlohmann -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtWidgets -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtGui -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtANGLE -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtCore Reglements.h -o release\moc_Reglements.cpp</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">MOC Reglements.h</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">release\moc_Reglements.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Reglements.h;debug\moc_predefs.h;C:\Qt\Qt5.9.3\5.9.3\msvc2017_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Qt\Qt5.9.3\5.9.3\msvc2017_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -DWIN64 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include debug/moc_predefs.h -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/mkspecs/win32-msvc -IU:/TetrUS_InterfaceGestion -IU:/TetrUS_InterfaceGestion/nlohmann -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtWidgets -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtGui -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtANGLE -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtCore Reglements.h -o debug\moc_Reglements.cpp</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">MOC Reglements.h</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">debug\moc_Reglements.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
     <CustomBuild Include="SelectJoueur.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">SelectJoueur.h;release\moc_predefs.h;C:\Qt\Qt5.9.3\5.9.3\msvc2017_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Qt\Qt5.9.3\5.9.3\msvc2017_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -DWIN64 -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include release/moc_predefs.h -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/mkspecs/win32-msvc -IU:/TetrUS_InterfaceGestion -IU:/TetrUS_InterfaceGestion/nlohmann -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtWidgets -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtGui -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtANGLE -IC:/Qt/Qt5.9.3/5.9.3/msvc2017_64/include/QtCore SelectJoueur.h -o release\moc_SelectJoueur.cpp</Command>
@@ -206,14 +223,8 @@
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">MOC SelectJoueur.h</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">debug\moc_SelectJoueur.cpp;%(Outputs)</Outputs>
     </CustomBuild>
-    <ClInclude Include="Carre.h" />
-    <ClInclude Include="Forme.h" />
     <ClInclude Include="gestionjoueur.h" />
     <ClInclude Include="joueur.h" />
-    <ClInclude Include="L.h" />
-    <ClInclude Include="LGauche.h" />
-    <ClInclude Include="Ligne.h" />
-    <ClInclude Include="Pyramide.h" />
     <ClInclude Include="S.h" />
     <ClInclude Include="vecteur.h" />
   </ItemGroup>
@@ -240,6 +251,12 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="release\moc_NouveauJoueur.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_Reglements.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_Reglements.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="debug\moc_SelectJoueur.cpp">

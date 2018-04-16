@@ -1,4 +1,1 @@
-﻿  CentralWidget.cpp
-c:\users\stjm2505\documents\github\tetrus\tetrus_interfacegestion\gestionjoueur.h(10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
-CentralWidget.cpp(278): warning C4189: 'ret' : variable locale initialisée mais non référencée
-  TetrUS.vcxproj -> C:\Users\stjm2505\Documents\GitHub\TetrUS\TetrUS_InterfaceGestion\debug\TetrUS.exe
+﻿

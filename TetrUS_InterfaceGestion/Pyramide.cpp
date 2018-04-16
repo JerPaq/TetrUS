@@ -10,11 +10,11 @@ Pyramide::Pyramide()
 	matriceForme.resize(DIMENSIONPYRAMIDE);
 
 	ligne1[0] = 0;
-	ligne1[1] = 1;
+	ligne1[1] = 7;
 	ligne1[2] = 0;
-	ligne2[0] = 1;
-	ligne2[1] = 1;
-	ligne2[2] = 1;
+	ligne2[0] = 7;
+	ligne2[1] = 7;
+	ligne2[2] = 7;
 	ligne3[0] = 0;
 	ligne3[1] = 0;
 	ligne3[2] = 0;

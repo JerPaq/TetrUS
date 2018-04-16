@@ -18,14 +18,13 @@
 #define largeur_tableau 10
 
 //Define pour les formes
-#define PYRAMIDE 7
 #define CARRE 1
 #define L_VALUE 2
 #define LGAUCHE 3
 #define S_VALUE 4
 #define Z_VALUE 5
 #define LIGNE 6
-
+#define PYRAMIDE 7
 
 
 //Define pour lecture du clavier
@@ -44,6 +43,7 @@
 #include <QMessageBox>
 #include <QTableWidget>
 #include <QTableWidgetItem>
+#include <QTimer>
 
 class CentralWidget : public QWidget
 {
@@ -59,7 +59,7 @@ public:
 	bool delete_line(); //Supprimer la derniere ligne du tableau	
 	bool full_line(); //Verifier que la derniere ligne est complete
 
-	bool table1[hauteur_tableau][largeur_tableau]; //Tableau pour tetris, grandeur definie par des define 
+	int table1[hauteur_tableau][largeur_tableau]; //Tableau pour tetris, grandeur definie par des define 
 
 	bool initialise_table(); //Initialise le tableau au depart pour ne pas avoir des valeurs aleatoires
 	bool iteration(); //Itere dans le temps. Deplace les blocs 
@@ -75,17 +75,20 @@ public:
 	Forme* choixForme(int randomNumber);
 
 	bool activeGame = false;
-	bool alive = false; 
+	bool alive = false;
 
 private slots:
 	void btnStart_Clicked();
 	void btnPause_Clicked();
 	void btnStop_Clicked();
+
 private:
 	void init();
 
 	int hauteur;
 	int largeur;
+	//int positionHorizontale; //position horizontale des elements a l'extreme gauche de la matrice de forme	} coin superieur gauche
+	//int positionVerticale;	//position verticale des elements du haut de la matrice							} coin superieur gauche
 	int positionLargeur; //position horizontale des elements a l'extreme gauche de la matrice de forme	} coin superieur gauche
 	int positionHauteur;	//position verticale des elements du haut de la matrice							} coin superieur gauche
 	int freeze_table[largeur_tableau];
@@ -93,6 +96,12 @@ private:
 	Forme* formeActuelle;
 	Forme* prochaineForme;
 	int randomProchaineForme;
+
+
+	// Test pour tout régler de Jérôme
+	int findLastDown(Forme* pForme, int i, int j, bool pNonVide);
+
+	void processusJeu();
 
 	GestionJoueur* gestion_;
 
@@ -125,4 +134,7 @@ private:
 	QLabel *lblHighscoreJoueur_;
 
 	QTableWidget *Tetris_;
+
+	QTimer *timerJeu_;
+	QTimer *timerPhoneme_;
 };

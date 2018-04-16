@@ -23,6 +23,7 @@ int Forme::getElement(int i, int j)
 	return matriceForme.at(i).at(j);
 }
 
+
 //vector<int> Forme::at(int i)
 //{
 //	return matriceForme.at(i);

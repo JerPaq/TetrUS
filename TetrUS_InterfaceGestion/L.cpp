@@ -9,11 +9,11 @@ L::L()
 	matriceForme.resize(DIMENSION_L);
 
 	lignes12[0] = 0;
-	lignes12[1] = 1;
+	lignes12[1] = 2;
 	lignes12[2] = 0;
 	ligne3[0] = 0;
-	ligne3[1] = 1;
-	ligne3[2] = 1;
+	ligne3[1] = 2;
+	ligne3[2] = 2;
 
 	matriceForme[0] = lignes12;
 	matriceForme[1] = lignes12;
