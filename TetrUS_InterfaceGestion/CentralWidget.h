@@ -27,7 +27,7 @@
 #define PYRAMIDE 7
 
 
-//Define pour lecture du clavier
+//Define pour lecture du clavier.... encore besoin?
 #define KEY_LEFT 75
 #define KEY_RIGHT 77
 

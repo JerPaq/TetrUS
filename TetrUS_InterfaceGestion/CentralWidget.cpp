@@ -761,27 +761,6 @@ void CentralWidget::check_lines()
 	}
 }
 
-bool CentralWidget::initialise_table()
-{
-	for (int i = 0; i < hauteur_tableau; i++)
-	{
-		for (int j = 0; j < largeur_tableau; j++)
-		{
-			table1[i][j] = CASE({0,0});
-		}
-	}
-	/*for (int k = 0; k < largeur_tableau; k++)
-	{
-		freeze_table[k] = hauteur_tableau - 1;
-	}*/
-	return 0;
-}
-
-void CentralWidget::processusJeu()
-{
-
-}
-
 void CentralWidget::loss_warning()
 {
 	losswarning_ = new QMessageBox();
@@ -791,3 +770,26 @@ void CentralWidget::loss_warning()
 	losswarning_->setDefaultButton(QMessageBox::Save);
 	int ret = losswarning_->exec();
 }
+
+bool CentralWidget::initialise_table()
+{
+	for (int i = 0; i < hauteur_tableau; i++)
+	{
+		for (int j = 0; j < largeur_tableau; j++)
+		{
+			table1[i][j] = CASE({ 0,0 });
+		}
+	}
+	/*for (int k = 0; k < largeur_tableau; k++)
+	{
+	freeze_table[k] = hauteur_tableau - 1;
+	}*/
+	return 0;
+}
+
+
+void CentralWidget::processusJeu()
+{
+
+}
+
