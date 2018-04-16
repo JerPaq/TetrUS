@@ -406,27 +406,31 @@ bool CentralWidget::iteration()
 int CentralWidget::findLastDown(Forme* pForme, int i, int j, bool pNonVide)
 {
 	int formeId = pForme->getId();
-	if ((pForme->getLength() == i + 1) && (pForme->getElement(i, j).id == formeId))
-	{
-		return -1;
-	}
-	else if ((pForme->getLength() == i + 1) && (pForme->getElement(i, j).id != formeId))
-	{
-		return i;
-	}
-	else if ((pForme->getElement(i, j).id == 0) && !pNonVide)
-	{
-		return findLastDown(pForme, i + 1, j, false);
-	}
-	else if ((pForme->getElement(i, j).id == 0) && pNonVide)
+	if ((pForme->getLength() == i + 1) && (pForme->getElement(i, j).id != formeId) && (pNonVide))
 	{
 		return i - 1;
 	}
+	else if ((pForme->getLength() == i + 1) && (pForme->getElement(i, j).id != formeId))
+	{
+		return -1;
+	}
+	else if ((pForme->getLength() == i + 1) && (pForme->getElement(i, j).id == formeId))
+	{
+		return i;
+	}
 	else if ((pForme->getElement(i, j).id != formeId) && !pNonVide)
+	{
+		return findLastDown(pForme, i + 1, j, false);
+	}
+	else if ((pForme->getElement(i, j).id != formeId) && pNonVide)
+	{
+		return i - 1;
+	}
+	else if ((pForme->getElement(i, j).id == formeId) && !pNonVide)
 	{
 		return findLastDown(pForme, i + 1, j, true);
 	}
-	else if ((pForme->getElement(i, j).id != formeId) && pNonVide)
+	else if ((pForme->getElement(i, j).id == formeId) && pNonVide)
 	{
 		return findLastDown(pForme, i + 1, j, true);
 	}
@@ -582,7 +586,7 @@ void CentralWidget::run_game()
 	int i = 0;
 	while (activeGame && alive)
 	{
-		Sleep(500);
+		Sleep(200);
 		if (iteration())
 		{
 			move('D');
@@ -618,11 +622,12 @@ bool CentralWidget::ajouterForme(Forme forme)
 void CentralWidget::nouvelleFormeApparait()
 {
 	buffer = *prochaineForme;
+	int bufferImgProchain = randomProchaineForme;
 	delete[] prochaineForme;
 	ajouterForme(buffer);
 
 	prochaineForme = choixForme(randomProchaineForme);
-	randomProchaineForme = rand() % 8;
+	randomProchaineForme = rand() % 7;
 
 	QPixmap Pyramide("./photos/Pyramide.png");
 	QPixmap Carre("./photos/carre.png");
@@ -632,9 +637,7 @@ void CentralWidget::nouvelleFormeApparait()
 	QPixmap Z("./photos/Z.png");
 	QPixmap Ligne("./photos/Ligne.png");
 
-	lblNextBloc_->clear();
-
-	switch (randomProchaineForme + 1)
+	switch (bufferImgProchain)
 	{
 	case CARRE:
 		lblNextBloc_->setPixmap(Carre);
@@ -651,11 +654,11 @@ void CentralWidget::nouvelleFormeApparait()
 	case Z_VALUE:
 		lblNextBloc_->setPixmap(Z);
 		break;
-	case PYRAMIDE:
-		lblNextBloc_->setPixmap(Pyramide);
+	case LIGNE:
+		lblNextBloc_->setPixmap(Ligne);
 		break;
 	default:
-		lblNextBloc_->setPixmap(Ligne);
+		lblNextBloc_->setPixmap(Pyramide);
 		break;
 	}
 	
@@ -666,9 +669,6 @@ Forme* CentralWidget::choixForme(int chiffreRandom)
 	compteurBloc_++;
 	switch (chiffreRandom)
 	{
-	case PYRAMIDE:
-		return new Pyramide(compteurBloc_);
-
 	case CARRE:
 		return new Carre(compteurBloc_);
 
@@ -683,9 +683,12 @@ Forme* CentralWidget::choixForme(int chiffreRandom)
 
 	case Z_VALUE:
 		return new Z(compteurBloc_);
+		
+	case LIGNE:
+		return new Ligne(compteurBloc_);
 
 	default:
-		return new Ligne(compteurBloc_);
+		return new Pyramide(compteurBloc_);
 
 	}
 	return NULL;
