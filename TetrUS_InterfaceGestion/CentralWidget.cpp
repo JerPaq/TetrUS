@@ -26,7 +26,7 @@ CentralWidget::CentralWidget(GestionJoueur *pGestion, QWidget *parent) : QWidget
 
 	timerJeu_ = new QTimer(this);
 	connect(timerJeu_, SIGNAL(timeout()), this, SLOT(processusJeu()));
-	timerJeu_->setInterval(200);
+	timerJeu_->setInterval(150);
 }
 
 CentralWidget::~CentralWidget()
@@ -664,7 +664,7 @@ bool CentralWidget::isFree(char direction, int vertical, int horizontal)
 
 	if (direction == 'D')
 	{
-		if ((table1[positionHauteur + vertical + 1][positionLargeur + horizontal].id != 0) || (positionHauteur + vertical + 1 > hauteur_tableau + 1))
+		if ((table1[positionHauteur + vertical + 1][positionLargeur + horizontal].id != 0) || (positionHauteur + vertical + 1 > hauteur_tableau))
 		{
 			return false;
 		}
@@ -695,6 +695,7 @@ void CentralWidget::processusJeu()
 		else
 		{
 			check_lines();
+			current_score++;
 			nouvelleFormeApparait();
 			refreshGame();
 		}
@@ -838,7 +839,7 @@ void CentralWidget::delete_line(int deleted_line)
 	for (int k = 0; k < largeur_tableau; k++)
 		table1[0][k] = CASE({ 0,0 });
 
-	current_score++;
+	current_score += 10;
 }
 
 bool CentralWidget::full_line(int line_check)
@@ -865,7 +866,8 @@ void CentralWidget::check_lines()
 void CentralWidget::loss_warning()
 {
 	losswarning_ = new QMessageBox();
-	losswarning_->setText("Match perdu! Give up on life!");
+	QString converter;
+	losswarning_->setText("Match perdu! Give up on life! Score : " + converter.setNum(current_score));
 	losswarning_->setStandardButtons(QMessageBox::Save);
 	losswarning_->setButtonText(QMessageBox::Save, "Ok");
 	losswarning_->setDefaultButton(QMessageBox::Save);
