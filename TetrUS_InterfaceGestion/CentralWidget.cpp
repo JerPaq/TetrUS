@@ -328,6 +328,11 @@ void CentralWidget::refreshUI()
 	
 }
 
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////         SECTION JEU               /////////////////////////////  
+/////////////////////////////////////////////////////////////////////////////////////////////
+
 void CentralWidget::refreshGame()
 {
 	for (int i = 0; i < hauteur_tableau; i++)
@@ -351,18 +356,12 @@ void CentralWidget::refreshGame()
 	Tetris_->repaint();
 }
 
-/////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////         SECTION JEU               /////////////////////////////  
-/////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
 bool CentralWidget::iteration()
 {
 	//j est la position horizontale, i est la position verticale
 	for (int j = 0; j < largeur_tableau; j++)
 	{
-		if (table1[freeze_table[j]][j] == 0)
+		if (table1[hauteur_tableau - 1][j] == 0)
 		{
 			for (int i = hauteur_tableau - 1; i >= 0; i--)
 			{
@@ -496,28 +495,28 @@ bool CentralWidget::isFree(char direction, int vertical, int horizontal)
 
 void CentralWidget::run_game()
 {
+	current_score = 0;
 	prochaineForme = choixForme(rand() % 7);
 	activeGame = true;
 	alive = true;
 	nouvelleFormeApparait();
 	refreshGame();
-	int i = 0;
-	while (activeGame && alive && (i < 22))
+	for (int i = 0; i < 22; i++)
 	{
 		Sleep(500);
 		iteration();
-		i++;
 	}
-	nouvelleFormeApparait();
+	/*nouvelleFormeApparait();
 	refreshGame();
 	Sleep(1000);
 	i = 0;
+	move('G');
 	while (activeGame && alive && (i < 22))
 	{
 		Sleep(500);
 		iteration();
 		i++;
-	}
+	}*/
 }
 
 
@@ -604,9 +603,9 @@ Forme* CentralWidget::getProchaineForme()
 	return prochaineForme;
 }
 
-bool CentralWidget::delete_line()
+void CentralWidget::delete_line(int deleted_line)
 {
-	for (int i = hauteur_tableau - 1; i >= 0; i--)
+	for (int i = deleted_line; i >= 0; i--)
 	{
 		for (int j = 0; j < largeur_tableau; j++)
 		{
@@ -617,17 +616,29 @@ bool CentralWidget::delete_line()
 	for (int j = 0; j < largeur_tableau; j++)
 		table1[0][j] = 0;
 
-	return 0;
+	current_score++;
 }
 
-bool CentralWidget::full_line()
+bool CentralWidget::full_line(int line_check)
 {
 	for (int j = 0; j < largeur_tableau; j++)
 	{
-		if (table1[hauteur_tableau - 1][j] == 0)
-			return 0;
+		if (table1[line_check - 1][j] == 0)
+			return false;
 	}
-	return 1;
+
+	return true;
+}
+
+void CentralWidget::check_lines()
+{
+	for (int i = 0; i < hauteur_tableau; i++)
+	{
+		if (full_line(i))
+		{
+			delete_line(i);
+		}
+	}
 }
 
 bool CentralWidget::initialise_table()
@@ -639,9 +650,6 @@ bool CentralWidget::initialise_table()
 			table1[i][j] = 0;
 		}
 	}
-	for (int k = 0; k < largeur_tableau; k++)
-	{
-		freeze_table[k] = hauteur_tableau - 1;
-	}
-	return 0;
+	return true;
 } 
+

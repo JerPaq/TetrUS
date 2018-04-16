@@ -13,7 +13,7 @@
 #include "Z.h"
 #include "LGauche.h"
 
-//Defines
+//Defines du tableau
 #define hauteur_tableau 20
 #define largeur_tableau 10
 
@@ -34,6 +34,7 @@
 
 #include "gestionjoueur.h"
 
+//Q Librairies
 #include <QEvent>
 #include <QWidget>
 #include <qpushbutton>
@@ -53,17 +54,22 @@ public:
 	CentralWidget(GestionJoueur* pGestion, QWidget *parent = 0);
 	~CentralWidget();
 
+	//Creation du jeu
+	bool table1[hauteur_tableau][largeur_tableau]; //Tableau pour tetris, grandeur definie par des define 
+	bool initialise_table(); //Initialise le tableau au depart pour ne pas avoir des valeurs aleatoires
+
+	//Refreshing game
 	void refreshUI();
 	void refreshGame();
 
-	bool delete_line(); //Supprimer la derniere ligne du tableau	
-	bool full_line(); //Verifier que la derniere ligne est complete
+	//Full lines and deletes. Gere le pointage aussi
+	void delete_line(int deleted_line); //Supprimer la derniere ligne du tableau	
+	bool full_line(int line_check); //Verifier que la derniere ligne est complete
+	void check_lines();
 
-	bool table1[hauteur_tableau][largeur_tableau]; //Tableau pour tetris, grandeur definie par des define 
-
-	bool initialise_table(); //Initialise le tableau au depart pour ne pas avoir des valeurs aleatoires
+	//Les fonctions du jeu
 	bool iteration(); //Itere dans le temps. Deplace les blocs 
-	bool translation(char direction); //translation vers la gauche('G') ou vers la droite('D')
+	bool translation(char direction); //translation vers la gauche('L') ou vers la droite('R')
 	bool ajouterForme(Forme formeActuelle);	//Ajoute la forme voulue au tableau
 	bool isFree(char direction, int horizontal, int vertical);	//regarde si l'espace adjacent est libre
 	void move(char direction);	//Gere le mouvement d'une forme
@@ -74,16 +80,16 @@ public:
 	void nouvelleFormeApparait();
 	Forme* choixForme(int randomNumber);
 
-	bool activeGame = false;
-	bool alive = false; 
+	//Conditions pour jeu actif.
+	bool activeGame = false; //Lorsque qu'on commence ou on fait pause pour le jeu
+	bool alive = false; //Lorsqu'on echoue. You suck. 
 
 private slots:
 	void btnStart_Clicked();
 	void btnPause_Clicked();
 	void btnStop_Clicked();
 private:
-	void init();
-
+	//Variables du jeu
 	int hauteur;
 	int largeur;
 	int positionLargeur; //position horizontale des elements a l'extreme gauche de la matrice de forme	} coin superieur gauche
@@ -93,9 +99,13 @@ private:
 	Forme* formeActuelle;
 	Forme* prochaineForme;
 	int randomProchaineForme;
+	int current_score; //Nombre de lignes supprimes lors de cette partie. 
 
+	//Gestion du jeu et des joueurs
+	void init();
 	GestionJoueur* gestion_;
 
+	//Widgets
 	QVBoxLayout* initNextBloc();
 	QVBoxLayout* initHighscore();
 	QVBoxLayout* initStats();
