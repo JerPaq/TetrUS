@@ -128,6 +128,7 @@ void SelectJoueur::joueurChoisi(QListWidgetItem* item)
 		btnSupprimer_->setEnabled(true);
 	}
 
+
 }
 
 void SelectJoueur::refreshList()

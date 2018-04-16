@@ -161,3 +161,4 @@ int GestionJoueur::getHighscore()
 	}
 	return score;
 }
+

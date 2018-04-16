@@ -23,10 +23,13 @@ CentralWidget::CentralWidget(GestionJoueur *pGestion, QWidget *parent) : QWidget
 	QShortcut * LeftKey = new QShortcut(QKeySequence(Qt::Key_Left), this, SLOT(left_press()));
 	QShortcut * RightKey = new QShortcut(QKeySequence(Qt::Key_Right), this, SLOT(right_press()));
 	QShortcut * UpKey = new QShortcut(QKeySequence(Qt::Key_Up), this, SLOT(up_press()));
+	QShortcut * DownKey = new QShortcut(QKeySequence(Qt::Key_Down), this, SLOT(down_press()));
 
 	timerJeu_ = new QTimer(this);
 	connect(timerJeu_, SIGNAL(timeout()), this, SLOT(processusJeu()));
 	timerJeu_->setInterval(451);
+
+
 }
 
 CentralWidget::~CentralWidget()
@@ -264,21 +267,24 @@ QVBoxLayout* CentralWidget::initStats()
 }
 void CentralWidget::btnStart_Clicked()
 {
-	//msgBox_ = new QMessageBox();
-	//msgBox_->setText("Fonction 'Start' n'est pas encore implementee");
-	//msgBox_->setStandardButtons(QMessageBox::Save);
-	//msgBox_->setButtonText(QMessageBox::Save, "Ok");
-	//msgBox_->setDefaultButton(QMessageBox::Save);
-	//int ret = msgBox_->exec();
-	
-	/*if (!activeGame)
-	{*/
+	if (gestion_->joueurSelect() == nullptr)
+	{
+		QMessageBox *playerWarning_ = new QMessageBox();
+		playerWarning_->setText("Vous devez selectionner un joueur avant de jouer");
+		playerWarning_->setStandardButtons(QMessageBox::Cancel);
+		playerWarning_->setButtonText(QMessageBox::Cancel, "Ok");
+		playerWarning_->exec();
+	}
+	else
+	{
 		current_score = 0;
 		initialise_table();
 		refreshGame();
 		run_game();
-	//}
+	}
+		
 }
+		
 void CentralWidget::btnPause_Clicked()
 {
 	/*msgBox_ = new QMessageBox();
@@ -303,26 +309,29 @@ void CentralWidget::btnPause_Clicked()
 }
 void CentralWidget::btnStop_Clicked()
 {
-	msgBox_ = new QMessageBox();
-	msgBox_->setText("Terminer la partie");
-	msgBox_->setInformativeText("Voulez-vous vraiment quitter le jeu TetrUS? ");
-	msgBox_->setStandardButtons(QMessageBox::Save | QMessageBox::Cancel);
-	msgBox_->setButtonText(QMessageBox::Cancel, "Non");
-	msgBox_->setButtonText(QMessageBox::Save, "Ok");
-	msgBox_->setDefaultButton(QMessageBox::Save);
-	int ret = msgBox_->exec();
+	//msgBox_ = new QMessageBox();
+	//msgBox_->setText("Terminer la partie");
+	//msgBox_->setInformativeText("Voulez-vous vraiment quitter le jeu TetrUS? ");
+	//msgBox_->setStandardButtons(QMessageBox::Save | QMessageBox::Cancel);
+	//msgBox_->setButtonText(QMessageBox::Cancel, "Non");
+	//msgBox_->setButtonText(QMessageBox::Save, "Ok");
+	//msgBox_->setDefaultButton(QMessageBox::Save);
+	//int ret = msgBox_->exec();
 
-	switch (ret) {
-	case QMessageBox::Save:
-		this->setAttribute(Qt::WA_DeleteOnClose);
-		connect(this, SIGNAL(destroyed()), this->parent(), SLOT(menuQuitter_Clicked()));
-		close();
-		break;
-	case QMessageBox::Cancel:
-		break;
-	default:
-		break;
-	}
+	//switch (ret) {
+	//case QMessageBox::Save:
+	//	this->setAttribute(Qt::WA_DeleteOnClose);
+	//	connect(this, SIGNAL(destroyed()), this->parent(), SLOT(menuQuitter_Clicked()));
+	//	close();
+	//	break;
+	//case QMessageBox::Cancel:
+	//	break;
+	//default:
+	//	break;
+	//{
+	alive = false;
+	timerJeu_->stop();
+	loss_warning();
 }
 void CentralWidget::left_press()
 {
@@ -342,6 +351,7 @@ void CentralWidget::up_press()
 {
 	if (activeGame)
 	{
+		Sleep(25);
 		if (formeActuelle->rotation(table1, positionLargeur, positionHauteur));
 		{
 			for (int i = 0; i < formeActuelle->getLength(); i++)
@@ -367,7 +377,17 @@ void CentralWidget::down_press()
 {
 	if (activeGame)
 	{
-		//translation('R');
+		if (iteration())
+		{
+			move('D');
+		}
+		else
+		{
+			check_lines();
+			increase_score(1);
+			nouvelleFormeApparait();
+			refreshGame();
+		}
 	}
 }
 void CentralWidget::refreshUI()
@@ -897,16 +917,20 @@ void CentralWidget::loss_warning()
 	losswarning_ = new QMessageBox();
 	QString converter;
 	losswarning_->setText("Match perdu! Give up on life! Score : " + converter.setNum(current_score));
-	losswarning_->setStandardButtons(QMessageBox::Save);
-	losswarning_->setButtonText(QMessageBox::Save, "Ok");
-	losswarning_->setDefaultButton(QMessageBox::Save);
+	losswarning_->setStandardButtons(QMessageBox::Cancel);
+	losswarning_->setButtonText(QMessageBox::Cancel, "Ok");
 	losswarning_->exec();
 
 	if (gestion_->joueurSelect()->setHighScore(current_score))
 	{
 		highscore_ = new QMessageBox();
+		losswarning_->setText("NEW HIGH SCORE: " + converter.setNum(current_score));
+		losswarning_->setStandardButtons(QMessageBox::Cancel);
+		losswarning_->setButtonText(QMessageBox::Cancel, "Youppi!");
 	}
 	gestion_->sauvegarder();
+	
+	refreshUI();
 }
 
 bool CentralWidget::initialise_table()

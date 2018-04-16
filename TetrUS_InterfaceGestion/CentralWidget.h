@@ -128,6 +128,7 @@ private:
 	int findLastRight(Forme* pForme, int i, int j, bool pNonVide);
 
 	GestionJoueur* gestion_;
+	Joueur* joueur_;
 
 	QVBoxLayout* initNextBloc();
 	QVBoxLayout* initHighscore();

@@ -5,6 +5,14 @@
   MOC NouveauJoueur.h
   MOC Reglements.h
   MOC SelectJoueur.h
+  CentralWidget.cpp
+CentralWidget.cpp(23): warning C4189: 'LeftKey' : variable locale initialisée mais non référencée
+CentralWidget.cpp(26): warning C4189: 'DownKey' : variable locale initialisée mais non référencée
+CentralWidget.cpp(25): warning C4189: 'UpKey' : variable locale initialisée mais non référencée
+CentralWidget.cpp(24): warning C4189: 'RightKey' : variable locale initialisée mais non référencée
+CentralWidget.cpp(355): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
+CentralWidget.cpp(732): warning C4189: 'i' : variable locale initialisée mais non référencée
+  Ligne.cpp
   moc_CentralWidget.cpp
   moc_MainWindow.cpp
   moc_ModifierJoueur.cpp
@@ -12,4 +20,7 @@
   moc_Reglements.cpp
   moc_SelectJoueur.cpp
   Génération de code en cours...
+c:\users\stjm2505\documents\github\tetrus\tetrus_interfacegestion\centralwidget.cpp(523): warning C4715: 'CentralWidget::findLastDown' : les chemins de contrôle ne retournent pas tous une valeur
+c:\users\stjm2505\documents\github\tetrus\tetrus_interfacegestion\centralwidget.cpp(601): warning C4715: 'CentralWidget::findLastLeft' : les chemins de contrôle ne retournent pas tous une valeur
+c:\users\stjm2505\documents\github\tetrus\tetrus_interfacegestion\centralwidget.cpp(634): warning C4715: 'CentralWidget::findLastRight' : les chemins de contrôle ne retournent pas tous une valeur
   TetrUS.vcxproj -> C:\Users\stjm2505\Documents\GitHub\TetrUS\TetrUS_InterfaceGestion\debug\TetrUS.exe
