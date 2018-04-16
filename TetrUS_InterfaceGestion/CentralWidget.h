@@ -57,7 +57,7 @@ public:
 	void refreshGame();
 
 	void delete_line(int deleted_line); //Supprimer la derniere ligne du tableau	
-	bool full_line(int line_check); //Verifier que la derniere ligne est complete
+	bool full_line(int line_check); //Verifier que une ligne est complete
 	void check_lines(); //Combinaison des deux fonctions precedentes. 
 
 	CASE table1[hauteur_tableau][largeur_tableau]; //Tableau pour tetris, grandeur definie par des define 
