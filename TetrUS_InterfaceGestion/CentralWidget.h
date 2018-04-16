@@ -83,9 +83,6 @@ public:
 	void nouvelleFormeApparait();
 	Forme* choixForme(int randomNumber);
 
-	bool activeGame = false;
-	bool alive = false;
-
 private slots:
 	void btnStart_Clicked();
 	void btnPause_Clicked();
@@ -99,6 +96,10 @@ private slots:
 private:
 	void init();
 
+	//// info sur jeu
+	bool activeGame = false;
+	bool alive = false;
+	bool pause_ = false;
 
 	//// compteur
 	int compteurBloc_ = 0;

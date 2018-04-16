@@ -281,12 +281,25 @@ void CentralWidget::btnStart_Clicked()
 }
 void CentralWidget::btnPause_Clicked()
 {
-	msgBox_ = new QMessageBox();
+	/*msgBox_ = new QMessageBox();
 	msgBox_->setText("Fonction 'Pause' n'est pas encore implementee");
 	msgBox_->setStandardButtons(QMessageBox::Save);
 	msgBox_->setButtonText(QMessageBox::Save, "Ok");
 	msgBox_->setDefaultButton(QMessageBox::Save);
-	int ret = msgBox_->exec();
+	int ret = msgBox_->exec();*/
+	if (activeGame)
+	{
+		if (!pause_)
+		{
+			timerJeu_->stop();
+			pause_ = true;
+		}
+		else
+		{
+			timerJeu_->start();
+			pause_ = false;
+		}
+	}
 }
 void CentralWidget::btnStop_Clicked()
 {
@@ -329,10 +342,11 @@ void CentralWidget::up_press()
 {
 	if (activeGame)
 	{
-		formeActuelle->rotation();
-		refreshGame();
+		formeActuelle->rotation(table1, positionLargeur, positionHauteur);
 	}
+	refreshGame();
 }
+
 void CentralWidget::down_press()
 {
 	if (activeGame)
@@ -476,7 +490,6 @@ bool CentralWidget::translation(char direction)
 {
 	int grandeur = formeActuelle->getLength();
 	int i;
-	int j;
 
 	if (direction == 'L')
 	{
